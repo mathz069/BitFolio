@@ -1,0 +1,19 @@
+<nav class="main-nav">
+  <ul>
+    <li *ngIf="tipoUsuario === 'candidato'"><a routerLink="/vagas">Vagas</a></li>
+    <li *ngIf="tipoUsuario === 'candidato'"><a routerLink="/inscricoes">Minhas Inscrições</a></li>
+
+    <li *ngIf="tipoUsuario === 'funcionario'"><a routerLink="/candidatos">Vagas</a></li>
+
+    <li *ngIf="tipoUsuario === 'administrador'"><a routerLink="/vagas-admin">Vagas</a></li>
+    <li *ngIf="tipoUsuario === 'administrador'"><a routerLink="/funcionarios">Funcionários</a></li>
+    <li *ngIf="tipoUsuario === 'administrador'"><a routerLink="/empresas">Empresas</a></li>
+    <!-- Sempre visível: botão de perfil -->
+    <li class="perfil-link">
+      <a [routerLink]="getPerfilRoute()">
+        <img src="./assets/images/icon-perfil.png" alt="Perfil" class="profile-img">
+      </a>
+    </li>
+  </ul>
+</nav>
+<router-outlet></router-outlet>

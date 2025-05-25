@@ -1,0 +1,60 @@
+<div class="bodydiv" [ngClass]="userType">
+<span class="login-title">Acesse sua conta</span>
+<div *ngIf="userTypeData$ | async as userTypeData">
+  <div class="custom-text-size14 span-link1" style="margin-bottom:4%; margin-top:4%">
+    Ainda não tem conta? 
+    <span [routerLink]="getCadastroRoute(userTypeData)" class="span-link">
+      <ins>Crie a sua conta</ins>
+    </span>
+  </div>
+</div>
+<div class="user-selector">
+  <button (click)="setUserType('funcionario')" 
+          [ngClass]="{'active-button': userType === 'funcionario'}" 
+          class="user-button funcionario-btn">Funcionário</button>
+
+  <button (click)="setUserType('candidato')" 
+          [ngClass]="{'active-button': userType === 'candidato'}" 
+          class="user-button candidato-btn">Candidato</button>
+
+  <button (click)="setUserType('administrador')" 
+          [ngClass]="{'active-button': userType === 'administrador'}" 
+          class="user-button administrador-btn">Administrador</button>
+</div>
+
+<form class="login-form" [formGroup]="form" (keydown.enter)="login($event)">
+
+
+
+    <label> E-mail</label>
+    <div [style.border]="setBorder('email')" class="input email">
+        <input class="email-input" formControlName="email" type="email" autofocus required>
+    </div>
+
+
+    <label> Senha</label>
+    <div [style.border]="setBorder('password')" class="input">
+
+        <input class="password-input" formControlName="password" [type]="passwordField" required>
+
+        <button (click)="changeFieldType($event)" class="show-password"><img  class="eye-icon" [src]="eyeSource" /></button>
+
+    </div>
+
+</form>
+
+<div class="aviso" *ngIf="errorPassword || errorEmail">
+    <label for="">Credenciais inválidas. Por favor, verifique seu login e senha.</label>
+</div>
+
+<div *ngIf="userTypeData$ | async as userTypeData">
+  <div class="forgot-password">
+    <span [routerLink]="getRecuperacaoSenhaRoute(userTypeData)" class="custom-text-size14 span-link">Esqueceu sua senha?</span>
+  </div>
+</div>
+
+<button (click)="login($event)" [ngClass]="{'disabled':loginIn}" [disabled]="loginIn" class="custom-text-size14 login-submit" >ACESSAR</button>
+
+<div class="line"></div>
+
+</div>

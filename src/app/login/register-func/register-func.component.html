@@ -1,0 +1,115 @@
+<div class="bodydiv">
+  <span class="login-title">Crie a sua conta</span>
+  <div class="custom-text-size14 span-link1" style="margin-bottom:4%; margin-top:4%">
+    Já tem uma conta? 
+    <span [routerLink]="['/']" class="span-link"><ins>Faça o login</ins></span>
+  </div>
+
+  <div class="form-container">
+    <form class="login-form" [formGroup]="form" (keydown.enter)="login($event)">
+      
+      <!-- Etapa 1: Nome, Email, Senha -->
+      <div *ngIf="step === 1">
+        <label>Nome Completo</label>
+        <div [style.border]="setBorder('nome')" class="input">
+          <input class="email-input" formControlName="nome" type="text" autofocus required>
+        </div>
+
+        <label>E-mail</label>
+        <div [style.border]="setBorder('email')" class="input">
+          <input class="email-input" formControlName="email" type="email" required>
+        </div>
+
+        <label>Senha</label>
+        <div [style.border]="setBorder('senha')" class="input">
+          <input class="password-input" formControlName="senha" [type]="passwordField" required>
+          <button (click)="changeFieldType($event, 'password')" class="show-password">
+            <img class="eye-icon" [src]="eyeSourcePassword" />
+          </button>
+        </div>
+        <div *ngIf="form.get('senha')?.hasError('passwordStrength') && form.get('senha')?.touched">
+          <small class="error">A senha deve ter pelo menos 8 caracteres, 1 letra maiúscula, 1 letra minúscula e 1 caractere especial.</small>
+        </div>
+
+        <label>Confirmar Senha</label>
+        <div [style.border]="setBorder('confirmarSenha')" class="input">
+          <input class="password-input" formControlName="confirmarSenha" [type]="confirmPasswordField" required>
+          <button (click)="changeFieldType($event, 'confirmPassword')" class="show-password">
+            <img class="eye-icon" [src]="eyeSourceConfirmPassword" />
+          </button>
+        </div>
+        <div *ngIf="form.hasError('passwordMismatch') && form.get('confirmarSenha')?.touched">
+          <small class="error">As senhas não coincidem.</small>
+        </div>
+
+        <br><br>
+        <button type="button" (click)="nextStep()" class="custom-text-size14 login-submit">Próximo</button>
+      </div>
+
+      <!-- Etapa 2: Demais dados -->
+      <div *ngIf="step === 2">
+        <button type="button" (click)="previousStep()" class="custom-btn-back">Voltar</button> <br><br>
+
+        <label>Data de Nascimento</label>
+        <div [style.border]="setBorder('dataNascimento')" class="input">
+          <input class="email-input" formControlName="dataNascimento" type="date" required>
+        </div>
+
+        <label>Telefone</label>
+        <div [style.border]="setBorder('telefone')" class="input">
+          <input class="email-input" formControlName="telefone" type="tel" mask="(00) 0 0000 0000" prefix="+55 " required>
+        </div>
+
+        <label>Cargo</label>
+        <div [style.border]="setBorder('cargo')" class="input">
+          <input class="email-input" formControlName="cargo" type="text" required>
+        </div>
+
+        <label>Data de Admissão</label>
+        <div [style.border]="setBorder('dtAdmissao')" class="input">
+          <input class="email-input" formControlName="dtAdmissao" type="date" required>
+        </div>
+
+        <label>Empresa</label>
+        <div class="input" [style.border]="setBorder('negocioId')" style="gap: 10px">
+   <ng-select
+  id="select-empresa"
+  class="w-75"
+  [items]="empresas"
+  bindLabel="nome"
+  bindValue="id"
+  [loading]="loadingEmpresas"
+  [virtualScroll]="true"
+  [clearable]="true"
+  [searchable]="true"
+  [searchFn]="customSearchFn"
+  clearAllText="Limpar"
+  notFoundText="Empresa não encontrada"
+  formControlName="negocioId"
+  (change)="onEmpresaSelecionada($event)"
+  (clear)="onLimparEmpresa()"
+  #select>
+  <!-- Template da opção na lista -->
+    <ng-template ng-option-tmp let-item="item">
+      <div class="empresa-option">{{ item.nome }}</div>
+    </ng-template>
+
+    <!-- Template do rótulo após seleção -->
+    <ng-template ng-label-tmp let-item="item">
+      <div class="empresa-selected">{{ item.nome }}</div>
+    </ng-template>
+  </ng-select>
+        </div>
+
+        <br><br>
+        <button type="button" (click)="onSubmit()" class="custom-text-size14 login-submit" [disabled]="isSubmitting">Cadastrar</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="aviso" *ngIf="errorMessage">
+    <label>{{ errorMessage }}</label>
+  </div>
+
+  <div class="line"></div>
+</div>

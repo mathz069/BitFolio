@@ -1,0 +1,70 @@
+.bolaVerdeLimao {
+    border: 1px solid #d7ff68;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    background-color: #d7ff68;
+}
+.bolaCinza {
+    border: 1px solid #707070;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    background-color: #707070;
+}
+.bolaAzul {
+    border: 1px solid #2582FB;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    background-color: #2582FB;
+}
+.bolaRoxoEscuro {
+    border: 1px solid #22003B;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    background-color: #22003B;
+}
+.bolaVerde {
+    border: 1px solid #00B259;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    background-color: #00B259;
+}
+.bolaAmarela {
+    border: 1px solid #f8ba24;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    background-color: #f8ba24;
+}
+.bolaRosa {
+    border: 1px solid #f700ff;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    background-color: #f700ff;
+}

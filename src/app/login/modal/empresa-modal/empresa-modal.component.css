@@ -1,0 +1,238 @@
+.custom-modal-container {
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Centralizar no overlay */
+::ng-deep .mat-dialog-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 !important;
+    border-radius: 10px;
+    box-shadow: none;
+    background: transparent;
+}
+
+/* Ajuste no título */
+.modal-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #171725;
+    margin-bottom: 15px;
+}
+
+/* Ajuste no body */
+.modal-body {
+    font-size: 14px;
+    color: #707070;
+}
+
+/* Rodapé dos botões */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+.login-title {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 2em;
+    font-weight: normal;
+    color:#171725;
+    position: relative;
+    margin-top: 30%;
+    font-weight: 500;
+}
+
+.email-input {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    width: 90%;
+    margin-left: 2%;
+}
+
+.disabled {
+    opacity: 0.7;
+}
+
+.input {
+    border-radius: 3px;
+    padding: 7px;
+    background-color: #f0f0f0;;
+    width: 98%;
+}
+.active-button {
+  font-weight: bold;
+  border-bottom: 2px solid var(--primary-color);
+}
+label {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: -5%;
+    margin-left: 2%;
+}
+.user-selector {
+  display: flex;
+  gap: 2%;
+  margin: 10px 0 20px 0;
+  width: 98%;
+  margin-left: 1%;
+}
+
+.user-button {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  padding: 8px 0;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  flex: 1;
+  text-align: center;
+  transition: all 0.3s ease;
+  height: 38px;
+}
+
+.user-button:hover {
+  opacity: 0.85;
+}
+
+/* Cores específicas para os botões */
+.funcionario-btn.active-button {
+  background-color: #bc4371;
+  color: white;
+  border: 1px solid #bc4371;
+}
+
+.candidato-btn.active-button {
+  background-color: #044894;
+  color: white;
+  border: 1px solid #044894;
+}
+
+.administrador-btn.active-button {
+  background-color: #940404;
+  color: white;
+  border: 1px solid #940404;
+}
+.input2 {
+    border-radius: 5px;
+    padding: 4px;
+    background-color: #FAFAFB;
+    width: 98%;
+    height: 32px;
+    text-align: center;
+    margin-bottom: 3%;
+    margin-left: -3%;
+}
+
+.escolha {
+    background-color: transparent;
+    float: right;
+    margin-right: 5%;
+}
+
+.email {
+    margin-bottom: 3%;
+}
+
+.password-input {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    width: 80%;
+    float: left;
+    margin-left: 2%;
+}
+
+input {
+    border: none;
+    height: 25px;
+    background-color: transparent;
+    outline: none;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.forgot-password {
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.span-link {
+    color: var(--primary-color);
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.span-link1 {
+    color: #9b9b9b;
+    font-weight: 400;
+    outline: none;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.login-submit {
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 3px;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    height: 45px;
+    margin-bottom: 8%;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.show-password {
+    border: none;
+    background-color: transparent;
+    margin-left:5%
+}
+
+.eye-icon {
+    width: 20px;
+    opacity: 0.8;
+}
+
+button {
+    outline: none;
+    cursor: pointer;
+}
+
+.line {
+    height: 1px;
+    width: 100%;
+    background-color: #D8D8D8;
+    margin-bottom: 20px;
+}
+
+    
+.bodydiv {
+    margin-top:20%
+}
+.funcionario {
+  --primary-color: #bc4371;
+}
+
+.candidato {
+  --primary-color: #044894;
+}
+
+.administrador {
+  --primary-color: #940404;
+}

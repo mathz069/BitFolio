@@ -1,0 +1,366 @@
+/* Resetar margens e padding para garantir que a tela ocupe toda a área */
+html, body{
+   margin:0px !important;
+   padding: 0px !important;
+}
+
+
+.login-body {
+  width: 60%;
+  height: 925px !important;
+  background-color: #044894; /* Cor de fundo azul */
+  background-image: url('/assets/images/3.png');
+  position: relative;
+  overflow: hidden;
+   background-size: cover; /* Faz a imagem cobrir toda a área */
+  background-position: right center; /* Alinha a imagem à direita */
+  background-repeat: no-repeat; /* Não repete a imagem */
+  padding: 0; /* Remove qualquer padding extra */
+  margin-top: -8px; /* Remove qualquer margem extra */
+  margin-bottom: -8px;
+}
+
+
+/* Estilo da imagem do logo */
+.img-fluid {
+  max-height: 100px;
+  text-align: right;
+  margin: 5%;
+  margin-left: 16%;
+}
+
+/* Estilo do texto no login */
+.texto {
+  color: white;
+  margin-top: -2%;
+  margin-left: 16%;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 1.7em;
+  width: 35%;
+  text-justify: auto;
+}
+
+/* Estilo do cartão de login */
+.login-card {
+  border-radius: 5px;
+  height: 100%;
+  width: 40%;
+  background-color: white;
+  margin-right: 2%;
+  overflow: hidden; /* Impede overflow no cartão */
+}
+
+/* Ajuste das margens e padding para evitar que o conteúdo se sobreponha */
+*{
+    margin:0;
+    padding:0;
+    border:0;
+}
+
+/* Estilo do copyright */
+.copyright {
+  color: black;
+  font-family: roboto;
+  font-size: 14px;
+}
+
+/* Estilo para os pontos no rodapé */
+.dot {
+  height: 5px;
+  width: 5px;
+  background-color: black;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 5px 10px;
+  top: 3px;
+  position: relative;
+}
+
+/* Estilo do texto da política de privacidade */
+.white {
+  color: black;
+  font-family: roboto;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Estilo do rodapé */
+.policy {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  margin-bottom: 0%;
+}
+
+/* Logo que deve ser escondida em algumas situações */
+.logo {
+  visibility: collapse;
+  width: 0%;
+  height: 0%;
+}
+
+@media (max-width: 360px) {
+    .login-body{
+        width: 0%;
+        visibility: collapse;
+
+       }
+
+       .login-card{
+        width: 90%;
+        margin-right: 4%;
+
+       }
+       .logo{
+        width: 90%;
+        height: 20%;
+        visibility: visible;
+        text-align: center;
+        margin-bottom: 10%;
+    }
+
+    .img-fluid2{
+
+        text-align: center;
+        margin:5%;
+        margin-left: 16%;
+        width: 25%;
+
+
+    }
+
+
+}
+
+@media (max-width: 460px) {
+    .login-body{
+        width: 0%;
+        visibility: collapse
+
+       }
+
+       .login-card{
+        width: 90%;
+        margin-right: 4%;
+
+
+       }
+       .logo{
+        width: 90%;
+        height: 20%;
+        visibility: visible;
+        text-align: center;
+
+    }
+
+    .img-fluid2{
+
+        text-align: center;
+        margin:5%;
+        margin-left: 16%;
+        width: 25%;
+
+    }
+
+
+}
+
+
+@media (max-width: 825px) and  (max-height: 412px) and (orientation : landscape)  {
+    .login-body{
+        width: 0%;
+        visibility: collapse
+    }
+
+    .login-card{
+        width: 40%;
+        position: relative;
+        right:15%;
+        bottom: 35%;
+
+       }
+       .logo{
+        width: 40%;
+        height: 20%;
+        visibility: visible;
+        text-align: center;
+        position: relative;
+        right:5%;
+        top: 15%;
+    }
+
+    .img-fluid2{
+
+        text-align: center;
+        margin:5%;
+        margin-left: 16%;
+        width: 60%;
+
+    }
+
+
+}
+
+@media (min-width: 1024px) and  (min-height: 655px)  and (orientation : landscape)  {
+    .login-body{
+        /*background: linear-gradient(to right, #0E4E96 0%,#0E4E96 55%,#0E4E96 55%,white 50%,white 100%);  W3C */
+        width: 60%;
+        height: 100%;
+        float: left;
+        background-image: url('/assets/images/3.png');
+        background-color: #044894;
+        margin-left: -5%;
+        background-repeat: no-repeat;
+
+
+       }
+
+
+       .img-fluid{
+           max-height: 100px;
+           text-align: right;
+           margin:5%;
+           margin-left: 16%;
+
+       }
+
+       .texto{
+           color:white;
+           margin-top: -2%;
+           margin-left: 16%;
+           font-family: "Segoe UI", Arial, sans-serif;
+           font-size: 1.7em;
+           width: 35%;
+           text-justify:auto;
+
+       }
+
+       .login-card{
+
+           border-radius: 5px;
+
+           height: 100%;
+
+           float: right;
+
+           width: 40%;
+           background-color: white ;
+
+           margin-right: 2%;
+
+
+       }
+
+
+       .logo{
+           visibility: collapse;
+           width: 0%;
+           height: 0%;
+       }
+
+}
+
+@media (max-width: 740px) and  (max-height: 450px) and (orientation : landscape)  {
+    .login-body{
+        width: 0%;
+        visibility: collapse
+    }
+
+    .login-card{
+        width: 40%;
+        position: relative;
+        right:15%;
+        bottom: 25%;
+
+       }
+       .logo{
+        width: 40%;
+        height: 20%;
+        visibility: visible;
+        text-align: center;
+        position: relative;
+        right:5%;
+        top: 15%;
+    }
+
+    .img-fluid2{
+
+        text-align: center;
+        margin:5%;
+        margin-left: 16%;
+        width: 60%;
+
+    }
+
+
+}
+
+@media (max-width: 670px) and  (max-height: 380px) and (orientation : landscape)  {
+    .login-body{
+        width: 0%;
+        visibility: collapse
+    }
+
+    .login-card{
+        width: 60%;
+        position: relative;
+        right:2%;
+        bottom: 40%;
+
+       }
+       .logo{
+        width: 40%;
+        height: 20%;
+        visibility: visible;
+        text-align: center;
+        position: relative;
+        right:5%;
+        top: 15%;
+    }
+
+    .img-fluid2{
+
+        text-align: center;
+        margin:5%;
+        margin-left: 16%;
+        width: 60%;
+
+    }
+
+
+}
+
+@media (max-width: 570px) and  (max-height: 320px) and (orientation : landscape)  {
+    .login-body{
+        width: 0%;
+        visibility: collapse
+    }
+
+    .login-card{
+        width: 60%;
+        position: relative;
+        right:2%;
+        bottom: 45%;
+
+       }
+       .logo{
+        width: 40%;
+        height: 20%;
+        visibility: visible;
+        text-align: center;
+        position: relative;
+        right:5%;
+        top: 15%;
+    }
+
+    .img-fluid2{
+
+        text-align: center;
+        margin:5%;
+        margin-left: 16%;
+        width: 60%;
+
+    }
+
+
+}

@@ -1,0 +1,71 @@
+<div class="bodydiv modal-container">
+  <span class="login-title">Cadastro de Empresa</span>
+
+  <form [formGroup]="empresaForm" *ngIf="step === 1" (keydown.enter)="nextStep()">
+    <label>Nome</label>
+    <div [style.border]="setBorder('nome')" class="email-input">
+      <input type="text" formControlName="nome" required />
+    </div>
+
+    <label>CNPJ</label>
+    <div [style.border]="setBorder('cnpj')" class="email-input">
+      <input type="text" formControlName="cnpj" mask="00.000.000/0000-00" required />
+    </div>
+
+    <label>Email</label>
+    <div [style.border]="setBorder('email')" class="email-input">
+      <input type="email" formControlName="email" required />
+    </div>
+
+    <label>Descrição</label>
+    <div [style.border]="setBorder('descricao')" class="email-input">
+      <textarea formControlName="descricao" rows="3"></textarea>
+    </div>
+
+    <br />
+    <button type="button" (click)="nextStep()" class="custom-text-size14 login-submit" [disabled]="empresaForm.invalid">Próximo</button>
+  </form>
+    <button type="button" (click)="previousStep()" class="custom-btn-back">Voltar</button>
+
+  <form [formGroup]="enderecoForm" *ngIf="step === 2" (keydown.enter)="submit()">
+    <label>Rua</label>
+    <div [style.border]="setBorder('rua')" class="email-input">
+      <input type="text" formControlName="rua" required />
+    </div>
+
+    <label>Número</label>
+    <div [style.border]="setBorder('numero')" class="email-input">
+      <input type="text" formControlName="numero" required />
+    </div>
+
+    <label>Complemento</label>
+    <div [style.border]="setBorder('complemento')" class="email-input">
+      <input type="text" formControlName="complemento" />
+    </div>
+
+    <label>Bairro</label>
+    <div [style.border]="setBorder('bairro')" class="email-input">
+      <input type="text" formControlName="bairro" required />
+    </div>
+
+    <label>Cidade</label>
+    <div [style.border]="setBorder('cidade')" class="email-input">
+      <input type="text" formControlName="cidade" required />
+    </div>
+
+    <label>Estado</label>
+    <div [style.border]="setBorder('estado')" class="email-input">
+      <input type="text" formControlName="estado" required />
+    </div>
+
+    <label>CEP</label>
+    <div [style.border]="setBorder('cep')" class="email-input">
+      <input type="text" formControlName="cep" mask="00000-000" required />
+    </div>
+
+    <br />
+    <button type="submit" class="custom-text-size14 login-submit" [disabled]="enderecoForm.invalid">Cadastrar</button>
+  </form>
+
+  <button type="button" (click)="close()" class="custom-btn-back">Cancelar</button>
+</div>

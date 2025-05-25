@@ -1,0 +1,54 @@
+.main-nav {
+  padding: 16px 32px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  background-color: var(--nav-bg-color, #ffffff);
+  transition: background-color 0.3s ease;
+}
+
+.main-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 24px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+}
+
+.main-nav li {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 15px;
+  font-weight: 600; /* mais grosso */
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: white; /* cor branca */
+  transition: color 0.2s ease;
+  font-weight: 600; /* mais grosso */
+}
+
+.main-nav a:hover {
+  color: #e0e0e0; /* tom mais claro no hover */
+}
+
+.perfil-link {
+  margin-left: auto;
+}
+
+.profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid #ffffff; /* branco também para combinar */
+  transition: border-color 0.3s ease;
+}
+
+.profile-img:hover {
+  border-color: #e0e0e0;
+}

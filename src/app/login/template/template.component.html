@@ -1,0 +1,17 @@
+<div class="login-body" 
+     [ngStyle]="{
+       'background-color': backgroundColor, 
+       'background-image': 'url(' + backgroundImage + ')',
+       'background-size': 'cover',
+       'background-position': 'right center',
+       'background-repeat': 'no-repeat'
+     }">    
+     <img class="img-fluid" src="./assets/images/logo-branco.png" />
+  <div class="texto">
+    <p><span class="bold">{{ text }}</span></p>
+  </div>
+</div>
+
+<div class="login-card">
+  <router-outlet></router-outlet>
+</div>

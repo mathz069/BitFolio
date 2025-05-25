@@ -1,0 +1,35 @@
+<div class="perfil-container">
+  <h2 class="perfil-title">Minha Conta</h2>
+
+  <form [formGroup]="form">
+    <!-- Primeira linha -->
+    <div class="input-row">
+      <div class="input-wrapper">
+        <label>Nome Completo</label>
+        <input [readonly]="!editando" type="text" formControlName="nome" />
+      </div>
+      <div class="input-wrapper">
+        <label>E-mail</label>
+        <input [readonly]="!editando" type="email" formControlName="email" />
+      </div>
+    </div>
+
+    <!-- Segunda linha -->
+    <div class="input-row">
+      <div class="input-wrapper">
+        <label>Data de Nascimento</label>
+        <input [readonly]="!editando" type="date" formControlName="dataNascimento" />
+      </div>
+      <div class="input-wrapper">
+        <label>Telefone</label>
+        <input [readonly]="!editando" type="tel" formControlName="telefone" />
+      </div>
+    </div>
+
+    <!-- Botão -->
+    <button type="button" (click)="toggleEdicao()" class="perfil-btn">
+      {{ editando ? 'Atualizar' : 'Alterar dados' }}
+    </button>
+  </form>
+</div>
+
