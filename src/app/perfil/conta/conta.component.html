@@ -16,20 +16,31 @@
 
     <!-- Segunda linha -->
     <div class="input-row">
-      <div class="input-wrapper">
-        <label>Data de Nascimento</label>
-        <input [readonly]="!editando" type="date" formControlName="dataNascimento" />
+       <div class="input-wrapper">
+        <label>Curriculo</label>
+        <input [readonly]="!editando" type="file" formControlName="curriculo" />
       </div>
+    </div>
       <div class="input-wrapper">
         <label>Telefone</label>
         <input [readonly]="!editando" type="tel" formControlName="telefone" />
       </div>
     </div>
-
-    <!-- Botão -->
-    <button type="button" (click)="toggleEdicao()" class="perfil-btn">
-      {{ editando ? 'Atualizar' : 'Alterar dados' }}
+    
+    <!-- Botão "Alterar dados" -->
+    <button *ngIf="!editando" type="button" (click)="toggleEdicao()" class="perfil-btn">
+      Alterar dados
     </button>
+
+    <!-- Botão "Atualizar" -->
+    <button *ngIf="editando" type="button" (click)="atualizarDados()" class="perfil-btn">
+      Atualizar
+    </button>
+    <!-- Botão "Deletar" -->
+    <button type="button" (click)="deletarCandidato()" class="btn-delete perfil-btn">
+      Deletar
+    </button>
+
   </form>
 </div>
 

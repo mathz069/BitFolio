@@ -5,6 +5,9 @@ import { Observable} from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { LoginDto, RegisterAdministrador, RegisterCandidato, RegisterFuncionario } from '../models/registerUsuario';
+import { JwtPayload } from 'src/app/models/JwtPayload';
+import jwt_decode from 'jwt-decode';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -56,8 +59,24 @@ solicitarRecuperacaoSenha(email: string): Observable<any> {
   );
 }
 
-
   redefinirSenha(dto: { email: string; codigo: string; novaSenha: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/redefinir-senha`, dto);
+  }
+
+  obterToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  obterUsuarioId(): number | null {
+    const token = this.obterToken();
+    if (!token) return null;
+
+    try {
+      const payload = jwt_decode(token) as JwtPayload;
+      return parseInt(payload.nameid);
+    } catch (e) {
+      console.error('Erro ao decodificar o token:', e);
+      return null;
+    }
   }
 }

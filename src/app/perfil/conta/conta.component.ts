@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/login/services/auth.service';
+import { Candidato } from 'src/app/models/candidato';
+import { CandidatoService } from 'src/app/shared/services/candidato.service';
 
 @Component({
   selector: 'app-conta',
@@ -9,31 +13,73 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class ContaComponent implements OnInit {
 
 form: FormGroup;
-  editando = false;
+editando = false;
+candidatoId: number;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder, 
+    private candidatoService: CandidatoService, 
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {
-    this.form = this.fb.group({
-      nome: [{ value: 'Matheus Cabral', disabled: false }],
-      email: [{ value: 'matheus@email.com', disabled: false }],
-      dataNascimento: [{ value: '1995-07-14', disabled: false }],
-      telefone: [{ value: '(11) 91234-5678', disabled: false }]
-    });
+ngOnInit(): void {
+  this.form = this.fb.group({
+    nome: [''],
+    email: [''],
+    dataNascimento: [''],
+    telefone: [''],
+    curriculo: ['']
+  });
 
-    this.toggleFormState(); // Inicia com os campos desabilitados
+  this.toggleFormState(); 
+
+  const id = this.authService.obterUsuarioId();
+  if (id !== null) {
+    this.candidatoId = id;
+    this.carregarCandidato();
+  } else {
+    console.error('ID do candidato não encontrado no token.');
   }
+}
 
   toggleEdicao(): void {
     this.editando = !this.editando;
     this.toggleFormState();
 
     if (!this.editando) {
-      // Aqui você pode enviar os dados atualizados
-      console.log('Dados atualizados:', this.form.value);
     }
   }
-
+ carregarCandidato(): void {
+    this.candidatoService.getCandidatoById(this.candidatoId).subscribe({
+      next: (candidato: Candidato) => {
+        this.form.patchValue({
+          nome: candidato.nome,
+          email: candidato.email,
+          dataNascimento: candidato.dtNascimento,
+          telefone: candidato.telefone,
+          curriculo: candidato.curriculo ?? ''
+        });
+      },
+      error: err => {
+        console.error('Erro ao buscar candidato:', err);
+      }
+    });
+  }
+  deletarCandidato(): void {
+  if (confirm('Tem certeza que deseja deletar sua conta? Esta ação não pode ser desfeita.')) {
+    this.candidatoService.deleteCandidato(this.candidatoId).subscribe({
+      next: () => {
+        alert('Conta deletada com sucesso.');
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        console.error('Erro ao deletar conta:', err);
+        alert('Erro ao deletar a conta.');
+      }
+    });
+  }
+}
   private toggleFormState(): void {
     if (this.editando) {
       this.form.enable();

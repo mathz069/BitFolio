@@ -1,1 +1,38 @@
-<p>conta-admin works!</p>
+<div class="perfil-container">
+  <h2>Minha Conta - Administrador</h2>
+
+  <form [formGroup]="form">
+    <label>Nome</label>
+    <input [readonly]="!editando" formControlName="nome" type="text" />
+
+    <label>Email</label>
+    <input [readonly]="!editando" formControlName="email" type="email" />
+
+    <label>Data de Nascimento</label>
+    <input [readonly]="!editando" formControlName="dtNascimento" type="date" />
+
+    <label>Telefone</label>
+    <input [readonly]="!editando" formControlName="telefone" type="tel" />
+
+    <label>Cargo</label>
+    <input [readonly]="!editando" formControlName="cargo" type="text" />
+
+    <label>Aprovado</label>
+    <input type="checkbox" [disabled]="!editando" formControlName="aprovado" />
+
+    <label>Data de Aprovação</label>
+    <input [readonly]="true" formControlName="dtAprovacao" type="date" />
+
+    <div class="button-row">
+      <button *ngIf="!editando" type="button" (click)="toggleEdicao()" class="perfil-btn">
+        Alterar dados
+      </button>
+      <button *ngIf="editando" type="button" (click)="atualizarDados()" class="perfil-btn">
+        Atualizar
+      </button>
+      <button type="button" (click)="deletarConta()" class="btn-delete perfil-btn">
+        Deletar
+      </button>
+    </div>
+  </form>
+</div>
