@@ -6,7 +6,7 @@
   </div>
 
   <div class="form-container">
-    <form class="login-form" [formGroup]="form" (keydown.enter)="nextStep()">
+    <form class="login-form" [formGroup]="form" (keydown.enter)="step === 1 ? nextStep() : onSubmit()">
       
       <!-- Primeira Etapa - Nome, E-mail, Senha -->
       <div *ngIf="step === 1">
@@ -67,15 +67,9 @@
         </div>
         <br>
         <br>
-        <button type="button" (click)="onSubmit()" class="custom-text-size14 login-submit" [ngClass]="{'disabled': loginIn}" [disabled]="loginIn">Cadastrar</button>
+        <button type="button" (click)="onSubmit()" class="custom-text-size14 login-submit">Cadastrar</button>
       </div>
     </form>
   </div>
-
-  <div class="aviso" *ngIf="errorPassword || errorEmail">
-    <label for="">Credenciais inválidas. Por favor, verifique seu login e senha.</label>
-  </div>
-
-
   <div class="line"></div>
 </div>

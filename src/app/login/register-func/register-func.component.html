@@ -6,7 +6,7 @@
   </div>
 
   <div class="form-container">
-    <form class="login-form" [formGroup]="form" (keydown.enter)="login($event)">
+    <form class="login-form" [formGroup]="form" (keydown.enter)="step === 1 ? nextStep() : onSubmit()">
       
       <!-- Etapa 1: Nome, Email, Senha -->
       <div *ngIf="step === 1">
@@ -102,7 +102,7 @@
         </div>
 
         <br><br>
-        <button type="button" (click)="onSubmit()" class="custom-text-size14 login-submit" [disabled]="isSubmitting">Cadastrar</button>
+        <button type="button" (click)="onSubmit()" class="custom-text-size14 login-submit">Cadastrar</button>
       </div>
     </form>
   </div>

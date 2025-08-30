@@ -80,6 +80,12 @@ ngOnInit(): void {
     });
   }
 }
+public atualizarDados(): void {
+    if (this.form.invalid) {
+      alert('Por favor, preencha todos os campos corretamente.');
+      return;
+    }
+  }
   private toggleFormState(): void {
     if (this.editando) {
       this.form.enable();

@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors }
 import { Router } from '@angular/router';
 import { RegisterFuncionario } from '../models/registerUsuario';
 import { AuthService } from '../services/auth.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { EmpresaModalComponent } from '../modal/empresa-modal/empresa-modal.component';
 import { Empresa } from '../models/empresa';
 import { EmpresaService } from '../services/empresa.service';

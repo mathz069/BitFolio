@@ -3,10 +3,9 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable} from 'rxjs';
 import { tap } from 'rxjs/operators';
-
 import { LoginDto, RegisterAdministrador, RegisterCandidato, RegisterFuncionario } from '../models/registerUsuario';
 import { JwtPayload } from 'src/app/models/JwtPayload';
-import jwt_decode from 'jwt-decode';
+import * as jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -72,7 +71,7 @@ solicitarRecuperacaoSenha(email: string): Observable<any> {
     if (!token) return null;
 
     try {
-      const payload = jwt_decode(token) as JwtPayload;
+    const payload = (jwt_decode as any)(token) as JwtPayload;
       return parseInt(payload.nameid);
     } catch (e) {
       console.error('Erro ao decodificar o token:', e);

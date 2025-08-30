@@ -16,16 +16,15 @@
 
     <!-- Segunda linha -->
     <div class="input-row">
-       <div class="input-wrapper">
-        <label>Curriculo</label>
-        <input [readonly]="!editando" type="file" formControlName="curriculo" />
-      </div>
-    </div>
-      <div class="input-wrapper">
-        <label>Telefone</label>
-        <input [readonly]="!editando" type="tel" formControlName="telefone" />
-      </div>
-    </div>
+  <div class="input-wrapper">
+    <label>Curriculo</label>
+    <input [readonly]="!editando" type="file" formControlName="curriculo" />
+  </div>
+  <div class="input-wrapper">
+    <label>Telefone</label>
+    <input [readonly]="!editando" type="tel" formControlName="telefone" />
+  </div>
+</div>
     
     <!-- Botão "Alterar dados" -->
     <button *ngIf="!editando" type="button" (click)="toggleEdicao()" class="perfil-btn">
