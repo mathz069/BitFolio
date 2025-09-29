@@ -137,6 +137,32 @@ button {
 .bodydiv {
     margin-top:20%
 }
+.input-container {
+  position: relative;
+}
+
+.capslock-tooltip {
+  position: absolute;
+  top: -30px; /* ajusta acima do input */
+  right: 0;
+  background-color: orange;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.capslock-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -6px; /* seta apontando para o input */
+  right: 10px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: orange transparent transparent transparent;
+}
 
 /* Agrupamento de campos em uma linha */
 .input-group {

@@ -26,6 +26,8 @@ export class RegisterAdminComponent implements OnInit {
   empresas: any[] = [];
   loadingEmpresas = false;
   empresaSelecionada: any;
+  CapsLock: boolean = false;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -43,19 +45,19 @@ export class RegisterAdminComponent implements OnInit {
       senha: ['', [Validators.required, this.passwordStrengthValidator]],
       confirmarSenha: ['', Validators.required],
       dataNascimento: ['', [Validators.required, this.ageValidator]],
-      telefone: ['', Validators.required],
-      cargo: ['', Validators.required],
-      dtAdmissao: ['', Validators.required],
-      negocioId: [null, Validators.required]
+      telefone: ['', Validators.required]
     }, { validator: this.passwordMatchValidator });
   }
 
+checkCapsLock(event: KeyboardEvent) {
+  this.CapsLock = event.getModifierState && event.getModifierState('CapsLock');
+}
 loadEmpresas(): void {
   this.loadingEmpresas = true;
   this.empresaService.getEmpresas().subscribe({
     next: (data) => {
       this.empresas = data.map(e => ({
-        id: Number(e.id),  
+        id: Number(e.empresaId),  
         nome: e.nome
       }));
       this.loadingEmpresas = false;
@@ -100,7 +102,7 @@ if (
 
     dialogRef.componentInstance.empresaCriada.subscribe((novaEmpresa: Empresa) => {
       this.empresas.push(novaEmpresa);
-      this.form.get('negocioId').setValue(novaEmpresa.id);
+      this.form.get('negocioId').setValue(novaEmpresa.empresaId);
       dialogRef.close();
     });
 
@@ -187,9 +189,7 @@ onLimparEmpresa() {
       senha: values.senha,
       dataNascimento: values.dataNascimento,
       telefone: values.telefone,
-      cargo: values.cargo,
-      dtAdmissao: values.dtAdmissao,
-      negocioId: values.negocioId
+      
     };
 
     this.authService.registerAdmin(admin).subscribe({

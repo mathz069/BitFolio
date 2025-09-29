@@ -1,19 +1,21 @@
+import { Candidato } from "src/app/models/candidato";
+
 export class Empresa {
-  id?: number;
+  empresaId?: number;
   nome: string;
+  razaoSocial: string;
   cnpj: string;
   email: string;
   descricao: string;
   logoUrl?: string;
   ativo: boolean;
-  dtAprovacao?: Date;
   dtCadastro: Date;
   enderecoId?: number;
   endereco?: Endereco;
 }
 
 export class Endereco {
-  id?: number;
+  enderecoId?: number;
   rua: string;
   numero: string;
   complemento?: string;
@@ -21,6 +23,6 @@ export class Endereco {
   cidade: string;
   estado: string;
   cep: string;
-  dtCriacao?: Date;
-  dtAtualizacao?: Date;
+  candidato?: Candidato;
+  empresa?: Empresa;
 }

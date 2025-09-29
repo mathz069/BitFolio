@@ -4,7 +4,6 @@ export class RegisterCandidato {
   senha: string;
   dataNascimento: string; 
   telefone: string;
-  curriculoPdf: File;
 }
 export class RegisterFuncionario {
   nome: string;
@@ -12,9 +11,7 @@ export class RegisterFuncionario {
   senha: string;
   dataNascimento: string;
   telefone: string;
-  cargo: string;
-  dtAdmissao: Date;
-  negocioId: string;
+  empresaId: string;
 }
 
 export class RegisterAdministrador {
@@ -23,10 +20,8 @@ export class RegisterAdministrador {
   senha: string;
   dataNascimento: string;
   telefone: string;
-  cargo: string;
-  dtAdmissao: Date;
-  negocioId: string;
 }
+
 export class LoginDto {
   email: string;
   senha: string;

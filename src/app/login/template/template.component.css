@@ -7,7 +7,7 @@ html, body{
 
 .login-body {
   width: 60%;
-  height: 925px !important;
+  height: 1000px !important;
   background-color: #044894; /* Cor de fundo azul */
   background-image: url('/assets/images/3.png');
   position: relative;

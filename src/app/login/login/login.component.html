@@ -11,7 +11,7 @@
 <div class="user-selector">
   <button (click)="setUserType('funcionario')" 
           [ngClass]="{'active-button': userType === 'funcionario'}" 
-          class="user-button funcionario-btn">Funcionário</button>
+          class="user-button funcionario-btn">Recrutador</button>
 
   <button (click)="setUserType('candidato')" 
           [ngClass]="{'active-button': userType === 'candidato'}" 
@@ -29,6 +29,9 @@
     <label> E-mail</label>
     <div [style.border]="setBorder('email')" class="input email">
         <input class="email-input" formControlName="email" type="email" autofocus required>
+        <div *ngIf="CapsLock" class="capslock-tooltip">
+    <span class="exclamation">⚠️</span> Capslock ativado
+  </div>
     </div>
 
 
@@ -40,7 +43,9 @@
         <button (click)="changeFieldType($event)" class="show-password"><img  class="eye-icon" [src]="eyeSource" /></button>
 
     </div>
-
+<div *ngIf="CapsLock" class="capslock-tooltip">
+    <span class="exclamation">⚠️</span> Capslock ativado
+  </div>
 </form>
 
 <div class="aviso" *ngIf="errorPassword || errorEmail">

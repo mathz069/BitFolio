@@ -26,6 +26,7 @@ export class RegisterFuncComponent implements OnInit {
    empresas: any[] = [];
    loadingEmpresas = false;
    empresaSelecionada: any;
+   CapsLock: boolean = false;
    constructor(
      private fb: FormBuilder,
      private authService: AuthService,
@@ -44,18 +45,18 @@ export class RegisterFuncComponent implements OnInit {
        confirmarSenha: ['', Validators.required],
        dataNascimento: ['', [Validators.required, this.ageValidator]],
        telefone: ['', Validators.required],
-       cargo: ['', Validators.required],
-       dtAdmissao: ['', Validators.required],
        negocioId: [null, Validators.required]
      }, { validator: this.passwordMatchValidator });
    }
- 
+ checkCapsLock(event: KeyboardEvent) {
+  this.CapsLock = event.getModifierState && event.getModifierState('CapsLock');
+}
  loadEmpresas(): void {
    this.loadingEmpresas = true;
    this.empresaService.getEmpresas().subscribe({
      next: (data) => {
        this.empresas = data.map(e => ({
-         id: Number(e.id), 
+         id: Number(e.empresaId), 
          nome: e.nome
        }));
        this.loadingEmpresas = false;
@@ -100,7 +101,7 @@ export class RegisterFuncComponent implements OnInit {
  
      dialogRef.componentInstance.empresaCriada.subscribe((novaEmpresa: Empresa) => {
        this.empresas.push(novaEmpresa);
-       this.form.get('negocioId').setValue(novaEmpresa.id);
+       this.form.get('negocioId').setValue(novaEmpresa.empresaId);
        dialogRef.close();
      });
  
@@ -187,9 +188,7 @@ export class RegisterFuncComponent implements OnInit {
       senha: formValues.senha,
       dataNascimento: formValues.dataNascimento,
       telefone: formValues.telefone,
-      cargo: formValues.cargo,
-      dtAdmissao: formValues.dtAdmissao,
-      negocioId: formValues.negocioId
+      empresaId: formValues.negocioId
     };
 
     this.authService.registerFuncionario(funcionario).subscribe({

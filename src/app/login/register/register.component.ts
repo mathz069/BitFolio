@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   errorMessage: string = '';
   isSubmitting: boolean = false;
   step: number = 1;
-  selectedFile: File | null = null; 
+  CapsLock: boolean = false;
   constructor(
     private fb: FormBuilder, 
     private http: HttpClient,  
@@ -35,12 +35,13 @@ export class RegisterComponent implements OnInit {
     confirmarSenha: ['', Validators.required],
     dataNascimento: ['', [Validators.required, this.ageValidator]],
     telefone: ['', Validators.required],
-    curriculo: ['', Validators.required]
   }, {
     validator: this.passwordMatchValidator // 
   });
   }
-
+checkCapsLock(event: KeyboardEvent) {
+  this.CapsLock = event.getModifierState && event.getModifierState('CapsLock');
+}
 passwordStrengthValidator(control: AbstractControl): ValidationErrors | null {
     const password = control.value;
     // Checando se a senha tem pelo menos 8 caracteres
@@ -125,20 +126,7 @@ changeFieldType(event: Event, field: 'password' | 'confirmPassword') {
         }
     }
 }
-onFileSelected(event: Event): void {
-  const fileInput = event.target as HTMLInputElement;
-  if (fileInput.files && fileInput.files.length > 0) {
-    const file = fileInput.files[0]; // Aqui o 'file' já é um Blob
 
-    if (file.type !== 'application/pdf') {
-      this.errorMessage = 'O arquivo deve ser um PDF.';
-      this.selectedFile = null;
-    } else {
-      this.selectedFile = file; // Esse 'file' é um Blob
-      this.errorMessage = '';
-    }
-  }
-}
 transformNome(nome: string): string {
   return nome
     .split(' ') 
@@ -150,8 +138,8 @@ transformEmail(email: string): string {
 }
 onSubmit() {
   debugger;
-  if (this.form.invalid || !this.selectedFile) {
-    this.errorMessage = 'Preencha todos os campos e selecione um currículo em PDF.';
+  if (this.form.invalid) {
+    this.errorMessage = 'Preencha todos os campos';
     return;
   }
 
@@ -165,7 +153,6 @@ onSubmit() {
     senha: formValues.senha,
     dataNascimento: formValues.dataNascimento,
     telefone: formValues.telefone,
-    curriculoPdf: this.selectedFile
   };
 
 
@@ -174,7 +161,6 @@ onSubmit() {
     console.log('Cadastro realizado com sucesso!', response); // Verificando a resposta
     alert('Cadastro realizado com sucesso!');
     this.form.reset();
-    this.selectedFile = null;
     this.isSubmitting = false;
     this.router.navigate(['/login']);
   },

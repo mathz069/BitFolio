@@ -70,7 +70,7 @@ setBorder(controlName: string): string {
     next: (enderecoResponse) => {
       const empresaData = {
         ...this.empresaForm.value,
-        enderecoId: enderecoResponse.id
+        enderecoId: enderecoResponse.enderecoId
       };
 
       this.empresaService.createEmpresa(empresaData).subscribe({

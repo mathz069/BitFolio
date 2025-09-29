@@ -18,13 +18,14 @@ export class LoginComponent implements OnInit  {
     form: FormGroup;
     errorEmail: string;
     errorPassword: string;
-    modulos: ['Go', 'Keeper'];
     userId: string;
     paramJornada: boolean = false;
     mensagem = 'Usuário não possui acesso ao ';
     session:string;
     loginIn = false
     isDialogOpen = false
+    CapsLock: boolean = false;
+    // Observable para os dados do tipo de usuário  
     userTypeData$: Observable<{ imageSrc: string, text: string, backgroundColor: string, backgroundImage: string }>;
 
     constructor(
@@ -57,6 +58,10 @@ export class LoginComponent implements OnInit  {
   });
     this.router.navigate(['/login']); 
   }
+  checkCapsLock(event: KeyboardEvent) {
+  this.CapsLock = event.getModifierState && event.getModifierState('CapsLock');
+}
+
     getCadastroRoute(userTypeData: { backgroundColor: string } | null): string[] {
   if (!userTypeData) {
     return ['/cadastro'];

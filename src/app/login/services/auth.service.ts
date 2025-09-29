@@ -17,22 +17,9 @@ export class AuthService {
   constructor(private http: HttpClient,) { }
 
   registerUsuario(data: RegisterCandidato): Observable<any> {
-    debugger;
-      const formData = new FormData();
-      const candidato = data as RegisterCandidato;
-      formData.append('nome', candidato.nome);
-      formData.append('email', candidato.email);
-      formData.append('senha', candidato.senha);
-      formData.append('dataNascimento', candidato.dataNascimento);
-      formData.append('telefone', candidato.telefone);
-      if (candidato.curriculoPdf) {
-      formData.append('curriculoPdf', candidato.curriculoPdf, candidato.curriculoPdf.name); 
-    formData.forEach((value, key) => {
-  console.log(`${key}: ${value}`);
-});
-      return this.http.post(`${this.apiUrl}/register/candidato`, formData);
+      return this.http.post(`${this.apiUrl}/register/candidato`, data);
     }
-  }
+  
 
  registerFuncionario(data: RegisterFuncionario): Observable<any> {
     return this.http.post(`${this.apiUrl}/register/funcionario`, data);

@@ -60,11 +60,6 @@
         <div [style.border]="setBorder('telefone')" class="input">
           <input class="email-input" formControlName="telefone" type="tel"  mask="(00) 0 0000 0000" prefix="+55 " required>
         </div>
-
-        <label> Currículo (PDF)</label>
-        <div [style.border]="setBorder('curriculo')" class="input">
-          <input class="email-field" formControlName="curriculo" type="file" accept=".pdf" required (change)="onFileSelected($event)">
-        </div>
         <br>
         <br>
         <button type="button" (click)="onSubmit()" class="custom-text-size14 login-submit">Cadastrar</button>

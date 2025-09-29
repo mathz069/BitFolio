@@ -19,8 +19,8 @@ export class EmpresaService {
     return this.http.post<Empresa>(`${this.apiUrlEmpresa}/createEmp`, empresa);
   }
 
-  getEmpresas(page: number = 1, pageSize: number = 10): Observable<Empresa[]> {
-    return this.http.get<Empresa[]>(`${this.apiUrlEmpresa}/getEmpresas?page=${page}&pageSize=${pageSize}`);
+  getEmpresas(page: number = 1, take: number = 10): Observable<Empresa[]> {
+    return this.http.get<Empresa[]>(`${this.apiUrlEmpresa}/getEmpresas?page=${page}&take=${take}`);
   }
 
   getEmpresaById(id: number): Observable<Empresa> {
@@ -35,7 +35,6 @@ export class EmpresaService {
     return this.http.delete<void>(`${this.apiUrlEmpresa}/deleteEmp/${id}`);
   }
   // ========== ENDEREÇO ==========
-
   createEndereco(endereco: Endereco): Observable<Endereco> {
     return this.http.post<Endereco>(`${this.apiUrlEndereco}/createEndereco`, endereco);
   }
