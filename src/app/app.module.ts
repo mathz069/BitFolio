@@ -21,6 +21,10 @@ import { ContaAdminComponent } from './perfil/conta-admin/conta-admin.component'
 import { ContaComponent } from './perfil/conta/conta.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { provideNgxMask } from 'ngx-mask';
+import { VagasComponent } from './vagas/vagas/vagas.component';
+import { CommonModule } from '@angular/common';
+import { DoisFatoresModalComponent } from './login/login/dois-fatores-modal/dois-fatores-modal.component';
+import { EnderecoModalComponent } from './vagas/vagas/endereco-modal/endereco-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +39,8 @@ import { provideNgxMask } from 'ngx-mask';
     ContaFuncComponent,
     ContaAdminComponent,
     ContaComponent,
-    DashboardComponent
+    DashboardComponent,
+    DoisFatoresModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +52,7 @@ import { provideNgxMask } from 'ngx-mask';
     MatDialogModule,
     MatButtonModule,
     NgSelectModule,
+    CommonModule,
   ],
   providers: [
     provideNgxMask()

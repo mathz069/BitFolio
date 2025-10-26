@@ -29,9 +29,6 @@
     <label> E-mail</label>
     <div [style.border]="setBorder('email')" class="input email">
         <input class="email-input" formControlName="email" type="email" autofocus required>
-        <div *ngIf="CapsLock" class="capslock-tooltip">
-    <span class="exclamation">⚠️</span> Capslock ativado
-  </div>
     </div>
 
 
@@ -43,9 +40,10 @@
         <button (click)="changeFieldType($event)" class="show-password"><img  class="eye-icon" [src]="eyeSource" /></button>
 
     </div>
-<div *ngIf="CapsLock" class="capslock-tooltip">
-    <span class="exclamation">⚠️</span> Capslock ativado
-  </div>
+<div *ngIf="capsLockOn" class="capslock-warning">
+  <span>⚠️ Caps Lock está ativado</span>
+</div>
+
 </form>
 
 <div class="aviso" *ngIf="errorPassword || errorEmail">

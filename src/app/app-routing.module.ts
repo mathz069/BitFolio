@@ -11,6 +11,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ContaAdminComponent } from './perfil/conta-admin/conta-admin.component';
 import { ContaComponent } from './perfil/conta/conta.component';
 import { ContaFuncComponent } from './perfil/conta-func/conta-func.component';
+import { VagasComponent } from './vagas/vagas/vagas.component';
 
 
 const routes: Routes = [
@@ -46,6 +47,11 @@ const routes: Routes = [
     component: MainNavComponent,
     children: [
       { path: '', component: ContaAdminComponent }
+    ]
+  },
+  {
+    path: 'vagas', component: MainNavComponent, children: [
+      { path: '', component: VagasComponent }
     ]
   }
 ];

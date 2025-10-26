@@ -1,0 +1,86 @@
+.modal-container {
+  padding: 20px;
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza itens horizontalmente */
+  text-align: center; /* Garante que o texto dentro do container também seja centralizado */
+  position: relative; /* Necessário para posicionar o close-btn */
+}
+
+.modal-text {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  color: #171725;
+  text-align: center; /* Já está centralizado, bom para texto */
+  margin-bottom: 15px;
+}
+
+.input2 {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center; /* Centraliza os botões horizontalmente */
+  width: 100%;
+  gap: 10px;
+}
+.email-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+
+.login-submit {
+  /* flex: 1; Removido para que o botão não ocupe toda a largura disponível desnecessariamente se for o único */
+  background-color: #044894;
+  color: white;
+  border: none;
+  height: 40px;
+  border-radius: 3px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0 20px; /* Adiciona padding horizontal para dar um tamanho razoável ao botão */
+  min-width: 120px; /* Garante um tamanho mínimo para o botão */
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #171725;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #dc3545; /* vermelho ao passar o mouse */
+}
+
+.show-password {
+  flex: 1;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.aviso {
+  color: #dc3545;
+  font-size: 13px;
+  margin-bottom: 8px;
+  width: 100%;
+  text-align: center;
+}

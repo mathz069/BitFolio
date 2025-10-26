@@ -3,9 +3,9 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable} from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { LoginDto, RegisterAdministrador, RegisterCandidato, RegisterFuncionario } from '../models/registerUsuario';
+import { LoginDto, RegisterAdministrador, RegisterCandidato, RegisterFuncionario, TokenTemporario } from '../models/registerUsuario';
 import { JwtPayload } from 'src/app/models/JwtPayload';
-import * as jwt_decode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -29,19 +29,31 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/register/admin`, data);
   }
 
-  login(dto: LoginDto): Observable<{ token: string }> {
-    return this.http.post<{ token: string }>(`${this.apiUrl}/login`, dto)
-      .pipe(
-        tap(response => {
-          localStorage.setItem('token', response.token);
-        })
-      );
-  }
+login(dto: LoginDto): Observable<{ token?: string; doisFatoresNecessario: boolean }> {
+  return this.http.post<{ token?: string; doisFatoresNecessario: boolean }>(
+    `${this.apiUrl}/login`, dto
+  ).pipe(
+    tap(response => {
+      if (response.token) {
+        localStorage.setItem('token', response.token);
+      }
+    })
+  );
+}
+
+
 solicitarRecuperacaoSenha(email: string): Observable<any> {
   return this.http.post(
     `${this.apiUrl}/recuperar-senha`, 
     JSON.stringify(email), 
     { headers: { 'Content-Type': 'application/json' } }
+  );
+}
+
+validarCodigo2FA(dto: TokenTemporario): Observable<{ sucesso: boolean; token?: string; mensagem?: string }> {
+  return this.http.post<{ sucesso: boolean; token?: string; mensagem?: string }>(
+    `${this.apiUrl}/validar-2fa`,
+    dto
   );
 }
 
@@ -53,16 +65,20 @@ solicitarRecuperacaoSenha(email: string): Observable<any> {
     return localStorage.getItem('token');
   }
 
-  obterUsuarioId(): number | null {
+  obterUsuarioId(): string | null {
     const token = this.obterToken();
     if (!token) return null;
 
     try {
-    const payload = (jwt_decode as any)(token) as JwtPayload;
-      return parseInt(payload.nameid);
+      const payload = jwtDecode<JwtPayload>(token);
+      console.log('Payload decodificado:', payload);
+      return payload.nameid || null;
     } catch (e) {
       console.error('Erro ao decodificar o token:', e);
       return null;
     }
   }
+
+
+
 }

@@ -27,3 +27,8 @@ export class LoginDto {
   senha: string;
   tipo: 'candidato' | 'funcionario' | 'administrador';
 }
+
+export interface TokenTemporario {
+  email: string;
+  codigo: string;
+}

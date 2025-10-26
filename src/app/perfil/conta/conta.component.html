@@ -1,45 +1,57 @@
-<div class="perfil-container">
-  <h2 class="perfil-title">Minha Conta</h2>
 
-  <form [formGroup]="form">
-    <!-- Primeira linha -->
-    <div class="input-row">
-      <div class="input-wrapper">
-        <label>Nome Completo</label>
-        <input [readonly]="!editando" type="text" formControlName="nome" />
-      </div>
-      <div class="input-wrapper">
-        <label>E-mail</label>
-        <input [readonly]="!editando" type="email" formControlName="email" />
-      </div>
+  <div class="perfil-container">
+    <div class="perfil-header">
+      <h2>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        Minha Conta
+      </h2>
+      <p>Gerencie suas informações pessoais e configurações</p>
     </div>
 
-    <!-- Segunda linha -->
-    <div class="input-row">
-  <div class="input-wrapper">
-    <label>Curriculo</label>
-    <input [readonly]="!editando" type="file" formControlName="curriculo" />
+    <div class="perfil-content">
+      <div class="info-badge">
+        Clique em "Alterar dados" para editar suas informações
+      </div>
+
+      <form id="perfilForm">
+        <!-- Primeira linha -->
+        <div class="input-row">
+          <div class="input-wrapper">
+            <label>Nome Completo</label>
+            <input readonly type="text" formControlName="nome" value="João da Silva" />
+          </div>
+          <div class="input-wrapper">
+            <label>E-mail</label>
+            <input readonly type="email" formControlName="email" value="joao.silva@email.com" />
+          </div>
+        </div>
+
+        <!-- Segunda linha -->
+        <div class="input-row">
+          <div class="input-wrapper">
+            <label>Telefone</label>
+            <input readonly type="tel" name="telefone" value="(11) 98765-4321" />
+          </div>
+          <div class="input-wrapper">
+            <!-- Espaço vazio para manter o layout -->
+          </div>
+        </div>
+
+        <!-- Botões -->
+        <div class="button-group">
+          <button type="button" id="btnEditar" class="perfil-btn btn-primary">
+            Alterar dados
+          </button>
+          <button type="button" id="btnAtualizar" class="perfil-btn btn-primary hidden">
+            Atualizar
+          </button>
+          <button type="button" id="btnDeletar" class="perfil-btn btn-delete">
+            Deletar Conta
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
-  <div class="input-wrapper">
-    <label>Telefone</label>
-    <input [readonly]="!editando" type="tel" formControlName="telefone" />
-  </div>
-</div>
-    
-    <!-- Botão "Alterar dados" -->
-    <button *ngIf="!editando" type="button" (click)="toggleEdicao()" class="perfil-btn">
-      Alterar dados
-    </button>
-
-    <!-- Botão "Atualizar" -->
-    <button *ngIf="editando" type="button" (click)="atualizarDados()" class="perfil-btn">
-      Atualizar
-    </button>
-    <!-- Botão "Deletar" -->
-    <button type="button" (click)="deletarCandidato()" class="btn-delete perfil-btn">
-      Deletar
-    </button>
-
-  </form>
-</div>
-

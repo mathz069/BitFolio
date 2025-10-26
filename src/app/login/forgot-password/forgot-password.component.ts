@@ -14,7 +14,9 @@ import { UsertypeService } from '../services/usertype.service';
 export class ForgotPasswordComponent implements OnInit {
   form: FormGroup;
   passwordField: string = 'password';
+  confirmPasswordField: string = 'newpassword';
   eyeSourcePassword: string = './assets/images/invisibility.svg';
+  eyeSourceConfirmPassword: string = './assets/images/invisibility.svg';
   errorMessage: string = '';
   step: number = 1;
   isSubmitting: boolean = false;
@@ -36,7 +38,9 @@ export class ForgotPasswordComponent implements OnInit {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       codigo: ['', this.step === 2 ? Validators.required : []],
-      novaSenha: ['', [Validators.required, this.passwordStrengthValidator]]
+      novaSenha: ['', [Validators.required, this.passwordStrengthValidator]],
+      ConfirmarnovaSenha: ['', [Validators.required, this.passwordStrengthValidator]]
+
     });
   }
   setPrimaryColor(userType: 'candidato' | 'administrador' | 'funcionario') {
@@ -55,15 +59,27 @@ export class ForgotPasswordComponent implements OnInit {
     return control && control.invalid && control.touched ? '1px solid red' : '1px solid #ccc';
   }
 
-  changeFieldType(event: Event, field: 'password') {
+  changeFieldType(event: Event, field: 'password' | 'newpassword') {
     event.preventDefault();
+    
     if (field === 'password') {
-      this.passwordField = this.passwordField === 'password' ? 'text' : 'password';
-      this.eyeSourcePassword = this.passwordField === 'password'
-        ? './assets/images/invisibility.svg'
-        : './assets/images/visibility.svg';
+        if (this.passwordField === 'text') {
+            this.passwordField = 'password';
+            this.eyeSourcePassword = './assets/images/invisibility.svg';
+        } else {
+            this.passwordField = 'text';
+            this.eyeSourcePassword = './assets/images/visibility.svg';
+        }
+    } else if (field === 'newpassword') {
+        if (this.confirmPasswordField === 'text') {
+            this.confirmPasswordField = 'password';
+            this.eyeSourceConfirmPassword = './assets/images/invisibility.svg';
+        } else {
+            this.confirmPasswordField = 'text';
+            this.eyeSourceConfirmPassword = './assets/images/visibility.svg';
+        }
     }
-  }
+}
 
   passwordStrengthValidator(control: AbstractControl): ValidationErrors | null {
     const password = control.value;
@@ -76,6 +92,12 @@ export class ForgotPasswordComponent implements OnInit {
       : { passwordStrength: true };
   }
 
+  passwordMatchValidator(group: FormGroup): ValidationErrors | null {
+  const password = group.get('novaSenha') ? group.get('novaSenha')!.value : '';
+  const confirmPassword = group.get('ConfirmarnovaSenha') ? group.get('ConfirmarnovaSenha')!.value : '';
+
+  return password === confirmPassword ? null : { passwordMismatch: true };
+}
   enviarCodigo() {
     const email = this.form.get('email').value;
     if (!email) return;

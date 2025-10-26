@@ -1,0 +1,22 @@
+<div class="modal-container">
+  <!-- Botão X no canto superior direito -->
+  <button class="close-btn" (click)="cancelar()">x</button>
+
+  <span class="login-title">Autenticação de 2 Fatores</span>
+
+  <p class="modal-text">
+    Insira o código de 6 dígitos enviado para seu e-mail.
+  </p>
+
+  <!-- Adicione o elemento <form> e vincule-o ao seu FormGroup -->
+  <form [formGroup]="form" (ngSubmit)="confirmar()">
+    <input class="email-input" type="text" formControlName="codigo" maxlength="6" autofocus>
+    <br>
+    <div *ngIf="error" class="aviso">{{ error }}</div>
+
+    <div class="modal-buttons">
+      <!-- O botão pode ser do tipo 'submit' para acionar (ngSubmit) -->
+      <button type="submit" class="login-submit">Confirmar</button>
+    </div>
+  </form>
+</div>

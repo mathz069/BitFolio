@@ -1,10 +1,9 @@
 export class Candidato {
-  id: number;
+  id: string;
   nome: string;
   email: string;
   telefone: string;
   dtNascimento: string;
-  curriculo: File;
   status: string;
   dtCriacao: string;
   dtAtualizacao: string;

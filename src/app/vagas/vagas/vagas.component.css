@@ -1,0 +1,713 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+  max-width: 1400px;
+margin-left: 2rem;
+margin-right: 2rem;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 450px 1fr; /* sidebar um pouco menor */
+  gap: 2rem; /* antes era 2.5rem */
+}
+
+.page-wrapper {
+  background-color: #EBEFF1;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.filters-sidebar {
+  background-color: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  padding: 1.5rem;
+  height: fit-content;
+  /* position: sticky;
+  top: 2rem; */
+  
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+/* Ajustes de espaçamento interno */
+.filters-sidebar details summary {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.filters-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* Labels e inputs */
+.filter-group label {
+  display: block;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.filter-group input[type="text"],
+.filter-group select {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+  transition: border-color 0.3s;
+}
+
+.filter-group input[type="text"]:focus,
+.filter-group select:focus {
+  border-color: #0e4e96;
+  outline: none;
+}
+
+/* Filtro de linguagens (grid para melhor distribuição) */
+.languages-filter {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem 0.8rem;
+}
+
+/* Botões */
+.btn-filter,
+.btn-clear {
+  width: 100%;
+  padding: 0.7rem 0;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-filter {
+  background-color: #044894;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+}
+
+.btn-filter:hover {
+  background-color: #0e4e96;
+}
+
+.btn-clear {
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  color: #333;
+}
+
+.btn-clear:hover {
+  background-color: #e9e9e9;
+}
+
+.expand-icon {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.vaga-card details[open] .expand-icon,
+.filters-sidebar details[open] .expand-icon {
+  transform: rotate(180deg);
+}
+.filters-content {
+    padding: 1.5rem;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.filter-group {
+    margin-bottom: 1.5rem;
+}
+
+.filter-group label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.filter-group input[type="text"],
+.filter-group input[type="number"],
+.filter-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e8ecf1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.filter-group input[type="text"]:focus,
+.filter-group input[type="number"]:focus,
+.filter-group select:focus {
+    outline: none;
+    border-color: #044894;
+    box-shadow: 0 0 0 3px rgba(4, 72, 148, 0.1);
+}
+
+.languages-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.language-checkbox {
+    display: none;
+}
+
+.language-label {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #f5f7fa;
+    border: 2px solid #e8ecf1;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.language-checkbox:checked + .language-label {
+    background: #044894;
+    color: white;
+    border-color: #044894;
+}
+
+.language-label:hover {
+    border-color: #044894;
+    transform: translateY(-2px);
+}
+
+.range-display {
+    text-align: center;
+    color: #044894;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+input[type="range"] {
+    width: 100%;
+    height: 6px;
+    border-radius: 5px;
+    background: #e8ecf1;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #044894;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 8px rgba(4, 72, 148, 0.1);
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #044894;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-filter {
+    width: 100%;
+    padding: 0.875rem;
+    background: linear-gradient(135deg, #044894 0%, #0367c7 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.btn-filter:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(4, 72, 148, 0.3);
+}
+
+.btn-clear {
+    width: 100%;
+    padding: 0.75rem;
+    background: white;
+    color: #666;
+    border: 2px solid #e8ecf1;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+.btn-clear:hover {
+    border-color: #044894;
+    color: #044894;
+}
+
+.vagas-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    /* Ensure the main content takes the second grid column */
+    grid-column: 2;
+}
+
+.vaga-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.vaga-card:hover {
+    box-shadow: 0 4px 16px rgba(4, 72, 148, 0.15);
+    transform: translateY(-2px);
+}
+
+.vaga-card details {
+    cursor: pointer;
+}
+
+.vaga-card summary {
+    padding: 1.5rem;
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+.vaga-card summary::-webkit-details-marker {
+    display: none;
+}
+
+.vaga-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 1rem;
+}
+
+/* No seu arquivo CSS/SCSS para o componente */
+
+.vaga-title-section {
+    display: flex;
+    flex-direction: column; /* Mantém os itens empilhados: título, empresa, localização, badges */
+    gap: 4px; /* Ajuste o espaçamento geral entre os elementos da seção de título */
+}
+
+.vaga-title {
+    margin: 0; /* Remove margem superior padrão do h3 */
+    font-size: 1.2em;
+    color: #171725;
+}
+
+.empresa-name {
+    margin: 0; /* Remove margens padrão de parágrafo */
+    font-size: 0.9em;
+    color: #666;
+    /* text-align: left; Se quiser garantir que o nome da empresa comece sempre à esquerda */
+}
+
+.location-info {
+    display: inline-flex; /* Use inline-flex para que o bloco se ajuste ao conteúdo e mantenha o alinhamento de texto como um elemento de linha, mas com propriedades flex. */
+    align-items: center; /* Centraliza verticalmente o ícone e o texto da distância */
+    gap: 4px; /* Espaço entre o ícone e o texto da distância */
+    font-size: 0.85em;
+    color: #555;
+    background-color: #e9e9e9; /* Um leve fundo para destacar */
+    padding: 3px 8px;
+    border-radius: 12px;
+    width: fit-content; /* Faz com que o div ocupe apenas a largura do seu conteúdo */
+    /* margin-top: 5px; Opcional: Adiciona um pequeno espaço acima se necessário */
+}
+
+.location-icon {
+    width: 14px; /* Tamanho do ícone de localização */
+    height: 14px;
+    /* vertical-align: middle; Pode ser removido se display: flex no pai já alinhar */
+}
+
+.distancia-text {
+    font-weight: 500;
+}
+
+/* Opcional: Ajuste para os badges, se necessário para o novo layout */
+.vaga-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 5px; /* Adiciona um espaço para separar dos elementos acima */
+}
+
+.badge {
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 0.75em;
+    font-weight: 600;
+    color: #fff;
+    background-color: #044894;
+}
+
+.vaga-title {
+    color: #044894;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.empresa-name {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+}
+
+.vaga-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.badge-nivel {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.badge-modelo {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.badge-escolaridade {
+    background: #e8f5e9;
+    color: #388e3c;
+}
+
+.badge-status {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+.expand-icon {
+    color: #044894;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.vaga-card details[open] .expand-icon {
+    transform: rotate(180deg);
+}
+
+.vaga-details {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    border-top: 2px solid #f5f7fa;
+    animation: slideDown 0.3s ease;
+}
+
+.detail-section {
+    margin-top: 1.25rem;
+}
+
+.detail-section h4 {
+    color: #044894;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.detail-section p {
+    color: #555;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.detail-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.detail-section ul li {
+    padding: 0.4rem 0;
+    color: #555;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.detail-section ul li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #044894;
+    font-weight: bold;
+}
+
+.vaga-dates {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e8ecf1;
+}
+
+.date-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.date-label {
+    font-size: 0.8rem;
+    color: #999;
+    margin-bottom: 0.25rem;
+}
+
+.date-value {
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.btn-candidatar {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #044894 0%, #0367c7 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1.5rem;
+}
+
+.btn-candidatar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(4, 72, 148, 0.3);
+}
+
+/* --- Pagination Styles (Compact & Balanced) --- */
+.pagination-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    width: 100%;
+    gap: 0.75rem;
+}
+
+.pagination-range {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 0.85rem;
+    color: #555;
+    font-weight: 500;
+    padding: 0.25rem 0;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 0.35rem; /* less gap between items */
+}
+
+.page-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Page Button --- */
+.page-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem 0.65rem; /* reduced padding */
+    min-width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+    color: #0E4E96;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.page-link:hover:not(.disabled) {
+    background-color: #e3f2fd;
+    border-color: #044894;
+    color: #044894;
+}
+
+/* --- Disabled state --- */
+.page-item.disabled .page-link {
+    color: #bbb;
+    pointer-events: none;
+    cursor: default;
+    background-color: #f9f9f9;
+    border-color: #eee;
+}
+
+.page-item.disabled .page-link img {
+    filter: grayscale(100%) brightness(1.8);
+}
+
+/* --- Active page --- */
+.page-item.active .page-link {
+    background-color: #044894;
+    border-color: #044894;
+    color: white;
+    font-weight: 600;
+}
+
+/* --- Arrow buttons (compact & transparent) --- */
+.page-item:first-child .page-link,
+.page-item:last-child .page-link {
+    background-color: transparent;
+    border: none;
+    padding: 0.4rem;
+    min-width: unset;
+    height: unset;
+}
+
+.page-item:first-child .page-link:hover:not(.disabled),
+.page-item:last-child .page-link:hover:not(.disabled) {
+    background-color: #e8ecf1;
+    border-color: transparent;
+}
+
+.page-item:first-child .page-link img,
+.page-item:last-child .page-link img {
+    width: 16px; /* smaller arrow icons */
+    height: 16px;
+}
+
+.page-item:first-child.disabled .page-link,
+.page-item:last-child.disabled .page-link {
+    background-color: transparent;
+}
+ 
+
+
+@media (max-width: 1024px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .filters-sidebar {
+        position: static;
+        grid-column: auto;
+    }
+
+    .vagas-container {
+        grid-column: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .vaga-header {
+        flex-direction: column;
+    }
+
+    .vaga-dates {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .pagination-container {
+        gap: 0.5rem; /* Adjust gap for smaller screens */
+    }
+
+    .pagination-range {
+        font-size: 0.85rem;
+        padding: 0.25rem 0; /* Smaller padding for range on mobile */
+    }
+
+    .page-link {
+        padding: 0.4rem 0.6rem;
+        min-width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+    }
+
+    .page-item:first-child .page-link,
+    .page-item:last-child .page-link {
+        padding: 0.25rem; /* Smaller padding for arrow buttons on mobile */
+    }
+
+    .page-item:first-child .page-link img,
+    .page-item:last-child .page-link img {
+        width: 20px; /* Smaller arrow icons on mobile */
+        height: 20px;
+    }
+}

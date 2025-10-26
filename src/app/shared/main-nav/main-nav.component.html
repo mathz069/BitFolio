@@ -3,9 +3,9 @@
     <li *ngIf="tipoUsuario === 'candidato'"><a routerLink="/vagas">Vagas</a></li>
     <li *ngIf="tipoUsuario === 'candidato'"><a routerLink="/inscricoes">Minhas Inscrições</a></li>
 
-    <li *ngIf="tipoUsuario === 'funcionario'"><a routerLink="/candidatos">Vagas</a></li>
+    <li *ngIf="tipoUsuario === 'funcionario'"><a routerLink="/vagas">Vagas</a></li>
 
-    <li *ngIf="tipoUsuario === 'administrador'"><a routerLink="/vagas-admin">Vagas</a></li>
+    <li *ngIf="tipoUsuario === 'administrador'"><a routerLink="/vagas">Vagas</a></li>
     <li *ngIf="tipoUsuario === 'administrador'"><a routerLink="/funcionarios">Funcionários</a></li>
     <li *ngIf="tipoUsuario === 'administrador'"><a routerLink="/empresas">Empresas</a></li>
     <!-- Sempre visível: botão de perfil -->

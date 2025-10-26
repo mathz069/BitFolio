@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Curriculo } from '../models/curriculo';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class CandidatoService {
 
   constructor(private http: HttpClient) {}
 
-  getCandidatoById(id: number): Observable<any> {
+  getCandidatoById(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/getCandidatoById/${id}`);
   }
 
@@ -24,7 +25,19 @@ export class CandidatoService {
     return this.http.put(`${this.apiUrl}/updateCandidato`, candidato);
   }
 
-  deleteCandidato(id: number): Observable<any> {
+  deleteCandidato(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/deleteCandidato/${id}`);
+  }
+
+  criarOuAtualizarCurriculo(candidatoId: string, curriculo: Curriculo): Observable<any> {
+    return this.http.post(`${this.apiUrl}/createCurriculo/${candidatoId}`, curriculo);
+  }
+
+   getCurriculoByCandidato(candidatoId: string): Observable<Curriculo> {
+    return this.http.get<Curriculo>(`${this.apiUrl}/getCurriculo/${candidatoId}`);
+  }
+
+  deleteCurriculo(curriculoId: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/deleteCurriculo/${curriculoId}`);
   }
 }

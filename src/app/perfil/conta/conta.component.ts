@@ -14,7 +14,7 @@ export class ContaComponent implements OnInit {
 
 form: FormGroup;
 editando = false;
-candidatoId: number;
+candidatoId: string | null = null;
 
   constructor(
     private fb: FormBuilder, 
@@ -58,7 +58,6 @@ ngOnInit(): void {
           email: candidato.email,
           dataNascimento: candidato.dtNascimento,
           telefone: candidato.telefone,
-          curriculo: candidato.curriculo ?? ''
         });
       },
       error: err => {

@@ -2,10 +2,49 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* para evitar scroll indesejado */
+  overflow-y: auto;
+  /* overflow: hidden; para evitar scroll indesejado */
 }
 
-.cdk-overlay-container {
-  position: fixed;
-  z-index: 1000;
+
+/* Centralização do Modal (Revisão do Z-index) */
+.custom-2fa-panel {
+  position: fixed !important; 
+  top: 50% !important;
+  left: 55% !important;
+  transform: translate(-50%, -50%) !important;
+  
+  /* AUMENTA o Z-index para ficar ACIMA do backdrop (20000) */
+  z-index: 20001; 
+  
+  background-color: transparent !important; 
+  margin: 0 !important; 
+}
+
+/* Estilos para o Backdrop (Fundo) - Aumentando o Z-index */
+.custom-2fa-backdrop {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  
+  /* AUMENTA o Z-index para um valor alto para dominar */
+  z-index: 20000 !important; 
+  
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Estilo para o conteúdo interno do modal */
+.custom-2fa-panel .mat-dialog-container {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    border-radius: 5px;
+    background-color: white; 
+    padding: 24px; 
+    width: 100%; 
+    height: auto; 
+    max-width: 600px; 
+    position: relative; /* Opcional, mas útil */
 }
