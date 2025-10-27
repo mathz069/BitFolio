@@ -12,11 +12,15 @@ import { AppRoutingModule } from "src/app/app-routing.module";
 import { AppComponent } from "src/app/login/root/app.component";
 import { EnderecoModalComponent } from "./endereco-modal/endereco-modal.component";
 import { VagasComponent } from "./vagas.component";
+import { CurrencyPipe } from "src/app/shared/currency.pipe";
+import { MinhasVagasComponent } from "../minhas-vagas/minhas-vagas.component";
 
 @NgModule({
   declarations: [
     VagasComponent,
-    EnderecoModalComponent
+    EnderecoModalComponent,
+    CurrencyPipe,
+    MinhasVagasComponent,
   ],
   imports: [
     BrowserModule,

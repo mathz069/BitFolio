@@ -10,6 +10,7 @@ import { VagaDTO, FiltroVagaDTO } from 'src/app/shared/models/vagas';
 import { CandidatoService } from 'src/app/shared/services/candidato.service';
 import { VagaService } from 'src/app/shared/services/vagas.service';
 import { EnderecoModalComponent } from './endereco-modal/endereco-modal.component';
+import { Candidato } from 'src/app/models/candidato';
 
 @Component({
   selector: 'app-vagas',
@@ -18,7 +19,7 @@ import { EnderecoModalComponent } from './endereco-modal/endereco-modal.componen
 })
 
 export class VagasComponent implements OnInit {
-
+  candidato: Candidato;
   vagas: VagaDTO[] = [];
   filtros: any = {
     palavrasChave: '',
@@ -36,7 +37,8 @@ export class VagasComponent implements OnInit {
       swift: false
     },
     experiencia: '',
-    area: ''
+    area: '',
+    modelo: ''
   };
 
   pager: Pager = new Pager();
@@ -61,6 +63,7 @@ ngOnInit(): void {
     // Busca os dados do candidato antes de buscar as vagas
     this.candidatoService.getCandidatoById(this.candidatoId).subscribe({
       next: (candidato: any) => {
+        this.candidato = candidato;
         const temEndereco = !!candidato.enderecoId;
 
         if (!temEndereco) {
@@ -168,7 +171,8 @@ ngOnInit(): void {
         swift: false
       },
       experiencia: '',
-      area: ''
+      area: '',
+      modelo: ''
     };
     this.page = 1;
     this.candidatoService.getCandidatoById(this.candidatoId).subscribe({
@@ -211,6 +215,7 @@ ngOnInit(): void {
       experiencia: this.filtros.experiencia,
       linguagens: linguagensSelecionadas,
       proximidade: this.filtros.proximidade,
+      modelo: this.filtros.modelo,
       page: page,
       take: take
     };
@@ -232,7 +237,7 @@ this.vagaService.buscar(filtro, page, take)
                     ? Math.round(v.distancia * 10) / 10 // Ex: 5.084 -> 5.1
                     : 0
     }));
-
+    console.log('Vagas recebidas:', this.vagas);
     const qtd = Number(response.headers.get('qtd'));
     const range = response.headers.get('range') || '';
     this.createPagination(qtd, page, take, range);
@@ -260,10 +265,32 @@ trackByVagaId(index: number, vaga: VagaDTO) {
 
   candidatar(vagaId: string) {
     if (!this.candidatoId) return;
+    console.log(this.candidato)
+    if (this.candidato.curriculoId == null || this.candidato.curriculoId === '') {
+       const config = new MatDialogConfig();
+        config.width = '600px';
+        config.maxWidth = '87%';
+        config.disableClose = true;
+        config.autoFocus = true;
+        config.panelClass = 'custom-2fa-panel';
+        config.backdropClass = 'custom-2fa-backdrop';
+        config.data = {
+          mensagem: 'Você não possui um curriculo cadastrado. A candidatura não pode ser realizada.',
+          botaoTexto: 'Ir para Minha Conta'
+        };
 
+        const dialogRef = this.dialog.open(EnderecoModalComponent, config);
+
+        dialogRef.afterClosed().subscribe((irConta: boolean) => {
+          if (irConta) {
+            this.router.navigate(['/minha-conta']);
+      } 
+    });
+    } else {
     this.vagaService.candidatar(this.candidatoId, vagaId).subscribe({
       next: () => alert('Candidatura realizada com sucesso!'),
       error: (err) => alert('Erro ao candidatar-se: ' + err.message)
     });
+  }
   }
 }

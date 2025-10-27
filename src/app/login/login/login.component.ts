@@ -133,7 +133,7 @@ login($event: Event) {
 if (response.doisFatoresNecessario) {
     const config = new MatDialogConfig();
     config.width = '600px';
-    config.maxWidth = '90%';
+    config.maxWidth = '87%';
     config.disableClose = true;
     config.autoFocus = true;
     config.panelClass = 'custom-2fa-panel'

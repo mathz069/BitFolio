@@ -22,7 +22,7 @@ export class TemplateComponent implements OnInit {
   if (savedType) {
     this.userTypeService.setUserType(savedType);
   }
-
+  
   this.userTypeService.userTypeData$.subscribe(data => {
     this.imageSrc = data.imageSrc;
     this.text = data.text;

@@ -25,6 +25,7 @@ import { VagasComponent } from './vagas/vagas/vagas.component';
 import { CommonModule } from '@angular/common';
 import { DoisFatoresModalComponent } from './login/login/dois-fatores-modal/dois-fatores-modal.component';
 import { EnderecoModalComponent } from './vagas/vagas/endereco-modal/endereco-modal.component';
+import { CurrencyPipe } from './shared/currency.pipe';
 @NgModule({
   declarations: [
     AppComponent,

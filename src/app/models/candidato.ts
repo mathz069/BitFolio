@@ -8,4 +8,6 @@ export class Candidato {
   dtCriacao: string;
   dtAtualizacao: string;
   ativo: boolean;
+  enderecoId: string;
+  curriculoId: string;
 }

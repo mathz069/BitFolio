@@ -48,48 +48,58 @@
                         </select>
                     </div>
 
+                                   <div class="filter-group">
+                        <label for="modelo">Modalidade</label>
+                        <select id="modelo" name="modelo" [(ngModel)]="filtros.modelo">
+                            <option value="">Todos as modalidades</option>
+                            <option value="Presencial">Presencial</option>
+                            <option value="Híbrido">Híbrido</option>
+                            <option value="Remoto">Remoto</option>
+                        </select>
+                    </div>
+
                     <div class="filter-group">
-                        <label>Linguagens de Programação</label>
+                        <label>Tecnologias</label>
                         <div class="languages-filter">
-                            <input type="checkbox" id="lang-javascript" name="languages" value="javascript"
-                                class="language-checkbox" [(ngModel)]="filtros.linguagens.javascript">
+                            <input type="checkbox" id="lang-javascript" name="languages" value="JavaScript"
+                                class="language-checkbox" [(ngModel)]="filtros.linguagens.JavaScript">
                             <label for="lang-javascript" class="language-label">JavaScript</label>
 
-                            <input type="checkbox" id="lang-python" name="languages" value="python"
-                                class="language-checkbox" [(ngModel)]="filtros.linguagens.python">
+                            <input type="checkbox" id="lang-python" name="languages" value="Python"
+                                class="language-checkbox" [(ngModel)]="filtros.linguagens.Python">
                             <label for="lang-python" class="language-label">Python</label>
 
-                            <input type="checkbox" id="lang-java" name="languages" value="java"
-                                class="language-checkbox" [(ngModel)]="filtros.linguagens.java">
+                            <input type="checkbox" id="lang-java" name="languages" value="Java"
+                                class="language-checkbox" [(ngModel)]="filtros.linguagens.Java">
                             <label for="lang-java" class="language-label">Java</label>
 
-                            <input type="checkbox" id="lang-csharp" name="languages" value="csharp"
-                                class="language-checkbox" [(ngModel)]="filtros.linguagens.csharp">
+                            <input type="checkbox" id="lang-csharp" name="languages" value="CSharp"
+                                class="language-checkbox" [(ngModel)]="filtros.linguagens.CSharp">
                             <label for="lang-csharp" class="language-label">C#</label>
 
-                            <input type="checkbox" id="lang-php" name="languages" value="php" class="language-checkbox"
-                                [(ngModel)]="filtros.linguagens.php">
+                            <input type="checkbox" id="lang-php" name="languages" value="PHP" class="language-checkbox"
+                                [(ngModel)]="filtros.linguagens.PHP">
                             <label for="lang-php" class="language-label">PHP</label>
 
-                            <input type="checkbox" id="lang-ruby" name="languages" value="ruby"
-                                class="language-checkbox" [(ngModel)]="filtros.linguagens.ruby">
-                            <label for="lang-ruby" class="language-label">Ruby</label>
+                            <input type="checkbox" id="lang-ruby" name="languages" value="SQL"
+                                class="language-checkbox" [(ngModel)]="filtros.linguagens.SQL">
+                            <label for="lang-ruby" class="language-label">SQL</label>
 
-                            <input type="checkbox" id="lang-go" name="languages" value="go" class="language-checkbox"
-                                [(ngModel)]="filtros.linguagens.go">
-                            <label for="lang-go" class="language-label">Go</label>
+                            <input type="checkbox" id="lang-go" name="languages" value="Figma" class="language-checkbox"
+                                [(ngModel)]="filtros.linguagens.Figma">
+                            <label for="lang-go" class="language-label">Figma</label>
 
                             <input type="checkbox" id="lang-typescript" name="languages" value="typescript"
                                 class="language-checkbox" [(ngModel)]="filtros.linguagens.typescript">
                             <label for="lang-typescript" class="language-label">TypeScript</label>
 
-                            <input type="checkbox" id="lang-kotlin" name="languages" value="kotlin"
+                            <!-- <input type="checkbox" id="lang-kotlin" name="languages" value="kotlin"
                                 class="language-checkbox" [(ngModel)]="filtros.linguagens.kotlin">
                             <label for="lang-kotlin" class="language-label">Kotlin</label>
 
                             <input type="checkbox" id="lang-swift" name="languages" value="swift"
                                 class="language-checkbox" [(ngModel)]="filtros.linguagens.swift">
-                            <label for="lang-swift" class="language-label">Swift</label>
+                            <label for="lang-swift" class="language-label">Swift</label> -->
                         </div>
                     </div>
 
@@ -109,6 +119,7 @@
                             <h3 class="vaga-title">{{ vaga.titulo }}</h3>
                             <div class="empresa-location-wrapper">
                                     <p class="empresa-name">{{ vaga.empresaNome }}</p>
+                                    <p class="empresa-name">{{ vaga.endereco }}</p>
                                     <div class="location-info" *ngIf="vaga.distancia">
                                         <img src="assets/images/geo-alt.svg" alt="Localização" class="location-icon">
                                         <span class="distancia-text">{{ vaga.distancia }} km</span>
@@ -118,7 +129,7 @@
                                 <span class="badge badge-nivel">{{ vaga.nivel }}</span>
                                 <span class="badge badge-modelo">{{ vaga.modelo }}</span>
                                 <span class="badge badge-escolaridade">{{ vaga.escolaridade }}</span>
-                            </div>
+                                </div>
                         </div>
                         <img src="../../../assets/images/arrow-down-gray.svg" alt="Expandir" class="expand-icon">
                     </div>

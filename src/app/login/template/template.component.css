@@ -2,6 +2,7 @@
 html, body{
    margin:0px !important;
    padding: 0px !important;
+   overflow: hidden;
 }
 
 
@@ -11,13 +12,13 @@ html, body{
   background-color: #044894; /* Cor de fundo azul */
   background-image: url('/assets/images/3.png');
   position: relative;
-  overflow: hidden;
-   background-size: cover; /* Faz a imagem cobrir toda a área */
+  background-size: cover; /* Faz a imagem cobrir toda a área */
   background-position: right center; /* Alinha a imagem à direita */
   background-repeat: no-repeat; /* Não repete a imagem */
   padding: 0; /* Remove qualquer padding extra */
   margin-top: -8px; /* Remove qualquer margem extra */
   margin-bottom: -8px;
+  overflow: hidden;
 }
 
 

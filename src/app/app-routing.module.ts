@@ -12,6 +12,7 @@ import { ContaAdminComponent } from './perfil/conta-admin/conta-admin.component'
 import { ContaComponent } from './perfil/conta/conta.component';
 import { ContaFuncComponent } from './perfil/conta-func/conta-func.component';
 import { VagasComponent } from './vagas/vagas/vagas.component';
+import { MinhasVagasComponent } from './vagas/minhas-vagas/minhas-vagas.component';
 
 
 const routes: Routes = [
@@ -52,6 +53,11 @@ const routes: Routes = [
   {
     path: 'vagas', component: MainNavComponent, children: [
       { path: '', component: VagasComponent }
+    ]
+  },
+  {
+    path: 'inscricoes', component: MainNavComponent, children: [
+      { path: '', component: MinhasVagasComponent }
     ]
   }
 ];

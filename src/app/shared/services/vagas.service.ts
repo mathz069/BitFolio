@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AtualizarStatusRequest } from '../models/atualizar-status-request';
 import { ToggleFavorito } from '../models/toogle-favorito';
-import { FiltroVagaDTO, Vaga, VagaDTO } from '../models/vagas';
+import { FiltroVagaDTO, HistoricoCandidatura, Vaga, VagaDTO } from '../models/vagas';
 
 @Injectable({
   providedIn: 'root'
@@ -76,7 +76,8 @@ buscar(filtros: FiltroVagaDTO, page: number = 1, take: number = 10): Observable<
 
   if (filtros.proximidade && filtros.proximidade > 0)
     params = params.set('proximidade', filtros.proximidade.toString());
-
+  if (filtros.modelo)
+    params = params.set('modelo', filtros.modelo);
   params = params.set('page', page.toString());
   params = params.set('take', take.toString());
 
@@ -84,6 +85,9 @@ buscar(filtros: FiltroVagaDTO, page: number = 1, take: number = 10): Observable<
 }
 
 
+getHistoricoCandidaturas(candidatoId: string): Observable<HistoricoCandidatura[]> {
+  return this.http.get<HistoricoCandidatura[]>(`${this.apiUrl}/historico/${candidatoId}`);
+}
 
   /** Candidatar um candidato a uma vaga */
   candidatar(candidatoId: string, vagaId: string): Observable<any> {

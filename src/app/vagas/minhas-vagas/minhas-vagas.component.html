@@ -1,0 +1,68 @@
+<div class="page-wrapper">
+    <div class="container-inscricoes">
+        <header class="page-header">
+            <p class="subtitle">Acompanhe o status das suas candidaturas</p>
+        </header>
+
+        <main class="inscricoes-container">
+            <div *ngIf="candidaturas.length === 0" class="no-inscricoes">
+                <p>Você ainda não possui nenhuma inscrição.</p>
+            </div>
+
+            <!-- Loop de candidaturas -->
+            <article class="inscricao-card" *ngFor="let candidatura of candidaturas">
+                <div class="inscricao-content">
+                    <div class="vaga-info">
+                        <h3 class="vaga-title">{{ candidatura.vaga.titulo }}</h3>
+                        <p class="empresa-name">{{ getEmpresaNome(candidatura) }}</p>
+
+                        <div class="vaga-badges">
+                            <span class="badge badge-nivel">{{ candidatura.vaga.nivel }}</span>
+                            <span class="badge badge-modelo">{{ candidatura.vaga.modelo }}</span>
+                            <span class="badge badge-escolaridade">{{ candidatura.vaga.escolaridade }}</span>
+                        </div>
+
+                        <div class="inscricao-data">
+                            <span class="data-label">Inscrito em:</span>
+                            <span class="data-value">
+                                {{ candidatura.dtCandidatura | date:'dd/MM/yyyy' }}
+                            </span>
+                        </div>
+                        <div class="inscricao-data">
+                            <span class="data-label">Atualizado em:</span>
+                            <span class="data-value">
+                                {{ candidatura.dtAtualizacao | date:'dd/MM/yyyy' }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="status-section">
+                   <div
+    class="status-badge"
+    [ngClass]="{
+      'status-em-analise': getStatusLabel(candidatura.status) === 'Em Análise',
+      'status-revisado': getStatusLabel(candidatura.status) === 'Curriculo Revisado',
+      'status-pre-selecionado': getStatusLabel(candidatura.status) === 'Pré-Selecionado',
+      'status-aprovado': getStatusLabel(candidatura.status) === 'Selecionado',
+      'status-reprovado': getStatusLabel(candidatura.status) === 'Não Selecionado'
+    }"
+  >
+                            <div class="status-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                                    <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" />
+                                </svg>
+                            </div>
+                            <div class="status-info">
+                                <span class="status-label">Status</span>
+                                <span class="status-text">{{ getStatusLabel(candidatura.status) }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </main>
+    </div>
+</div>
