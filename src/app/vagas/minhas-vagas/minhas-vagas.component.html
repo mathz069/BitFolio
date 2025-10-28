@@ -1,11 +1,11 @@
 <div class="page-wrapper">
     <div class="container-inscricoes">
         <header class="page-header">
-            <p class="subtitle">Acompanhe o status das suas candidaturas</p>
+            <p class="subtitle" *ngIf="candidaturas.length != 0">Acompanhe o status das suas candidaturas</p>
         </header>
 
-        <main class="inscricoes-container">
-            <div *ngIf="candidaturas.length === 0" class="no-inscricoes">
+        <main class="page-header">
+            <div *ngIf="candidaturas.length === 0" class="subtitle">
                 <p>Você ainda não possui nenhuma inscrição.</p>
             </div>
 

@@ -45,7 +45,7 @@ body {
 .inscricoes-container {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2.5rem;
 }
 
 /* Card de Inscrição */
@@ -97,7 +97,10 @@ body {
     font-size: 0.9rem;
     margin: 0;
 }
-
+.vaga-title, .empresa-name {
+    text-align: left; /* Garante alinhamento à esquerda */
+    width: 100%; /* Ocupa toda a largura disponível para alinhar */
+}
 .vaga-badges {
     display: flex;
     flex-wrap: wrap;

@@ -34,6 +34,7 @@ export interface VagaDTO {
   };
   distancia?: number;
   salario?: number;
+  favoritado?: boolean;
 }
 export interface FiltroVagaDTO {
   candidatoId: string;               

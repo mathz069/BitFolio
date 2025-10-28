@@ -6,11 +6,12 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/login/services/auth.service';
 import { Pager } from 'src/app/shared/models/pager';
-import { VagaDTO, FiltroVagaDTO } from 'src/app/shared/models/vagas';
+import { VagaDTO, FiltroVagaDTO, Vaga } from 'src/app/shared/models/vagas';
 import { CandidatoService } from 'src/app/shared/services/candidato.service';
 import { VagaService } from 'src/app/shared/services/vagas.service';
 import { EnderecoModalComponent } from './endereco-modal/endereco-modal.component';
 import { Candidato } from 'src/app/models/candidato';
+import { ToggleFavorito } from 'src/app/shared/models/toogle-favorito';
 
 @Component({
   selector: 'app-vagas',
@@ -126,7 +127,7 @@ ngOnInit(): void {
         dialogRef.afterClosed().subscribe((irConta: boolean) => {
           if (irConta) {
             // Redireciona somente se o usuário clicar no botão
-            this.router.navigate(['/minha-conta']);
+            this.router.navigate(['/perfil']);
           }
 
           // Busca vagas ignorando proximidade, mas mantendo o valor visível no campo
@@ -241,6 +242,7 @@ this.vagaService.buscar(filtro, page, take)
     const qtd = Number(response.headers.get('qtd'));
     const range = response.headers.get('range') || '';
     this.createPagination(qtd, page, take, range);
+    this.marcarFavoritos();
   });
 
   }
@@ -249,6 +251,16 @@ trackByVagaId(index: number, vaga: VagaDTO) {
   return vaga.vagaId;
 }
 
+marcarFavoritos(): void {
+    this.vagaService.getFavoritos(this.candidatoId).subscribe((favoritos: Vaga[]) => {
+      const favoritosIds = new Set(favoritos.map(v => v.vagaId));
+
+      // Marca as vagas como favoritados
+      this.vagas.forEach(v => {
+        v.favoritado = favoritosIds.has(v.vagaId);
+      });
+    });
+  }
   createPagination(totalItems: number, currentPage: number = 1, take: number = 5, range: string = '') {
     const totalPages = Math.ceil(totalItems / take);
     const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
@@ -283,7 +295,7 @@ trackByVagaId(index: number, vaga: VagaDTO) {
 
         dialogRef.afterClosed().subscribe((irConta: boolean) => {
           if (irConta) {
-            this.router.navigate(['/minha-conta']);
+            this.router.navigate(['/perfil']);
       } 
     });
     } else {
@@ -293,4 +305,24 @@ trackByVagaId(index: number, vaga: VagaDTO) {
     });
   }
   }
+
+  toggleFavorito(vagaId: string): void {
+  const dto: ToggleFavorito = {
+    candidatoId: this.candidatoId,  // vindo do login / sessão
+    vagaId: vagaId
+  };
+
+  this.vagaService.toggleFavorito(dto).subscribe({
+    next: (res) => {
+      // Localiza a candidatura correspondente e atualiza o estado do ícone
+      const candidatura = this.vagas.find(c => c.vagaId === vagaId);
+      if (candidatura) {
+        candidatura.favoritado = res.favoritado;
+        console.log(`Vaga ${vagaId} favoritado: ${res.favoritado}`);
+      }
+    },
+    error: (err) => console.error('Erro ao favoritar/desfavoritar vaga:', err)
+  });
+}
+
 }

@@ -46,9 +46,9 @@ export class VagaService {
   }
 
   /** Favoritar/Desfavoritar vaga */
-  toggleFavorito(dto: ToggleFavorito): Observable<any> {
-    return this.http.post(`${this.apiUrl}/toggleFavorito`, dto);
-  }
+  toggleFavorito(dto: ToggleFavorito): Observable<{ favoritado: boolean }> {
+  return this.http.post<{ favoritado: boolean }>(`${this.apiUrl}/toggleFavorito`, dto);
+}
 
   /** Retorna vagas favoritas de um candidato */
   getFavoritos(candidatoId: string): Observable<Vaga[]> {
@@ -98,4 +98,6 @@ getHistoricoCandidaturas(candidatoId: string): Observable<HistoricoCandidatura[]
   atualizarStatus(request: AtualizarStatusRequest): Observable<any> {
     return this.http.put(`${this.apiUrl}/atualizar-status`, request);
   }
+
+  
 }

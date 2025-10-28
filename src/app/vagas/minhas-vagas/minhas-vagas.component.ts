@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/login/services/auth.service';
+import { ToggleFavorito } from 'src/app/shared/models/toogle-favorito';
 import { HistoricoCandidatura } from 'src/app/shared/models/vagas';
 import { CandidatoService } from 'src/app/shared/services/candidato.service';
 import { VagaService } from 'src/app/shared/services/vagas.service';
@@ -54,7 +55,14 @@ getStatusLabel(status: number): string {
     default: return 'Desconhecido';
   }
 }
+  toggleFavorito(candidatoId: string, vagaId: string) {
+    const dto: ToggleFavorito = { candidatoId, vagaId };
 
+    this.candidaturaService.toggleFavorito(dto).subscribe({
+      next: (res) => console.log(res), // "Operação realizada com sucesso."
+      error: (err) => console.error('Erro ao favoritar/desfavoritar:', err)
+    });
+  }
 
   buscarHistorico(): void {
     this.candidaturaService.getHistoricoCandidaturas(this.candidatoId).subscribe({

@@ -92,14 +92,6 @@
                             <input type="checkbox" id="lang-typescript" name="languages" value="typescript"
                                 class="language-checkbox" [(ngModel)]="filtros.linguagens.typescript">
                             <label for="lang-typescript" class="language-label">TypeScript</label>
-
-                            <!-- <input type="checkbox" id="lang-kotlin" name="languages" value="kotlin"
-                                class="language-checkbox" [(ngModel)]="filtros.linguagens.kotlin">
-                            <label for="lang-kotlin" class="language-label">Kotlin</label>
-
-                            <input type="checkbox" id="lang-swift" name="languages" value="swift"
-                                class="language-checkbox" [(ngModel)]="filtros.linguagens.swift">
-                            <label for="lang-swift" class="language-label">Swift</label> -->
                         </div>
                     </div>
 
@@ -116,7 +108,14 @@
                 <summary>
                     <div class="vaga-header">
                         <div class="vaga-title-section">
-                            <h3 class="vaga-title">{{ vaga.titulo }}</h3>
+                            <h3 class="vaga-title">{{ vaga.titulo }}
+                                <img
+  [src]="vaga.favoritado ? 'assets/images/star-fill.svg' : 'assets/images/star.svg'"
+  alt="Favoritar vaga"
+  class="favorito-icon"
+  (click)="toggleFavorito(vaga.vagaId)"
+/>
+                            </h3>
                             <div class="empresa-location-wrapper">
                                     <p class="empresa-name">{{ vaga.empresaNome }}</p>
                                     <p class="empresa-name">{{ vaga.endereco }}</p>
