@@ -1,0 +1,157 @@
+.form-container {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-header {
+  margin-bottom: 1.5rem;
+}
+
+input[disabled],
+input:disabled {
+  opacity: 0.7;
+}
+.form-header h2 {
+  font-size: 1.75rem;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.form-header p {
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.info-badge {
+  background: #dbeafe;
+  color: #bc4371;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #bc4371;
+}
+
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wrapper.full-width {
+  grid-column: 1 / -1;
+}
+
+.input-wrapper label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #af4f74;
+  margin-bottom: 0.5rem;
+}
+
+.input-wrapper input {
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #f8fafc;
+}
+
+.input-wrapper input:not([readonly]) {
+  background: white;
+  border-color: #bc4371;
+}
+
+.input-wrapper input:focus {
+  outline: none;
+  border-color: #bc4371;
+  box-shadow: 0 0 0 3px rgba(175, 30, 98, 0.1);
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: #bc4371;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #913357;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+}
+
+.btn-success {
+  background: #16a34a;
+  color: white;
+}
+
+.btn-success:hover {
+  background: #15803d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+}
+
+.btn-secondary {
+  background: #ab7a8d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #845e6c;
+}
+
+.btn-delete {
+  background: #dc2626;
+  color: white;
+  margin-left: auto;
+}
+
+.btn-delete:hover {
+  background: #b91c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .input-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .btn-delete {
+    margin-left: 0;
+  }
+}

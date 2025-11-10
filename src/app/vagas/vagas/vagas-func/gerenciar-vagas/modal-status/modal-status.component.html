@@ -1,0 +1,66 @@
+<mat-dialog-title class="modal-header">
+  <h3>Alterar Status do Candidato</h3>
+  
+  <button mat-icon-button (click)="fecharModalStatus()" class="modal-close">
+    <mat-icon>X</mat-icon>
+  </button>
+
+  </mat-dialog-title>
+<mat-dialog-content class="modal-body">
+  <div class="perfil-header">
+    <div class="perfil-info-principal"> 
+      <h2 id="perfilNome">{{ candidatoVaga.candidato.nome }}</h2>
+      <p id="perfilEmail">{{ candidatoVaga.candidato.email }}</p>
+      <p id="perfilTelefone">{{ formatarTelefone(candidatoVaga.candidato.telefone) }}</p>
+    </div>
+  </div>
+
+  <div class="status-options">
+    <label 
+      *ngFor="let statusOption of statusOptions"
+      class="status-option" 
+      [class.selected]="novoStatusSelecionado === statusOption.value"
+    >
+      <input 
+        type="radio" 
+        name="novoStatusGroup"
+        [value]="statusOption.value"
+        [(ngModel)]="novoStatusSelecionado"
+        (change)="onStatusChange(statusOption.value)"
+        class="status-radio"
+      />
+      <div class="status-card">
+        <div class="status-icon" [ngClass]="'status-icon-' + statusOption.value">
+          <ng-container [ngSwitch]="statusOption.value">
+            <svg *ngSwitchCase="0" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M9 11l3 3L22 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <svg *ngSwitchCase="1" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <svg *ngSwitchCase="2" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M22 4L12 14.01l-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <svg *ngSwitchCase="3" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <svg *ngSwitchCase="4" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+              <path d="M15 9l-6 6M9 9l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </ng-container>
+        </div>
+        <div class="status-info">
+          <h5>{{ statusOption.label }}</h5>
+        </div>
+      </div>
+    </label>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" (click)="salvarStatus()">Confirmar Alteração</button>
+</mat-dialog-actions>

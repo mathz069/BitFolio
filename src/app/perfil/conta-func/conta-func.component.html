@@ -1,1 +1,32 @@
-<p>conta-func works!</p>
+<div class="conta-container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2 class="sidebar-title">Minha Conta</h2>
+    <nav class="sidebar-nav">
+      <button
+        class="nav-item"
+        [class.active]="sectionAtiva === 'dados'"
+        (click)="selecionarSecao('dados')">
+        Meus Dados
+      </button>
+
+      <button
+        class="nav-item"
+        [class.active]="sectionAtiva === 'endereco'"
+        (click)="selecionarSecao('endereco')">
+        Endereço da Empresa
+      </button>
+
+    </nav>
+  </aside>
+
+  <!-- Área de conteúdo -->
+  <main class="content-area">
+    <div id="content-wrapper">
+      <ng-container [ngSwitch]="sectionAtiva">
+        <app-dados-funcionario *ngSwitchCase="'dados'"></app-dados-funcionario>
+        <app-endereco-empresa *ngSwitchCase="'endereco'"></app-endereco-empresa>
+      </ng-container>
+    </div>
+  </main>
+</div>

@@ -52,21 +52,23 @@ export class RegisterFuncComponent implements OnInit {
   this.CapsLock = event.getModifierState && event.getModifierState('CapsLock');
 }
  loadEmpresas(): void {
-   this.loadingEmpresas = true;
-   this.empresaService.getEmpresas().subscribe({
-     next: (data) => {
-       this.empresas = data.map(e => ({
-         id: Number(e.empresaId), 
-         nome: e.nome
-       }));
-       this.loadingEmpresas = false;
-     },
-     error: () => {
-       this.empresas = [];
-       this.loadingEmpresas = false;
-     }
-   });
- }
+  this.loadingEmpresas = true;
+  this.empresaService.getEmpresas().subscribe({
+    next: (data) => {
+      this.empresas = data.map(e => ({
+        id: e.empresaId,   
+        nome: e.nome
+      }));
+      this.loadingEmpresas = false;
+    },
+    error: () => {
+      this.empresas = [];
+      this.loadingEmpresas = false;
+    }
+  });
+}
+
+ 
  
   setBorder(controlName: string): string {
    const control = this.form.get(controlName);
@@ -114,15 +116,7 @@ export class RegisterFuncComponent implements OnInit {
    return item.nome.toLowerCase().includes(term);
  }
  
- onEmpresaSelecionada(event: any) {
-   const id = typeof event === 'object' ? event.id : event;
-   console.log('ID selecionado:', id);
-   this.form.get('negocioId').setValue(id);
- }
- 
- onLimparEmpresa() {
-   this.form.get('negocioId').setValue(null);
- }
+
  
    changeFieldType(event: Event, field: 'password' | 'confirmPassword'): void {
      event.preventDefault();
@@ -190,7 +184,7 @@ export class RegisterFuncComponent implements OnInit {
       telefone: formValues.telefone,
       empresaId: formValues.negocioId
     };
-
+    console.log(funcionario)
     this.authService.registerFuncionario(funcionario).subscribe({
       next: (res) => {
         alert('Funcionário cadastrado com sucesso!');

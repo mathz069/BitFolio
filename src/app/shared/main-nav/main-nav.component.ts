@@ -42,4 +42,7 @@ export class MainNavComponent implements OnInit {
       default: return '/perfil';
     }
   }
+  getLogout(): string {
+    return '/login';
+}
 }

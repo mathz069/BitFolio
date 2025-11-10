@@ -35,10 +35,12 @@
   color: #e0e0e0; /* tom mais claro no hover */
 }
 
-.perfil-link {
+.perfil-container {
   margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 25px; /* distância entre ícone de perfil e logout */
 }
-
 .profile-img {
   width: 40px;
   height: 40px;
@@ -48,7 +50,13 @@
   border: 2px solid #ffffff; /* branco também para combinar */
   transition: border-color 0.3s ease;
 }
-
+.logout-img {
+  width: 40px;
+  height: 40px;
+  filter: brightness(0) invert(1); /* deixa branco mesmo se for svg preto */
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
 .profile-img:hover {
   border-color: #e0e0e0;
 }

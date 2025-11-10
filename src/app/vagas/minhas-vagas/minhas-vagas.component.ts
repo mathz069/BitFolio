@@ -49,8 +49,8 @@ getStatusLabel(status: number): string {
   switch (status) {
     case 0: return 'Em Análise';
     case 1: return 'Curriculo Revisado';
-    case 2: return 'Pré-Selecionado';
-    case 3: return 'Selecionado';
+    case 2: return 'Entrevista';
+    case 3: return 'Aprovado';
     case 4: return 'Não Selecionado';
     default: return 'Desconhecido';
   }

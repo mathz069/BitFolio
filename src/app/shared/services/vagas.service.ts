@@ -21,9 +21,12 @@ export class VagaService {
   }
 
   /** Retorna vagas de uma empresa específica */
-  getVagasByNegocio(empresaId: string): Observable<Vaga[]> {
-    return this.http.get<Vaga[]>(`${this.apiUrl}/getVagasByNegocio/${empresaId}`);
-  }
+ getVagasByNegocio(empresaId: string, page: number, pageSize: number): Observable<any> {
+  return this.http.get<Vaga[]>(
+    `${this.apiUrl}/getVagasByNegocio/${empresaId}?page=${page}&pageSize=${pageSize}`,
+    { observe: 'response' }
+  );
+}
 
   /** Retorna uma vaga pelo ID */
   getVagaById(id: string): Observable<Vaga> {
@@ -98,6 +101,22 @@ getHistoricoCandidaturas(candidatoId: string): Observable<HistoricoCandidatura[]
   atualizarStatus(request: AtualizarStatusRequest): Observable<any> {
     return this.http.put(`${this.apiUrl}/atualizar-status`, request);
   }
+  getCandidatosDaVaga(vagaId: string,page: number = 1,take: number = 10,status?: number, search?: string ): Observable<HttpResponse<any>> {
 
+  let params = new HttpParams()
+    .set('page', page.toString())
+    .set('take', take.toString());
+
+  if (status !== undefined && status !== null)
+    params = params.set('status', status.toString());
+
+  if (search && search.trim().length > 0)
+    params = params.set('search', search.trim());
+
+  return this.http.get<any>(
+    `${this.apiUrl}/candidatos/${vagaId}`,
+    { params, observe: 'response' }
+  );
+}
   
 }

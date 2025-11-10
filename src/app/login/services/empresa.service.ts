@@ -23,7 +23,7 @@ export class EmpresaService {
     return this.http.get<Empresa[]>(`${this.apiUrlEmpresa}/getEmpresas?page=${page}&take=${take}`);
   }
 
-  getEmpresaById(id: number): Observable<Empresa> {
+  getEmpresaById(id: string): Observable<Empresa> {
     return this.http.get<Empresa>(`${this.apiUrlEmpresa}/getEmpresasById/${id}`);
   }
 

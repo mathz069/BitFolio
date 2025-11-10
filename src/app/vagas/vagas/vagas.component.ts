@@ -44,7 +44,7 @@ export class VagasComponent implements OnInit {
 
   pager: Pager = new Pager();
   page: number = 1;
-  take: number = 10;
+  take: number = 5;
   candidatoId: string | null = null;
 
   constructor(

@@ -1,57 +1,39 @@
+<div class="conta-container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2 class="sidebar-title">Minha Conta</h2>
+    <nav class="sidebar-nav">
+      <button
+        class="nav-item"
+        [class.active]="sectionAtiva === 'dados'"
+        (click)="selecionarSecao('dados')">
+        Meus Dados
+      </button>
 
-  <div class="perfil-container">
-    <div class="perfil-header">
-      <h2>
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-          <circle cx="12" cy="7" r="4"></circle>
-        </svg>
-        Minha Conta
-      </h2>
-      <p>Gerencie suas informações pessoais e configurações</p>
+      <button
+        class="nav-item"
+        [class.active]="sectionAtiva === 'endereco'"
+        (click)="selecionarSecao('endereco')">
+        Meu Endereço
+      </button>
+
+      <button
+        class="nav-item"
+        [class.active]="sectionAtiva === 'curriculo'"
+        (click)="selecionarSecao('curriculo')">
+        Meu Currículo
+      </button>
+    </nav>
+  </aside>
+
+  <!-- Área de conteúdo -->
+  <main class="content-area">
+    <div id="content-wrapper">
+      <ng-container [ngSwitch]="sectionAtiva">
+        <app-meus-dados *ngSwitchCase="'dados'"></app-meus-dados>
+        <app-endereco *ngSwitchCase="'endereco'"></app-endereco>
+        <app-curriculo *ngSwitchCase="'curriculo'"></app-curriculo>
+      </ng-container>
     </div>
-
-    <div class="perfil-content">
-      <div class="info-badge">
-        Clique em "Alterar dados" para editar suas informações
-      </div>
-
-      <form id="perfilForm">
-        <!-- Primeira linha -->
-        <div class="input-row">
-          <div class="input-wrapper">
-            <label>Nome Completo</label>
-            <input readonly type="text" formControlName="nome" value="João da Silva" />
-          </div>
-          <div class="input-wrapper">
-            <label>E-mail</label>
-            <input readonly type="email" formControlName="email" value="joao.silva@email.com" />
-          </div>
-        </div>
-
-        <!-- Segunda linha -->
-        <div class="input-row">
-          <div class="input-wrapper">
-            <label>Telefone</label>
-            <input readonly type="tel" name="telefone" value="(11) 98765-4321" />
-          </div>
-          <div class="input-wrapper">
-            <!-- Espaço vazio para manter o layout -->
-          </div>
-        </div>
-
-        <!-- Botões -->
-        <div class="button-group">
-          <button type="button" id="btnEditar" class="perfil-btn btn-primary">
-            Alterar dados
-          </button>
-          <button type="button" id="btnAtualizar" class="perfil-btn btn-primary hidden">
-            Atualizar
-          </button>
-          <button type="button" id="btnDeletar" class="perfil-btn btn-delete">
-            Deletar Conta
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
+  </main>
+</div>

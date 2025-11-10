@@ -1,7 +1,7 @@
 import { Candidato } from "src/app/models/candidato";
 
 export class Empresa {
-  empresaId?: number;
+  empresaId?: string;
   nome: string;
   razaoSocial: string;
   cnpj: string;
@@ -10,12 +10,12 @@ export class Empresa {
   logoUrl?: string;
   ativo: boolean;
   dtCadastro: Date;
-  enderecoId?: number;
+  enderecoId?: string;
   endereco?: Endereco;
 }
 
 export class Endereco {
-  enderecoId?: number;
+  enderecoId?: string;
   rua: string;
   numero: string;
   complemento?: string;

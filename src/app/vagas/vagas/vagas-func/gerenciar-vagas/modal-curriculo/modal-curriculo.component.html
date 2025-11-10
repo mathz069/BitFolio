@@ -1,0 +1,91 @@
+<mat-dialog-title class="modal-header">
+  <h3>Perfil do Candidato</h3>
+  
+  <button mat-icon-button (click)="fecharModalPerfil()" class="modal-close">
+    <mat-icon>X</mat-icon>
+  </button>
+
+  </mat-dialog-title>
+
+<mat-dialog-content class="modal-body modal-body-perfil" *ngIf="candidatoVaga?.candidato">
+  <div class="perfil-header">
+    <div class="perfil-info-principal"> 
+      <h2 id="perfilNome">{{ candidatoVaga.candidato.nome }}</h2>
+      <p id="perfilEmail">{{ candidatoVaga.candidato.email }}</p>
+      <p id="perfilTelefone">{{ formatarTelefone(candidatoVaga.candidato.telefone) }}</p>
+    </div>
+  </div>
+
+  <div class="curriculo-section" *ngIf="candidatoVaga.candidato.curriculo as curriculo">
+    <div class="curriculo-item" *ngIf="curriculo.experiencias">
+      <h4>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        Experiências Profissionais
+      </h4>
+      <div class="curriculo-content" id="perfilExperiencias">
+        <p>{{ curriculo.experiencias }}</p>
+      </div>
+    </div>
+
+    <div class="curriculo-item" *ngIf="tecnologiasList.length > 0">
+      <h4>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="section-icon">
+          <path d="M10 2L2 7l8 5 8-5-8-5z" stroke="#bc4371" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2 12l8 5 8-5" stroke="#bc4371" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Tecnologias
+      </h4>
+      <div class="curriculo-content" id="perfilTecnologias">
+        <div class="tecnologias-list">
+          <span class="tech-badge" *ngFor="let tech of tecnologiasList">{{ tech }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="curriculo-item" *ngIf="competenciasList.length > 0">
+      <h4>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="section-icon">
+          <path d="M9 3h6a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h2" stroke="#bc4371" stroke-width="1.5"/>
+          <path d="M7 2a1 1 0 011-1h2a1 1 0 011 1v2H7V2z" stroke="#bc4371" stroke-width="1.5"/>
+          <path d="M9 10l1 1 3-3" stroke="#bc4371" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Competências Técnicas
+      </h4>
+      <div class="curriculo-content" id="perfilCompetencias">
+        <ul>
+          <li *ngFor="let comp of competenciasList">{{ comp }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="curriculo-item" *ngIf="idiomasList.length > 0">
+      <h4>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="section-icon">
+          <path d="M3 10a7 7 0 1114 0 7 7 0 01-14 0z" stroke="#bc4371" stroke-width="1.5"/>
+          <path d="M10 6v4l2 2" stroke="#bc4371" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        Idiomas
+      </h4>
+      <div class="curriculo-content" id="perfilIdiomas">
+        <p *ngFor="let idioma of idiomasList">{{ idioma }}</p>
+      </div>
+    </div>
+
+    <div class="curriculo-item" *ngIf="certificacoesList.length > 0">
+      <h4>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="section-icon">
+          <path d="M5 3h10a2 2 0 012 2v1H3V5a2 2 0 012-2z" stroke="#bc4371" stroke-width="1.5"/>
+          <path d="M3 6h14v9a2 2 0 01-2 2H5a2 2 0 01-2-2V6z" stroke="#bc4371" stroke-width="1.5"/>
+          <path d="M7 10h6" stroke="#bc4371" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        Certificações
+      </h4>
+      <div class="curriculo-content" id="perfilCertificacoes">
+        <p *ngFor="let cert of certificacoesList">{{ cert }}</p>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+

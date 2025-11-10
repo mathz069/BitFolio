@@ -12,15 +12,23 @@ import { AppRoutingModule } from "src/app/app-routing.module";
 import { AppComponent } from "src/app/login/root/app.component";
 import { EnderecoModalComponent } from "./endereco-modal/endereco-modal.component";
 import { VagasComponent } from "./vagas.component";
-import { CurrencyPipe } from "src/app/shared/currency.pipe";
 import { MinhasVagasComponent } from "../minhas-vagas/minhas-vagas.component";
+import { VagasFuncComponent } from "./vagas-func/vagas-func.component";
+import { ModalVagasComponent } from "../modal-vagas/modal-vagas.component";
+import { GerenciarVagaComponent } from "./vagas-func/gerenciar-vagas/gerenciar-vagas.component";
+import { ModalCurriculoComponent } from "./vagas-func/gerenciar-vagas/modal-curriculo/modal-curriculo.component";
+import { ModalStatusComponent } from "./vagas-func/gerenciar-vagas/modal-status/modal-status.component";
 
 @NgModule({
   declarations: [
     VagasComponent,
     EnderecoModalComponent,
-    CurrencyPipe,
     MinhasVagasComponent,
+    VagasFuncComponent,
+    ModalVagasComponent,
+    GerenciarVagaComponent,
+    ModalCurriculoComponent,
+    ModalStatusComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +41,7 @@ import { MinhasVagasComponent } from "../minhas-vagas/minhas-vagas.component";
     MatButtonModule,
     NgSelectModule,
     CommonModule,
+    
   ],
   providers: [
     provideNgxMask()

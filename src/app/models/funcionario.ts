@@ -1,6 +1,6 @@
 export class Funcionario {
-  id: number;
-  negocioId: number;
+  id: string;
+  negocioId: string;
   nome: string;
   email: string;
   dtNascimento: string;

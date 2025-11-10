@@ -1,194 +1,193 @@
 <div class="page-wrapper">
-<div class="container">
-    <aside class="filters-sidebar">
-        <details open>
-            <summary>
-                Filtros
-            <img src="../../../assets/images/arrow-down-gray.svg" alt="Expandir" class="expand-icon">
-            </summary>
-            <div class="filters-content">
-                <form (ngSubmit)="aplicarFiltros()">
-                    <div class="filter-group">
-                        <label for="keywords">Palavras-chave</label>
-                        <input type="text" id="keywords" name="keywords" [(ngModel)]="filtros.palavrasChave"
-                            placeholder="Ex: desenvolvedor, backend...">
-                    </div>
-
-                    <div class="filter-group">
-                        <label for="proximity">Proximidade (raio em km)</label>
-                        <input type="range" id="proximity" name="proximity" min="5" max="100" value="50" step="5"
-                            [(ngModel)]="filtros.proximidade" (input)="atualizarProximidade($event)">
-                        <div class="range-display"><span id="proximityValue">{{ filtros.proximidade }}</span> km</div>
-                    </div>
-
-                                        <div class="filter-group">
-                        <label for="experience">Nível de Experiência</label>
-                        <select id="experience" name="experience" [(ngModel)]="filtros.experiencia">
-                            <option value="">Todos os níveis</option>
-                            <option value="Estágio">Estágio</option>
-                            <option value="Júnior">Júnior</option>
-                            <option value="Pleno">Pleno</option>
-                            <option value="Sênior">Sênior</option>
-                        </select>
-                    </div>
-
-                    <div class="filter-group">
-                        <label for="area">Área de Atuação</label>
-                        <select id="area" name="area" [(ngModel)]="filtros.area">
-                            <option value="">Todas as áreas</option>
-                            <option value="frontend">Front-end</option>
-                            <option value="Backend">Back-end</option>
-                            <option value="Full Stack">Full Stack</option>
-                            <option value="mobile">Mobile</option>
-                            <option value="devops">DevOps</option>
-                            <option value="data">Data Science</option>
-                            <option value="Qualidade">QA/Testes</option>
-                            <option value="Design">UI/UX Design</option>
-                            <option value="gestao">Gestão de Projetos</option>
-                        </select>
-                    </div>
-
-                                   <div class="filter-group">
-                        <label for="modelo">Modalidade</label>
-                        <select id="modelo" name="modelo" [(ngModel)]="filtros.modelo">
-                            <option value="">Todos as modalidades</option>
-                            <option value="Presencial">Presencial</option>
-                            <option value="Híbrido">Híbrido</option>
-                            <option value="Remoto">Remoto</option>
-                        </select>
-                    </div>
-
-                    <div class="filter-group">
-                        <label>Tecnologias</label>
-                        <div class="languages-filter">
-                            <input type="checkbox" id="lang-javascript" name="languages" value="JavaScript"
-                                class="language-checkbox" [(ngModel)]="filtros.linguagens.JavaScript">
-                            <label for="lang-javascript" class="language-label">JavaScript</label>
-
-                            <input type="checkbox" id="lang-python" name="languages" value="Python"
-                                class="language-checkbox" [(ngModel)]="filtros.linguagens.Python">
-                            <label for="lang-python" class="language-label">Python</label>
-
-                            <input type="checkbox" id="lang-java" name="languages" value="Java"
-                                class="language-checkbox" [(ngModel)]="filtros.linguagens.Java">
-                            <label for="lang-java" class="language-label">Java</label>
-
-                            <input type="checkbox" id="lang-csharp" name="languages" value="CSharp"
-                                class="language-checkbox" [(ngModel)]="filtros.linguagens.CSharp">
-                            <label for="lang-csharp" class="language-label">C#</label>
-
-                            <input type="checkbox" id="lang-php" name="languages" value="PHP" class="language-checkbox"
-                                [(ngModel)]="filtros.linguagens.PHP">
-                            <label for="lang-php" class="language-label">PHP</label>
-
-                            <input type="checkbox" id="lang-ruby" name="languages" value="SQL"
-                                class="language-checkbox" [(ngModel)]="filtros.linguagens.SQL">
-                            <label for="lang-ruby" class="language-label">SQL</label>
-
-                            <input type="checkbox" id="lang-go" name="languages" value="Figma" class="language-checkbox"
-                                [(ngModel)]="filtros.linguagens.Figma">
-                            <label for="lang-go" class="language-label">Figma</label>
-
-                            <input type="checkbox" id="lang-typescript" name="languages" value="typescript"
-                                class="language-checkbox" [(ngModel)]="filtros.linguagens.typescript">
-                            <label for="lang-typescript" class="language-label">TypeScript</label>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn-filter">Aplicar Filtros</button>
-                    <button type="button" class="btn-clear" (click)="limparFiltros()">Limpar Filtros</button>
-                </form>
-            </div>
-        </details>
-    </aside>
-
-    <main class="vagas-container">
-        <article class="vaga-card" *ngFor="let vaga of vagas; trackBy: trackByVagaId">
-            <details>
+    <div class="container">
+        <aside class="filters-sidebar">
+            <details open>
                 <summary>
-                    <div class="vaga-header">
-                        <div class="vaga-title-section">
-                            <h3 class="vaga-title">{{ vaga.titulo }}
-                                <img
-  [src]="vaga.favoritado ? 'assets/images/star-fill.svg' : 'assets/images/star.svg'"
-  alt="Favoritar vaga"
-  class="favorito-icon"
-  (click)="toggleFavorito(vaga.vagaId)"
-/>
-                            </h3>
-                            <div class="empresa-location-wrapper">
+                    Filtros
+                    <img src="../../../assets/images/arrow-down-gray.svg" alt="Expandir" class="expand-icon">
+                </summary>
+                <div class="filters-content">
+                    <form (ngSubmit)="aplicarFiltros()">
+                        <div class="filter-group">
+                            <label for="keywords">Palavras-chave</label>
+                            <input type="text" id="keywords" name="keywords" [(ngModel)]="filtros.palavrasChave"
+                                placeholder="Ex: desenvolvedor, backend...">
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="proximity">Proximidade (raio em km)</label>
+                            <input type="range" id="proximity" name="proximity" min="5" max="100" value="50" step="5"
+                                [(ngModel)]="filtros.proximidade" (input)="atualizarProximidade($event)">
+                            <div class="range-display"><span id="proximityValue">{{ filtros.proximidade }}</span> km
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="experience">Nível de Experiência</label>
+                            <select id="experience" name="experience" [(ngModel)]="filtros.experiencia">
+                                <option value="">Todos os níveis</option>
+                                <option value="Estágio">Estágio</option>
+                                <option value="Júnior">Júnior</option>
+                                <option value="Pleno">Pleno</option>
+                                <option value="Sênior">Sênior</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="area">Área de Atuação</label>
+                            <select id="area" name="area" [(ngModel)]="filtros.area">
+                                <option value="">Todas as áreas</option>
+                                <option value="frontend">Front-end</option>
+                                <option value="Backend">Back-end</option>
+                                <option value="Full Stack">Full Stack</option>
+                                <option value="mobile">Mobile</option>
+                                <option value="devops">DevOps</option>
+                                <option value="data">Data Science</option>
+                                <option value="Qualidade">QA/Testes</option>
+                                <option value="Design">UI/UX Design</option>
+                                <option value="gestao">Gestão de Projetos</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="modelo">Modalidade</label>
+                            <select id="modelo" name="modelo" [(ngModel)]="filtros.modelo">
+                                <option value="">Todos as modalidades</option>
+                                <option value="Presencial">Presencial</option>
+                                <option value="Híbrido">Híbrido</option>
+                                <option value="Remoto">Remoto</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label>Tecnologias</label>
+                            <div class="languages-filter">
+                                <input type="checkbox" id="lang-javascript" name="languages" value="JavaScript"
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.JavaScript">
+                                <label for="lang-javascript" class="language-label">JavaScript</label>
+
+                                <input type="checkbox" id="lang-python" name="languages" value="Python"
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.Python">
+                                <label for="lang-python" class="language-label">Python</label>
+
+                                <input type="checkbox" id="lang-java" name="languages" value="Java"
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.Java">
+                                <label for="lang-java" class="language-label">Java</label>
+
+                                <input type="checkbox" id="lang-csharp" name="languages" value="CSharp"
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.CSharp">
+                                <label for="lang-csharp" class="language-label">C#</label>
+
+                                <input type="checkbox" id="lang-php" name="languages" value="PHP"
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.PHP">
+                                <label for="lang-php" class="language-label">PHP</label>
+
+                                <input type="checkbox" id="lang-ruby" name="languages" value="SQL"
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.SQL">
+                                <label for="lang-ruby" class="language-label">SQL</label>
+
+                                <input type="checkbox" id="lang-go" name="languages" value="Figma"
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.Figma">
+                                <label for="lang-go" class="language-label">Figma</label>
+
+                                <input type="checkbox" id="lang-typescript" name="languages" value="typescript"
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.typescript">
+                                <label for="lang-typescript" class="language-label">TypeScript</label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-filter">Aplicar Filtros</button>
+                        <button type="button" class="btn-clear" (click)="limparFiltros()">Limpar Filtros</button>
+                    </form>
+                </div>
+            </details>
+        </aside>
+
+        <main class="vagas-container">
+            <article class="vaga-card" *ngFor="let vaga of vagas; trackBy: trackByVagaId">
+                <details>
+                    <summary>
+                        <div class="vaga-header">
+                            <div class="vaga-title-section">
+                                <h3 class="vaga-title">{{ vaga.titulo }}
+                                    <img [src]="vaga.favoritado ? 'assets/images/star-fill.svg' : 'assets/images/star.svg'"
+                                        alt="Favoritar vaga" class="favorito-icon"
+                                        (click)="toggleFavorito(vaga.vagaId)" />
+                                </h3>
+                                <div class="empresa-location-wrapper">
                                     <p class="empresa-name">{{ vaga.empresaNome }}</p>
                                     <p class="empresa-name">{{ vaga.endereco }}</p>
                                     <div class="location-info" *ngIf="vaga.distancia">
                                         <img src="assets/images/geo-alt.svg" alt="Localização" class="location-icon">
                                         <span class="distancia-text">{{ vaga.distancia }} km</span>
                                     </div>
-                                </div>                            
-                                <div class="vaga-badges">
-                                <span class="badge badge-nivel">{{ vaga.nivel }}</span>
-                                <span class="badge badge-modelo">{{ vaga.modelo }}</span>
-                                <span class="badge badge-escolaridade">{{ vaga.escolaridade }}</span>
                                 </div>
+                                <div class="vaga-badges">
+                                    <span class="badge badge-nivel">{{ vaga.nivel }}</span>
+                                    <span class="badge badge-modelo">{{ vaga.modelo }}</span>
+                                    <span class="badge badge-escolaridade">{{ vaga.escolaridade }}</span>
+                                </div>
+                            </div>
+                            <img src="../../../assets/images/arrow-down-gray.svg" alt="Expandir" class="expand-icon">
                         </div>
-                        <img src="../../../assets/images/arrow-down-gray.svg" alt="Expandir" class="expand-icon">
-                    </div>
-                </summary>
-                <div class="vaga-details">
-                    <div class="detail-section">
-                        <h4>Descrição da Vaga</h4>
-                        <p>{{ vaga.descricao }}</p>
-                    </div>
+                    </summary>
+                    <div class="vaga-details">
+                        <div class="detail-section">
+                            <h4>Descrição da Vaga</h4>
+                            <p>{{ vaga.descricao }}</p>
+                        </div>
 
-                    <div class="detail-section">
-                        <h4>Requisitos</h4>
-                        <ul>
-                            <li *ngFor="let requisito of vaga.requisitos">{{ requisito }}</li>
-                        </ul>
-                    </div>
-                    <div class="detail-section" *ngIf="vaga.tecnologias && vaga.tecnologias.length > 0">
-                        <h4>Tecnologias</h4>
-                        <ul>
-                            <li *ngFor="let tecnologia of vaga.tecnologias">{{ tecnologia }}</li>
-                        </ul>
-                    </div>
-                    <div class="vaga-dates">
-                        <div class="date-item">
-                            <span class="date-label">Data de Abertura</span>
-                            <span class="date-value">{{ vaga.dataAbertura | date:'dd/MM/yyyy' }}</span>
+                        <div class="detail-section">
+                            <h4>Requisitos</h4>
+                            <ul>
+                                <li *ngFor="let requisito of vaga.requisitos">{{ requisito }}</li>
+                            </ul>
                         </div>
-                        <div class="date-item">
-                            <span class="date-label">Data de Fechamento</span>
-                            <span class="date-value">{{ vaga.dataFechamento | date:'dd/MM/yyyy' }}</span>
+                        <div class="detail-section" *ngIf="vaga.tecnologias && vaga.tecnologias.length > 0">
+                            <h4>Tecnologias</h4>
+                            <ul>
+                                <li *ngFor="let tecnologia of vaga.tecnologias">{{ tecnologia }}</li>
+                            </ul>
                         </div>
-                    </div>
+                        <div class="vaga-dates">
+                            <div class="date-item">
+                                <span class="date-label">Data de Abertura</span>
+                                <span class="date-value">{{ vaga.dataAbertura | date:'dd/MM/yyyy' }}</span>
+                            </div>
+                            <div class="date-item">
+                                <span class="date-label">Data de Fechamento</span>
+                                <span class="date-value">{{ vaga.dataFechamento | date:'dd/MM/yyyy' }}</span>
+                            </div>
+                        </div>
 
-                    <button class="btn-candidatar" (click)="candidatar(vaga.vagaId)">Candidatar-se à Vaga</button>
+                        <button class="btn-candidatar" (click)="candidatar(vaga.vagaId)">Candidatar-se à Vaga</button>
+                    </div>
+                </details>
+            </article>
+            <div class="pagination-container">
+                <div class="pagination-range">
+                    <span>{{ pager.range }}</span>
                 </div>
-            </details>
-        </article>
-        <div class="pagination-container">
-        <div class="pagination-range">
-            <span>{{ pager.range }}</span>
-        </div>
-        <nav aria-label="Page navigation">
-            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-                <li class="page-item" [ngClass]="{disabled: pager.currentPage === 1}">
-                    <a class="page-link" (click)="buscarVagas(pager.currentPage - 1, take)">
-                        <img src="../../../assets/images/arrow-left-gray.svg" alt="Anterior">
-                    </a>
-                </li>
-                <li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active: pager.currentPage === page}">
-                    <!-- Added 'active' class -->
-                    <a class="page-link" (click)="buscarVagas( page, take)">{{ page }}</a>
-                </li>
-                <li class="page-item" [ngClass]="{disabled: pager.currentPage === pager.totalPages}">
-                    <a class="page-link" (click)="buscarVagas(pager.currentPage + 1, take)">
-                        <img src="../../../assets/images/arrow-right-gray.svg" alt="Próximo">
-                    </a>
-                </li>
-            </ul>
-        </nav>
+                <nav aria-label="Page navigation">
+                    <ul *ngIf="pager.pages && pager.pages.length && vagas.length > 0" class="pagination">
+                        <li class="page-item" [ngClass]="{disabled: pager.currentPage === 1}">
+                            <a class="page-link" (click)="buscarVagas(pager.currentPage - 1, take)">
+                                <img src="../../../assets/images/arrow-left-gray.svg" alt="Anterior">
+                            </a>
+                        </li>
+                        <li class="page-item" *ngFor="let page of pager.pages"
+                            [ngClass]="{active: pager.currentPage === page}">
+                            <!-- Added 'active' class -->
+                            <a class="page-link" (click)="buscarVagas( page, take)">{{ page }}</a>
+                        </li>
+                        <li class="page-item" [ngClass]="{disabled: pager.currentPage === pager.totalPages}">
+                            <a class="page-link" (click)="buscarVagas(pager.currentPage + 1, take)">
+                                <img src="../../../assets/images/arrow-right-gray.svg" alt="Próximo">
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </main>
     </div>
-    </main>
-</div>
 </div>

@@ -20,12 +20,18 @@ import { ContaFuncComponent } from './perfil/conta-func/conta-func.component';
 import { ContaAdminComponent } from './perfil/conta-admin/conta-admin.component';
 import { ContaComponent } from './perfil/conta/conta.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { provideNgxMask } from 'ngx-mask';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { VagasComponent } from './vagas/vagas/vagas.component';
 import { CommonModule } from '@angular/common';
 import { DoisFatoresModalComponent } from './login/login/dois-fatores-modal/dois-fatores-modal.component';
 import { EnderecoModalComponent } from './vagas/vagas/endereco-modal/endereco-modal.component';
-import { CurrencyPipe } from './shared/currency.pipe';
+import { EnderecoComponent } from './perfil/conta/endereco/endereco.component';
+import { CurriculoComponent } from './perfil/conta/curriculo/curriculo.component';
+import { DadosComponent } from './perfil/conta/meus-dados/meus-dados.component';
+import { DadosFuncionarioComponent } from './perfil/conta-func/dados-funcionario/dados-funcionario.component';
+import { DadosAdminComponent } from './perfil/conta-admin/dados-admin/dados-admin.component';
+import { EnderecoEmpresaComponent } from './perfil/conta-func/endereco-empresa/endereco-empresa.component';
+import { GerenciarEmpresaComponent } from './perfil/conta-admin/gerenciar-empresa/gerenciar-empresa.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +48,13 @@ import { CurrencyPipe } from './shared/currency.pipe';
     ContaComponent,
     DashboardComponent,
     DoisFatoresModalComponent,
+    EnderecoComponent,
+    CurriculoComponent,
+    DadosComponent,
+    DadosFuncionarioComponent,
+    DadosAdminComponent,
+    EnderecoEmpresaComponent,
+    GerenciarEmpresaComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +67,8 @@ import { CurrencyPipe } from './shared/currency.pipe';
     MatButtonModule,
     NgSelectModule,
     CommonModule,
+    NgxMaskDirective,
+    NgxMaskPipe,
   ],
   providers: [
     provideNgxMask()

@@ -1,0 +1,59 @@
+<div class="form-container">
+    <div class="form-header">
+        <h2>Meu Currículo</h2>
+        <p>Preencha ou edite suas informações profissionais</p>
+    </div>
+
+    <form [formGroup]="form">
+        <div class="input-wrapper">
+            <label for="experiencias">Experiências Profissionais</label>
+            <textarea formControlName="experiencias" id="experiencias" [readonly]="!editando">
+  </textarea>
+        </div>
+
+        <div class="input-wrapper">
+            <label for="tecnologias">Tecnologias</label>
+            <div class="tech-selector">
+                <div class="tech-options">
+                    <button *ngFor="let tech of tecnologiasDisponiveis" type="button" class="tech-tag"
+                        [class.selected]="tecnologiasSelecionadas.includes(tech)" (click)="toggleTecnologia(tech)">
+                        {{ tech }}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-wrapper">
+            <label for="competenciasTecnicas">Competências Técnicas</label>
+            <textarea formControlName="competenciasTecnicas" [readonly]="!editando"></textarea>
+        </div>
+
+        <div class="input-wrapper">
+            <label for="idiomas">Idiomas</label>
+
+            <div class="tech-selector">
+                <div class="tech-options">
+                    <button *ngFor="let idioma of idiomasDisponiveis" type="button" class="tech-tag"
+                        [class.selected]="idiomasSelecionados.includes(idioma)" (click)="toggleIdioma(idioma)">
+                        {{ idioma }}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-wrapper">
+            <label for="certificacoes">Certificações</label>
+            <textarea formControlName="certificacoes" [readonly]="!editando"></textarea>
+        </div>
+
+        <div class="button-group">
+            <button type="button" class="btn btn-primary" *ngIf="!editando" (click)="habilitarEdicao()">Editar
+                currículo</button>
+
+            <button type="button" class="btn btn-success" *ngIf="editando" (click)="salvar()">Salvar alterações</button>
+
+            <button type="button" class="btn btn-danger" *ngIf="curriculoId && !editando" (click)="excluir()">Excluir
+                currículo</button>
+        </div>
+    </form>
+</div>

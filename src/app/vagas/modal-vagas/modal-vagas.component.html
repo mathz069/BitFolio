@@ -1,0 +1,148 @@
+<div class="modal-wrapper">
+
+  <!-- HEADER -->
+  <div class="modal-header">
+    <h2>Criar Nova Vaga</h2>
+    <button class="btn-close" (click)="fechar()">×</button>
+  </div>
+
+  <!-- BODY -->
+  <div class="modal-body">
+
+    <form [formGroup]="formVaga">
+
+      <!-- TÍTULO -->
+      <div class="input-wrapper">
+        <label for="titulo">Título da Vaga *</label>
+        <input type="text"
+               id="titulo"
+               formControlName="titulo"
+               required
+               placeholder="Ex: Desenvolvedor Full Stack">
+      </div>
+
+      <!-- NÍVEL / ESCOLARIDADE -->
+      <div class="form-row">
+        <div class="input-wrapper">
+          <label>Nível</label>
+          <select formControlName="nivel">
+            <option value="">Selecione o nível</option>
+            <option value="Estágio">Estágio</option>
+            <option value="Júnior">Júnior</option>
+            <option value="Pleno">Pleno</option>
+            <option value="Sênior">Sênior</option>
+          </select>
+        </div>
+
+        <div class="input-wrapper">
+          <label>Escolaridade</label>
+          <select formControlName="escolaridade">
+            <option value="">Selecione a escolaridade</option>
+            <option value="Ensino Médio">Ensino Médio</option>
+            <option value="Técnico">Técnico</option>
+            <option value="Superior Cursando">Superior Cursando</option>
+            <option value="Superior Completo">Superior Completo</option>
+            <option value="Pós-Graduação">Pós-Graduação</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- MODELO / ÁREA -->
+      <div class="form-row">
+        <div class="input-wrapper">
+          <label>Modelo de Trabalho</label>
+          <select formControlName="modelo">
+            <option value="">Selecione o modelo</option>
+            <option value="Presencial">Presencial</option>
+            <option value="Híbrido">Híbrido</option>
+            <option value="Remoto">Remoto</option>
+          </select>
+        </div>
+
+        <div class="input-wrapper">
+          <label>Área</label>
+          <select formControlName="area">
+            <option value="">Selecione a área</option>
+            <option value="Frontend">Front-end</option>
+            <option value="Backend">Back-end</option>
+            <option value="Full Stack">Full Stack</option>
+            <option value="Mobile">Mobile</option>
+            <option value="DevOps">DevOps</option>
+            <option value="Data Science">Data Science</option>
+            <option value="Qualidade">QA/Testes</option>
+            <option value="Design">Design</option>
+            <option value="Gestão">Gestão de Projetos</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- DATAS -->
+      <div class="form-row">
+        <div class="input-wrapper">
+          <label>Data de Abertura</label>
+          <input type="date" formControlName="dataAbertura">
+        </div>
+
+        <div class="input-wrapper">
+          <label>Data de Fechamento</label>
+          <input type="date" formControlName="dataFechamento">
+        </div>
+      </div>
+
+      <!-- SALÁRIO -->
+      <div class="input-wrapper">
+        <label>Salário (R$)</label>
+        <input type="number"
+               step="0.01"
+               formControlName="salario"
+               placeholder="Ex: 8000.00">
+      </div>
+
+      <!-- TECNOLOGIAS -->
+      <div class="input-wrapper">
+        <label>Tecnologias</label>
+        <div class="tech-selector">
+          <div class="tech-options">
+            <button type="button"
+                    *ngFor="let tech of tecnologiasLista"
+                    class="tech-tag"
+                    [class.selected]="tecnologiasSelecionadas.includes(tech)"
+                    (click)="toggleTecnologia(tech)">
+              {{ tech }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- DESCRIÇÃO -->
+      <div class="input-wrapper">
+        <label for="descricao">Descrição da Vaga</label>
+        <textarea
+          id="descricao"
+          formControlName="descricao"
+          rows="1"
+          placeholder="Descreva os detalhes da vaga...">
+        </textarea>
+      </div>
+
+      <!-- REQUISITOS -->
+      <div class="input-wrapper">
+        <label for="requisitos">Requisitos</label>
+        <textarea
+          id="requisitos"
+          formControlName="requisitos"
+          rows="1"
+          placeholder="Liste os requisitos da vaga...">
+        </textarea>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- RODAPÉ -->
+  <div class="modal-footer">
+    <button class="btn-cancelar" (click)="fechar()">Cancelar</button>
+    <button class="btn-salvar" (click)="salvar()">Salvar Vaga</button>
+  </div>
+
+</div>

@@ -1,0 +1,56 @@
+<div class="form-container">
+  <div class="form-header">
+    <h2>Meu Endereço</h2>
+    <p>Mantenha seu endereço atualizado</p>
+  </div>
+
+  <form [formGroup]="form">
+    <div class="input-row">
+      <div class="input-wrapper small">
+        <label>CEP</label>
+        <input type="text" formControlName="cep" mask="00000-000" (blur)="buscarCep()" />
+      </div>
+      <div class="input-wrapper">
+        <label>Estado</label>
+        <input type="text" formControlName="estado" />
+      </div>
+      <div class="input-wrapper">
+        <label>Cidade</label>
+        <input type="text" formControlName="cidade" />
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="input-wrapper large">
+        <label>Rua</label>
+        <input type="text" formControlName="rua" />
+      </div>
+      <div class="input-wrapper small">
+        <label>Número</label>
+        <input type="text" formControlName="numero" />
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="input-wrapper">
+        <label>Bairro</label>
+        <input type="text" formControlName="bairro" />
+      </div>
+      <div class="input-wrapper">
+        <label>Complemento</label>
+        <input type="text" formControlName="complemento" />
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button type="button" class="btn btn-primary" *ngIf="!editando" (click)="toggleEdicao()">
+        Alterar endereço
+      </button>
+      <button type="button" class="btn btn-success" *ngIf="editando" (click)="atualizarEndereco()">
+        Salvar alterações
+      </button>
+      <button type="button" class="btn btn-danger" *ngIf="enderecoId && !editando" (click)="excluir()">Excluir
+              endereço</button>
+    </div>
+  </form>
+</div>

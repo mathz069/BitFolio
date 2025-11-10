@@ -13,6 +13,8 @@ import { ContaComponent } from './perfil/conta/conta.component';
 import { ContaFuncComponent } from './perfil/conta-func/conta-func.component';
 import { VagasComponent } from './vagas/vagas/vagas.component';
 import { MinhasVagasComponent } from './vagas/minhas-vagas/minhas-vagas.component';
+import { VagasFuncComponent } from './vagas/vagas/vagas-func/vagas-func.component';
+import { GerenciarVagaComponent } from './vagas/vagas/vagas-func/gerenciar-vagas/gerenciar-vagas.component';
 
 
 const routes: Routes = [
@@ -58,6 +60,12 @@ const routes: Routes = [
   {
     path: 'inscricoes', component: MainNavComponent, children: [
       { path: '', component: MinhasVagasComponent }
+    ]
+  },
+  {
+    path: 'gerenciar-vagas', component: MainNavComponent, children: [
+      { path: '', component: VagasFuncComponent },
+      { path: 'vaga/:id', component: GerenciarVagaComponent}
     ]
   }
 ];
