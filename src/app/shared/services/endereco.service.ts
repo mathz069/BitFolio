@@ -20,8 +20,9 @@ export class EnderecoService {
     return this.http.post(`${this.apiUrl}/createEndereco`, endereco);
   }
 
-  updateEndereco(endereco: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/updateEndereco`, endereco);
+  updateEndereco(endereco: any, candidatoId?: string, empresaId?: string): Observable<any> {
+    console.log('Atualizando endereço com ID:', endereco.enderecoId, 'para candidatoId:', candidatoId, 'ou empresaId:', empresaId);
+    return this.http.put(`${this.apiUrl}/updateEndereco`, endereco, candidatoId ? { params: { candidatoId } } : empresaId ? { params: { empresaId } } : {});
   }
 
   deleteEndereco(id: string): Observable<any> {

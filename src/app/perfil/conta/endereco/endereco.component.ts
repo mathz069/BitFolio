@@ -98,14 +98,21 @@ export class EnderecoComponent {
     alert('Por favor, preencha todos os campos obrigatórios.');
     return;
   }
-
-  const enderecoAtualizado = {
+  let enderecoAtualizado = {}
+  if (this.enderecoId != null) {
+   enderecoAtualizado = {
     enderecoId: this.enderecoId,
     candidatoId: this.candidatoId,
     ...this.form.value
   };
+}
+  enderecoAtualizado = {
+    candidatoId: this.candidatoId,
+    ...this.form.value
+  };
 
-  this.enderecoService.updateEndereco(enderecoAtualizado).subscribe({
+  console.log('Endereço a ser atualizado:', enderecoAtualizado);
+  this.enderecoService.updateEndereco(enderecoAtualizado, this.candidatoId).subscribe({
     next: () => {
       alert('Endereço atualizado com sucesso!');
       this.editando = false;
@@ -132,13 +139,10 @@ buscarCep(): void {
   if (cep && cep.length === 8) {
     this.enderecoService.buscarCep(cep).subscribe({
       next: (dados) => {
-        console.log('📦 Resposta da API AwesomeAPI:', dados);
 
-        // Faz o parse das coordenadas (strings -> número)
         const latitudeValue = dados.lat ? parseFloat(dados.lat) : null;
         const longitudeValue = dados.lng ? parseFloat(dados.lng) : null;
 
-        // Atualiza o formulário com os campos certos
         this.form.patchValue({
           estado: dados.state || '',
           cidade: dados.city || '',

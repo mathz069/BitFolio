@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -34,6 +34,14 @@ export class EmpresaService {
   deleteEmpresa(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrlEmpresa}/deleteEmp/${id}`);
   }
+
+   getAllEmpresas(page: number = 1, take: number = 10): Observable<HttpResponse<Empresa[]>> {
+  return this.http.get<Empresa[]>(
+    `${this.apiUrlEmpresa}/GetAllEmpresas?page=${page}&take=${take}`,
+    { observe: 'response' }
+  );
+}
+
   // ========== ENDEREÇO ==========
   createEndereco(endereco: Endereco): Observable<Endereco> {
     return this.http.post<Endereco>(`${this.apiUrlEndereco}/createEndereco`, endereco);

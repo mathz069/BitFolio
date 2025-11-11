@@ -43,6 +43,9 @@ import { ModalStatusComponent } from "./vagas-func/gerenciar-vagas/modal-status/
     CommonModule,
     
   ],
+   exports: [
+    EnderecoModalComponent 
+  ],
   providers: [
     provideNgxMask()
   ],

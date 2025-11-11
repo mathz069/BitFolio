@@ -1,1 +1,38 @@
-<p>dados-admin works!</p>
+<div class="form-container">
+  <div class="form-header">
+    <h2>Meus Dados</h2>
+    <p>Gerencie suas informações pessoais</p>
+  </div>
+
+  <form [formGroup]="form">
+    <div class="input-row">
+      <div class="input-wrapper">
+        <label>Nome Completo</label>
+        <input type="text" formControlName="nome" />
+      </div>
+      <div class="input-wrapper">
+        <label>Telefone</label>
+        <input type="tel" formControlName="telefone" mask="(00) 00000-0000" prefix="+55 "/>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="input-wrapper">
+        <label>E-mail</label>
+        <input type="email" formControlName="email" />
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button type="button" class="btn btn-primary" *ngIf="!editando" (click)="toggleEdicao()">
+        Alterar dados
+      </button>
+      <button type="button" class="btn btn-success" *ngIf="editando" (click)="atualizarDados()">
+        Salvar alterações
+      </button>
+      <!-- <button type="button" class="btn btn-delete" (click)="deletarCandidato()">
+        Deletar Conta
+      </button> -->
+    </div>
+  </form>
+</div>
