@@ -146,13 +146,13 @@
 
                             <td>{{ c.candidato?.email }}</td>
                             <td>{{ formatarTelefone(c.candidato?.telefone) }}</td>
-                            <td>{{ c.historico?.dtCandidatura | date:'dd/MM/YYYY' }}</td>
+                            <td>{{ c.candidato?.historicos?.[0]?.dtCandidatura | date:'dd/MM/YYYY' }}</td>
 
-                            <td>
-                                <span class="status-badge" [ngClass]="getStatusClass(c.historico.status)">
-                                    {{ getStatusLabel(c.historico?.status) }}
-                                </span>
-                            </td>
+<td>
+    <span class="status-badge" [ngClass]="getStatusClass(c.candidato?.historicos?.[0]?.status)">
+        {{ getStatusLabel(c.candidato?.historicos?.[0]?.status) }}
+    </span>
+</td>
 
                             <td>
                                 <div class="action-buttons">

@@ -257,19 +257,41 @@ formatarTelefone(telefone: string): string {
     });
   }
 
-  abrirModalCurriculo(candidato: CandidatoVagaDTO): void {
-    const config = new MatDialogConfig();
-    config.width = '1000px';
-    config.maxWidth = '87%';
-    config.disableClose = true;
-    config.autoFocus = true;
-    config.panelClass = 'custom-2fa-panel';
-    config.backdropClass = 'custom-2fa-backdrop';
-    config.data = { candidato }; 
-    console.log('Candidato para ver curriculo:', candidato);
+abrirModalCurriculo(candidato: CandidatoVagaDTO): void {
+  const candidatoClone = JSON.parse(JSON.stringify(candidato));
 
-    this.dialog.open(ModalCurriculoComponent, config);
+  // Garantir que candidato não seja null
+  candidatoClone.candidato = candidatoClone.candidato || {
+    nome: '',
+    email: '',
+    telefone: ''
+  };
+
+  // Garantir histórico válido
+  if (candidatoClone.historicos?.length > 0) {
+
+    candidatoClone.historicos = candidatoClone.historicos.map(h => ({
+      ...h,
+      candidato: h.candidato || candidatoClone.candidato, // usa o principal
+      vaga: h.vaga || {}
+    }));
+
+    delete candidatoClone.historicos[0].status;
   }
+
+  const config = new MatDialogConfig();
+  config.width = '1000px';
+  config.maxWidth = '87%';
+  config.disableClose = true;
+  config.autoFocus = true;
+  config.panelClass = 'custom-2fa-panel';
+  config.backdropClass = 'custom-2fa-backdrop';
+  config.data = { candidato: candidatoClone };
+
+  this.dialog.open(ModalCurriculoComponent, config);
+}
+
+
 
   voltar(): void {
   window.history.back();
@@ -353,7 +375,7 @@ exportarParaExcel(): void {
       candidato.candidato.curriculo.competenciasTecnicas || '',
       formatarLista(candidato.candidato.curriculo.idiomas),
       formatarLista(candidato.candidato.curriculo.certificacoes),
-      this.getStatusLabel(candidato.historico.status)
+      this.getStatusLabel(candidato.candidato?.historicos?.[0]?.status)
     ];
 
     dadosParaExportar.push(candidatoData);

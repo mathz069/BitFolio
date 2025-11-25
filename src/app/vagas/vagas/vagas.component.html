@@ -161,7 +161,7 @@
                     </div>
                 </details>
             </article>
-            <div class="pagination-container">
+            <div *ngIf="vagas && vagas.length > 0"class="pagination-container">
                 <div class="pagination-range">
                     <span>{{ pager.range }}</span>
                 </div>

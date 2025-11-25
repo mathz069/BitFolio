@@ -123,6 +123,7 @@ export interface CandidatoInfoDTO {
   telefone: string;
   email: string;
   curriculo: CurriculoDTO | null;
+  historicos: HistoricoCandidatoDTO[];
 }
 
 export interface HistoricoCandidatoDTO {
