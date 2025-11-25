@@ -61,6 +61,9 @@ validarCodigo2FA(dto: TokenTemporario): Observable<{ sucesso: boolean; token?: s
     return this.http.post(`${this.apiUrl}/redefinir-senha`, dto);
   }
 
+  setToken(token: string): void {
+    localStorage.setItem('token', token);
+  }
   obterToken(): string | null {
     return localStorage.getItem('token');
   }

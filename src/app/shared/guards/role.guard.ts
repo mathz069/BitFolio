@@ -16,9 +16,9 @@ export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
   try {
     const payload: any = jwtDecode(token);
     const role = payload?.role || payload?.Role || null;
+    const userRole = role ? role.toLowerCase() : null;
     const rolesPermitidas = route.data['roles'] as string[];
-
-    if (rolesPermitidas.includes(role)) {
+    if (rolesPermitidas.includes(userRole)) {
       return true;
     }
 

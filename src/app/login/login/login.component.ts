@@ -147,6 +147,8 @@ if (response.doisFatoresNecessario) {
         });
 
       } else if (response.token) {
+        localStorage.setItem('token', response.token);
+        console.log(tipo);
   this.redirecionarPorTipo(tipo);
 }
     }.bind(this),
@@ -225,6 +227,7 @@ verificarCodigo2FA(codigo: string, email: string) {
 }
 
 redirecionarPorTipo(tipo: 'candidato' | 'funcionario' | 'administrador') {
+  console.log('Redirecionando para o tipo:', tipo);
   if (tipo === 'candidato') {
     this.router.navigate(['/dashboard']);
   } 

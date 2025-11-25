@@ -157,7 +157,7 @@
                             </div>
                         </div>
 
-                        <button class="btn-candidatar" (click)="candidatar(vaga.vagaId)">Candidatar-se à Vaga</button>
+                        <button class="btn-candidatar" *ngIf="!jaCandidatado(vaga.vagaId)" (click)="candidatar(vaga.vagaId)">Candidatar-se à Vaga</button>
                     </div>
                 </details>
             </article>

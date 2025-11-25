@@ -77,11 +77,12 @@ export class DashboardComponent implements OnInit {
 
   buscarLogs() {
     this.candidatoService.getLogsCandidato(this.candidatoId, 1, 10).subscribe({
-      next: (res: any[]) => {
-        this.logs = res
+     next: (res: any) => {
+      console.log(res);
+  this.logs = (res.body)
     .sort((a, b) => new Date(b.dtAcao).getTime() - new Date(a.dtAcao).getTime())
     .slice(0, 5);
-      },
+},
       error: err => console.error("Erro ao carregar logs", err)
     });
   }
