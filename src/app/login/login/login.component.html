@@ -35,7 +35,9 @@
     <label> Senha</label>
     <div [style.border]="setBorder('password')" class="input">
 
-        <input class="password-input" formControlName="password" [type]="passwordField" required>
+        <input class="password-input" formControlName="password" [type]="passwordField" required
+        (keydown)="checkCaps($event)"
+        (keyup)="checkCaps($event)">
 
         <button (click)="changeFieldType($event)" class="show-password"><img  class="eye-icon" [src]="eyeSource" /></button>
 

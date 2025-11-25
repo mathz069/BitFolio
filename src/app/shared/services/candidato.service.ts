@@ -40,4 +40,10 @@ export class CandidatoService {
   deleteCurriculo(curriculoId: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/deleteCurriculo/${curriculoId}`);
   }
+  getLogsCandidato(candidatoId: string, page: number = 1, pageSize: number = 10): Observable<any> {
+    return this.http.get(
+      `${this.apiUrl}/getLogsCandidato/${candidatoId}?page=${page}&pageSize=${pageSize}`,
+      { observe: 'response' } 
+    );
+  }
 }

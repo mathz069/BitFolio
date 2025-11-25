@@ -147,8 +147,8 @@ if (response.doisFatoresNecessario) {
         });
 
       } else if (response.token) {
-        this.router.navigate(['/dashboard']);
-      }
+  this.redirecionarPorTipo(tipo);
+}
     }.bind(this),
     error: function (err) {
       this.loginIn = false;
@@ -182,9 +182,10 @@ if (response.doisFatoresNecessario) {
 }
 
 
-  checkCapsLock(event: KeyboardEvent) {
-  // O método getModifierState detecta se o CapsLock está ativo
-  this.capsLockOn = event.getModifierState && event.getModifierState('CapsLock');
+ checkCaps(event: KeyboardEvent) {
+  if (!event.getModifierState) return; 
+
+  this.capsLockOn = event.getModifierState('CapsLock');
 }
    setBorder(field: string) {
   switch (field) {
@@ -209,7 +210,10 @@ verificarCodigo2FA(codigo: string, email: string) {
     next: (res) => {
       if (res.sucesso && res.token) {
         localStorage.setItem('token', res.token);
-        this.router.navigate(['/dashboard']);
+
+        const tipo = (localStorage.getItem('userType') || 'candidato') as 'candidato' | 'funcionario' | 'administrador';
+
+        this.redirecionarPorTipo(tipo);
       } else {
         alert(res.mensagem || 'Código inválido');
       }
@@ -219,5 +223,19 @@ verificarCodigo2FA(codigo: string, email: string) {
     }
   });
 }
+
+redirecionarPorTipo(tipo: 'candidato' | 'funcionario' | 'administrador') {
+  if (tipo === 'candidato') {
+    this.router.navigate(['/dashboard']);
+  } 
+  else if (tipo === 'funcionario') {
+    this.router.navigate(['/gerenciar-vagas']);
+  } 
+  else if (tipo === 'administrador') {
+    this.router.navigate(['/perfil-admin']);
+  }
+}
+
+
 
 }

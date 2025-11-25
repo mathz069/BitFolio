@@ -1,17 +1,26 @@
-<div class="login-body" 
-     [ngStyle]="{
-       'background-color': backgroundColor, 
-       'background-image': 'url(' + backgroundImage + ')',
-       'background-size': 'cover',
-       'background-position': 'right center',
-       'background-repeat': 'no-repeat'
-     }">    
-     <img class="img-fluid" src="./assets/images/logo-branco.png" />
-  <div class="texto">
-    <p><span class="bold">{{ text }}</span></p>
+<!-- Container Pai (Novo) -->
+<div class="login-container">
+  
+  <!-- Lado Esquerdo (Imagem e Texto) -->
+  <div class="login-body" 
+       [ngStyle]="{
+         'background-color': backgroundColor, 
+         'background-image': 'url(' + backgroundImage + ')',
+         'background-size': 'cover',
+         'background-position': 'center center',
+         'background-repeat': 'no-repeat'
+       }">    
+       
+       <img class="img-fluid" src="./assets/images/logo-branco.png" alt="Logo" />
+       
+       <div class="texto">
+          <p><span class="bold">{{ text }}</span></p>
+       </div>
   </div>
-</div>
 
-<div class="login-card">
-  <router-outlet></router-outlet>
+  <!-- Lado Direito (Formulário) -->
+  <div class="login-card">
+    <router-outlet></router-outlet>
+  </div>
+
 </div>

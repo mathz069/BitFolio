@@ -15,61 +15,100 @@ import { VagasComponent } from './vagas/vagas/vagas.component';
 import { MinhasVagasComponent } from './vagas/minhas-vagas/minhas-vagas.component';
 import { VagasFuncComponent } from './vagas/vagas/vagas-func/vagas-func.component';
 import { GerenciarVagaComponent } from './vagas/vagas/vagas-func/gerenciar-vagas/gerenciar-vagas.component';
+import { authGuard } from './shared/guards/auth.guard';
+import { roleGuard } from './shared/guards/role.guard';
 
 
 const routes: Routes = [
-  {   path: '', component: TemplateComponent, children: [
-     { path: '', redirectTo: 'login', pathMatch: 'full' },
-            {path: 'login', component: LoginComponent},
-            {path: 'cadastro', component: RegisterComponent},
-            {path: 'cadastro-admin', component: RegisterAdminComponent},
-            {path: 'cadastro-func', component: RegisterFuncComponent},
-            {path: 'recuperacao-de-senha', component: ForgotPasswordComponent},
-  ]
-  }, {
-     path: 'dashboard', component: MainNavComponent, children: [
-            {path: '', component: DashboardComponent}
-        ]
+
+  // ROTAS PÚBLICAS (sem login)
+  {
+    path: '',
+    component: TemplateComponent,
+    children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'login', component: LoginComponent },
+      { path: 'cadastro', component: RegisterComponent },
+      { path: 'cadastro-admin', component: RegisterAdminComponent },
+      { path: 'cadastro-func', component: RegisterFuncComponent },
+      { path: 'recuperacao-de-senha', component: ForgotPasswordComponent },
+    ]
   },
-{
+
+  // ROTAS CANDIDATO
+  {
+    path: 'dashboard',
+    component: MainNavComponent,
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['candidato'] },
+    children: [
+      { path: '', component: DashboardComponent }
+    ]
+  },
+
+  {
     path: 'perfil',
     component: MainNavComponent,
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['candidato'] },
     children: [
       { path: '', component: ContaComponent }
     ]
   },
+
+  {
+    path: 'vagas',
+    component: MainNavComponent,
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['candidato'] },
+    children: [
+      { path: '', component: VagasComponent }
+    ]
+  },
+
+  {
+    path: 'inscricoes',
+    component: MainNavComponent,
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['candidato'] },
+    children: [
+      { path: '', component: MinhasVagasComponent }
+    ]
+  },
+
+  // ROTAS FUNCIONÁRIO
   {
     path: 'perfil-funcionario',
     component: MainNavComponent,
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['funcionario'] },
     children: [
       { path: '', component: ContaFuncComponent }
     ]
   },
+
+  {
+    path: 'gerenciar-vagas',
+    component: MainNavComponent,
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['funcionario'] },
+    children: [
+      { path: '', component: VagasFuncComponent },
+      { path: 'vaga/:id', component: GerenciarVagaComponent }
+    ]
+  },
+
+  // ROTAS ADMINISTRADOR
   {
     path: 'perfil-admin',
     component: MainNavComponent,
+    canActivate: [authGuard, roleGuard],
+    data: { roles: ['administrador'] },
     children: [
       { path: '', component: ContaAdminComponent }
     ]
-  },
-  {
-    path: 'vagas', component: MainNavComponent, children: [
-      { path: '', component: VagasComponent }
-    ]
-  },
-  {
-    path: 'inscricoes', component: MainNavComponent, children: [
-      { path: '', component: MinhasVagasComponent }
-    ]
-  },
-  {
-    path: 'gerenciar-vagas', component: MainNavComponent, children: [
-      { path: '', component: VagasFuncComponent },
-      { path: 'vaga/:id', component: GerenciarVagaComponent}
-    ]
   }
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

@@ -1,8 +1,11 @@
 <nav class="main-nav">
   <ul>
+    <li *ngIf="tipoUsuario === 'candidato'"><a routerLink="/dashboard">Dashboard</a></li>
     <li *ngIf="tipoUsuario === 'candidato'"><a routerLink="/vagas">Vagas</a></li>
     <li *ngIf="tipoUsuario === 'candidato'"><a routerLink="/inscricoes">Minhas Inscrições</a></li>
 
+    <li *ngIf="tipoUsuario === 'administrador'"><a routerLink="/dashboard-admin">Dashboard</a></li>
+    <li *ngIf="tipoUsuario === 'funcionario'"><a routerLink="/dashboard-func">Dashboard</a></li>
     <li *ngIf="tipoUsuario === 'funcionario'"><a routerLink="/gerenciar-vagas">Vagas</a></li>
     <!-- Sempre visível: botão de perfil -->
     <li class="perfil-container">

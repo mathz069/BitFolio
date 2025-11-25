@@ -1,1 +1,0 @@
-{"ast":null,"code":"export class Pager {}\nexport class Paginacao {\n  constructor() {\n    this.currentPage = 1;\n    this.take = 5;\n  }\n}","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}
