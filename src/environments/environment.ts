@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  baseAPIUrl: 'http://localhost:5272/api',
-
+  //baseAPIUrl: 'http://localhost:5272/api',
+  baseAPIUrl: 'http://api-bitfolio.sa-east-1.elasticbeanstalk.com/api'
 };
 
 /*
