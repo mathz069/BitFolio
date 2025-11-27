@@ -70,6 +70,35 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
 }
+/* Botão de editar no header da vaga */
+.vaga-actions-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Botão de deletar dentro dos detalhes */
+.vaga-actions-details {
+  margin-top: 1.5rem;
+}
+
+/* Estilo dos botões */
+.btn-edit, .btn-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-edit:hover {
+  background-color: #fce4ec;
+}
+
+.btn-delete:hover {
+  background-color: #ffebee;
+}
 
 .vaga-card:hover {
   box-shadow: 0 4px 16px rgba(188, 67, 113, 0.15);

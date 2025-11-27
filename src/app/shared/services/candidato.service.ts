@@ -17,9 +17,11 @@ export class CandidatoService {
     return this.http.get(`${this.apiUrl}/getCandidatoById/${id}`);
   }
 
-  getCandidatos(page: number = 1, pageSize: number = 10): Observable<any> {
-    return this.http.get(`${this.apiUrl}/getCandidatos?page=${page}&pageSize=${pageSize}`);
-  }
+  getCandidatos(page: number, take: number): Observable<any> {
+  return this.http.get(`${this.apiUrl}/getCandidatos?page=${page}&take=${take}`, {
+    observe: 'response'
+  });
+}
 
   updateCandidato(candidato: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/updateCandidato`, candidato);

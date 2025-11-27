@@ -48,3 +48,20 @@ html, body {
     max-width: 600px; 
     position: relative; /* Opcional, mas útil */
 }
+
+.custom-termo-panel {
+  position: fixed !important; 
+  top: 50% !important;
+  left: 55% !important;
+  transform: translate(-50%, -50%) !important;
+  
+  z-index: 20001; 
+  
+  background-color: transparent !important; 
+  margin: 0 !important; 
+}
+.custom-termo-panel .mat-dialog-container {
+  overflow: hidden !important; /* remove o scroll externo */
+  padding: 0 !important;       /* evita espaço indesejado */
+}
+

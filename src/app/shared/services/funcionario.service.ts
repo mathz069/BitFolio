@@ -12,9 +12,12 @@ export class FuncionarioService {
 
   constructor(private http: HttpClient) {}
 
-  getFuncionarios(page: number = 1, pageSize: number = 10): Observable<FuncionarioDTO[]> {
-    return this.http.get<FuncionarioDTO[]>(`${this.apiUrl}/getFunc?page=${page}&pageSize=${pageSize}`);
-  }
+  getFuncionarios(page: number, take: number) {
+  return this.http.get<FuncionarioDTO[]>(
+    `${this.apiUrl}/getFunc?page=${page}&take=${take}`,
+    { observe: 'response' } // ← importante
+  );
+}
 
   getFuncionarioById(funcionarioId: string): Observable<FuncionarioDTO> {
     return this.http.get<FuncionarioDTO>(`${this.apiUrl}/getFuncById/${funcionarioId}`);

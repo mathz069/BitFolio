@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/login/services/auth.service';
 import { FuncionarioDTO } from 'src/app/shared/models/curriculo';
 import { Pager } from 'src/app/shared/models/pager';
-import { VagaDTO } from 'src/app/shared/models/vagas';
+import { Vaga, VagaDTO } from 'src/app/shared/models/vagas';
 import { FuncionarioService } from 'src/app/shared/services/funcionario.service';
 import { VagaService } from 'src/app/shared/services/vagas.service';
 import { ModalVagasComponent } from '../../modal-vagas/modal-vagas.component';
@@ -109,6 +109,34 @@ export class VagasFuncComponent implements OnInit {
       }
     });
   }
+
+  editarVaga(vaga: VagaDTO): void {
+  const config = new MatDialogConfig();
+  config.width = '1000px';
+  config.maxWidth = '87%';
+  config.disableClose = true;
+  config.autoFocus = true;
+  config.panelClass = 'custom-2fa-panel';
+  config.backdropClass = 'custom-2fa-backdrop';
+  config.data = { vaga }; // envia a vaga para o modal
+
+  const dialogRef = this.dialog.open(ModalVagasComponent, config);
+
+  dialogRef.afterClosed().subscribe((vagaAtualizada: boolean) => {
+    if (vagaAtualizada) {
+      this.buscarVagasPorEmpresa(this.pager.currentPage, this.take);
+    }
+  });
+}
+
+deletarVaga(vaga: VagaDTO): void {
+  if (!confirm(`Deseja realmente excluir a vaga "${vaga.titulo}"?`)) return;
+
+  this.vagaService.deleteVaga(vaga.vagaId).subscribe({
+    next: () => this.buscarVagasPorEmpresa(this.pager.currentPage, this.take),
+    error: (err) => console.error('Erro ao deletar vaga:', err)
+  });
+}
 
   redirecionarParaGerenciar(vagaId: string) {
     this.router.navigate([`/gerenciar-vagas/vaga/${vagaId}`]);

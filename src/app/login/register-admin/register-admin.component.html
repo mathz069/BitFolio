@@ -22,7 +22,9 @@
 
         <label>Senha</label>
         <div [style.border]="setBorder('senha')" class="input">
-          <input class="password-input" formControlName="senha" [type]="passwordField" required>
+          <input class="password-input" formControlName="senha" [type]="passwordField" required
+          (keydown)="checkCaps($event)"
+          (keyup)="checkCaps($event)">
           <button (click)="changeFieldType($event, 'password')" class="show-password">
             <img class="eye-icon" [src]="eyeSourcePassword" />
           </button>
@@ -30,14 +32,24 @@
         <div *ngIf="form.get('senha')?.hasError('passwordStrength') && form.get('senha')?.touched">
           <small class="error">A senha deve ter pelo menos 8 caracteres, 1 letra maiúscula, 1 letra minúscula e 1 caractere especial.</small>
         </div>
+        <div *ngIf="capsLockOn" class="capslock-warning">
+        <span>⚠️ Caps Lock está ativado</span>
+      </div>
+
 
         <label>Confirmar Senha</label>
         <div [style.border]="setBorder('confirmarSenha')" class="input">
-          <input class="password-input" formControlName="confirmarSenha" [type]="confirmPasswordField" required>
+          <input class="password-input" formControlName="confirmarSenha" [type]="confirmPasswordField" required
+          (keydown)="checkCaps1($event)"
+          (keyup)="checkCaps1($event)">
           <button (click)="changeFieldType($event, 'confirmPassword')" class="show-password">
             <img class="eye-icon" [src]="eyeSourceConfirmPassword" />
           </button>
         </div>
+        <div *ngIf="capsLockOn1" class="capslock-warning">
+        <span>⚠️ Caps Lock está ativado</span>
+      </div>
+
         <div *ngIf="form.hasError('passwordMismatch') && form.get('confirmarSenha')?.touched">
           <small class="error">As senhas não coincidem.</small>
         </div>
@@ -60,7 +72,21 @@
           <input class="email-input" formControlName="telefone" type="tel" mask="(00) 0 0000 0000" prefix="+55 " required>
         </div>
         <br><br>
-        <button type="button" (click)="onSubmit()" class="custom-text-size14 login-submit">Cadastrar</button>
+<div class="terms-checkbox">
+  <input type="checkbox" id="aceitoTermos" formControlName="termosAceitos">
+  <label for="aceitoTermos" class="terms-label">
+    Aceito os 
+    <span class="span-link" (click)="abrirTermos()">Termos de Uso e Política de Privacidade</span>
+  </label>
+</div>
+
+<br>
+<button type="button" 
+        [disabled]="!form.get('termosAceitos')?.value" 
+        (click)="onSubmit()" 
+        class="custom-text-size14 login-submit">
+    Cadastrar
+</button>
       </div>
     </form>
   </div>

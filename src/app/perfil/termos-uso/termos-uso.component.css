@@ -1,0 +1,183 @@
+.modal-container {
+  padding: 20px;
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza itens horizontalmente */
+  text-align: center; /* Garante que o texto dentro do container também seja centralizado */
+  position: relative; /* Necessário para posicionar o close-btn */
+}
+.modal-wrapper {
+  background: white;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  max-height: 85vh;
+}
+
+.modal-text {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  color: #171725;
+  text-align: center; /* Já está centralizado, bom para texto */
+  margin-bottom: 15px;
+}
+
+.input2 {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center; /* Centraliza os botões horizontalmente */
+  width: 100%;
+  gap: 10px;
+}
+.email-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+
+.login-submit {
+  /* flex: 1; Removido para que o botão não ocupe toda a largura disponível desnecessariamente se for o único */
+  background-color:  var(--nav-bg-color, #ffffff);
+  color: white;
+  border: none;
+  height: 40px;
+  border-radius: 3px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0 20px; /* Adiciona padding horizontal para dar um tamanho razoável ao botão */
+  min-width: 120px; /* Garante um tamanho mínimo para o botão */
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #171725;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #dc3545; /* vermelho ao passar o mouse */
+}
+
+.show-password {
+  flex: 1;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.aviso {
+  color: #dc3545;
+  font-size: 13px;
+  margin-bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+.modal-texto span {
+  display: inline;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 12px;
+}
+
+:host ::ng-deep .modal-texto span {
+  color:  var(--nav-bg-color, #ffffff) !important;
+  font-weight: bold !important;
+}
+.titulo {
+    color: var(--nav-bg-color, #ffffff);
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}
+/* HEADER FIXO */
+.modal-header {
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 20px;
+  color: var(--nav-bg-color, #ffffff);
+  font-weight: 700;
+}
+
+/* BOTÃO DE FECHAR */
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #444;
+}
+
+.close-btn:hover {
+  color: #d32f2f;
+}
+
+/* CONTEÚDO ROLÁVEL */
+.modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  max-height: calc(85vh - 160px); /* ajusta para header + footer */
+  color: #000000;
+  font-family: "Roboto", sans-serif;
+}
+
+/* RODAPÉ FIXO */
+.modal-footer {
+  padding: 15px 20px;
+  border-top: 1px solid #ddd;
+  background: white;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+}
+:host ::ng-deep .titulo-item {
+  color:  var(--nav-bg-color, #ffffff) !important;
+  font-weight: bold !important;
+  font-size: 15px;
+  display: block;
+  margin-top: 12px;
+  font-family: 'Roboto', sans-serif;
+}
+
+:host ::ng-deep .titulo-header {
+  color:  var(--nav-bg-color, #ffffff) !important;
+  font-weight: bold !important;
+  font-size: 25px;
+  display: block;
+  font-family: 'Roboto', sans-serif;
+}
+

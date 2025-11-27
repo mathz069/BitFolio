@@ -2,23 +2,42 @@
   <!-- Sidebar -->
   <aside class="sidebar">
     <h2 class="sidebar-title">Minha Conta</h2>
-    <nav class="sidebar-nav">
-      <button
-        class="nav-item"
-        [class.active]="sectionAtiva === 'dados'"
-        (click)="selecionarSecao('dados')">
-        Meus Dados
-      </button>
+   <nav class="sidebar-nav">
+  <button
+    class="nav-item"
+    [class.active]="sectionAtiva === 'dados'"
+    (click)="selecionarSecao('dados')">
+    Meus Dados
+  </button>
 
-      <button
-        class="nav-item"
-        [class.active]="sectionAtiva === 'empresas'"
-        (click)="selecionarSecao('empresas')">
-        Gerenciar Empresas
-      </button>
+  <button
+    class="nav-item"
+    [class.active]="sectionAtiva === 'empresas'"
+    (click)="selecionarSecao('empresas')">
+    Gerenciar Empresas
+  </button>
+   <button
+    class="nav-item"
+    [class.active]="sectionAtiva === 'candidatos'"
+    (click)="selecionarSecao('candidatos')">
+    Gerenciar Candidatos
+  </button>
+    <button
+    class="nav-item"
+    [class.active]="sectionAtiva === 'recrutadores'"
+    (click)="selecionarSecao('recrutadores')">
+    Gerenciar Funcionários
+  </button>
 
-     
-    </nav>
+  <button class="nav-item nav-footer-link" (click)="abrirContato()">
+    Contato
+  </button>
+
+  <button class="nav-item nav-footer" (click)="abrirTermos()">
+    Termos de Uso
+  </button>
+</nav>
+
   </aside>
 
   <!-- Área de conteúdo -->
@@ -27,6 +46,8 @@
       <ng-container [ngSwitch]="sectionAtiva">
         <app-dados-admin *ngSwitchCase="'dados'"></app-dados-admin>
         <app-gerenciar-empresa *ngSwitchCase="'empresas'"></app-gerenciar-empresa>
+        <app-gerenciar-candidato *ngSwitchCase="'candidatos'"></app-gerenciar-candidato>
+        <app-gerenciar-func *ngSwitchCase="'recrutadores'"></app-gerenciar-func>
       </ng-container>
     </div>
   </main>

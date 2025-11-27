@@ -1,0 +1,16 @@
+<div class="modal-wrapper">
+
+  <div class="modal-header">
+    <h2 class="titulo">{{ data.titulo }}</h2>
+    <button class="close-btn" (click)="cancelar()">×</button>
+  </div>
+
+  <div class="modal-body" [innerHTML]="data.mensagem"></div>
+
+  <div class="modal-footer">
+    <button class="login-submit" (click)="irParaMinhaConta()">
+      {{ data.botaoTexto }}
+    </button>
+  </div>
+
+</div>

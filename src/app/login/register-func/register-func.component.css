@@ -21,7 +21,15 @@ select {
   min-height: 80px;
   box-sizing: border-box;
 }
-
+.capslock-warning {
+  color: orange;
+  font-size: 13px;
+  margin-top: 4px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
 select {
   min-height: 50px;
 }

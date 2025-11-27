@@ -27,6 +27,13 @@
                   <span class="badge badge-escolaridade">{{ vaga.escolaridade }}</span>
                 </div>
               </div>
+              <div class="vaga-actions-header">
+          <button class="btn-edit" (click)="editarVaga(vaga)" title="Editar Vaga">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="#000"/>
+            </svg>
+          </button>
+        </div>
               <img src="assets/images/arrow-down-gray.svg" alt="Expandir" class="expand-icon">
             </div>
           </summary>
@@ -71,6 +78,17 @@
                 <span class="date-value">{{ vaga.dataFechamento | date:'dd/MM/yyyy' }}</span>
               </div>
             </div>
+         <div class="vaga-actions-details">
+  <button class="btn-delete" (click)="deletarVaga(vaga)" title="Deletar Vaga">
+    <svg xmlns="http://www.w3.org/2000/svg" class="trash-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="3 6 5 6 21 6"></polyline>
+      <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
+      <path d="M10 11v6"></path>
+      <path d="M14 11v6"></path>
+    </svg>
+    Deletar Vaga
+  </button>
+</div>
           </div>
         </details>
       </article>

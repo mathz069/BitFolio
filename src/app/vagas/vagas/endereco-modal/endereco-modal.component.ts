@@ -13,12 +13,10 @@ export class EnderecoModalComponent {
   ) {}
 
   irParaMinhaConta() {
-    // Fecha o modal passando true
     this.dialogRef.close(true);
   }
 
   cancelar() {
-    // Fecha o modal sem valor
     this.dialogRef.close(false);
   }
 }

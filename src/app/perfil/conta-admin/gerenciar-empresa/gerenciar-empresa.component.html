@@ -65,21 +65,20 @@
                                             stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </button>
-
-                                <button class="btn-reject" (click)="reprovarEmpresa(empresa.empresaId)"
+                                <button class="btn-view" (click)="verDetalhes(empresa.empresaId)" title="Ver Detalhes">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 5C7 5 2.73 8.11 1 12c1.73 3.89 6 7 11 7s9.27-3.11 11-7c-1.73-3.89-6-7-11-7zm0 12a5 
+                                            5 0 1 1 0-10 5 5 0 0 1 0 10z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                </button>
+                                
+                                <button class="btn-reject" (click)="reprovarEmpresa(empresa)"
                                     title="Reprovar">
-
                                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                                         <path d="M12 4L4 12M4 4l8 8" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </button>
-
-                                <!-- <button
-                                    class="btn-view"
-                                    (click)="verDetalhes(empresa.empresaId)"
-                                    title="Ver Detalhes">
-                                </button> -->
                             </div>
                         </td>
                     </tr>

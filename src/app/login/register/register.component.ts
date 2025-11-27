@@ -19,7 +19,8 @@ export class RegisterComponent implements OnInit {
   errorMessage: string = '';
   isSubmitting: boolean = false;
   step: number = 1;
-  CapsLock: boolean = false;
+  capsLockOn: boolean = false;
+  capsLockOn1: boolean = false;
   constructor(
     private fb: FormBuilder, 
     private http: HttpClient,  
@@ -39,8 +40,15 @@ export class RegisterComponent implements OnInit {
     validator: this.passwordMatchValidator // 
   });
   }
-checkCapsLock(event: KeyboardEvent) {
-  this.CapsLock = event.getModifierState && event.getModifierState('CapsLock');
+ checkCaps(event: KeyboardEvent) {
+  if (!event.getModifierState) return; 
+
+  this.capsLockOn = event.getModifierState('CapsLock');
+}
+ checkCaps1(event: KeyboardEvent) {
+  if (!event.getModifierState) return; 
+
+  this.capsLockOn1 = event.getModifierState('CapsLock');
 }
 passwordStrengthValidator(control: AbstractControl): ValidationErrors | null {
     const password = control.value;

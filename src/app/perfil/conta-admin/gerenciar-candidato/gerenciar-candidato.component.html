@@ -1,0 +1,105 @@
+<div class="admin-container">
+  <header class="admin-header">
+    <div class="header-content">
+      <div class="header-left">
+        <h1>Gerenciar Candidatos</h1>
+        <p class="subtitle">Visualizar e gerenciar candidatos</p>
+      </div>
+      <div class="header-right">
+        <div class="admin-badge">
+          <span>{{ administrador?.nome || 'Administrador' }}</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Candidates Table -->
+  <div class="companies-section">
+    <div class="section-header">
+      <h2>Candidatos Cadastrados</h2>
+      <span class="results-count">
+        Mostrando {{ candidatos?.length || 0 }} de {{ pager?.totalItems || 0 }} resultados
+      </span>
+    </div>
+
+    <div class="companies-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Nascimento</th>
+            <th>Ultimo Acesso</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cand of candidatos">
+            <td>
+              <div class="company-info">
+                <div class="company-details">
+                  <span class="company-name">{{ anonimizarNome(cand.nome) }}</span>
+                </div>
+              </div>
+            </td>
+
+            <td>{{ anonimizarEmail(cand.email) }}</td>
+
+            <td>{{ anonimizarNascimento(cand.dataNascimento) }}</td>
+
+            <td>{{ cand.ultimoAcesso | date:'dd/MM/yyyy' }}</td>
+
+            <td>
+              <span class="status-badge" [ngClass]="{ 'approved': cand.ativo, 'pending': !cand.ativo }">
+                {{ cand.ativo ? 'Ativo' : 'Inativo' }}
+              </span>
+            </td>
+
+            <td>
+              <div class="action-buttons">
+                <!-- botão para ações futuras (ver detalhes se necessário) -->
+                <!-- botão excluir -->
+                <button class="btn-reject" (click)="excluirCandidato(cand)" title="Excluir">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M12 4L4 12M4 4l8 8" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination-container" *ngIf="pager.pages && pager.pages.length && candidatos.length > 0">
+      <div class="pagination-range">
+        <span>{{ pager.range }}</span>
+      </div>
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          <!-- Botão anterior -->
+          <li class="page-item" [ngClass]="{disabled: pager.currentPage === 1}">
+            <a class="page-link" (click)="buscarCandidatos(pager.currentPage - 1, take)">
+              <img src="../../../assets/images/arrow-left-gray.svg" alt="Anterior">
+            </a>
+          </li>
+
+          <!-- Botões de página -->
+          <li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active: pager.currentPage === page}">
+            <a class="page-link" (click)="buscarCandidatos(page, take)">{{ page }}</a>
+          </li>
+
+          <!-- Botão próximo -->
+          <li class="page-item" [ngClass]="{disabled: pager.currentPage === pager.totalPages}">
+            <a class="page-link" (click)="buscarCandidatos(pager.currentPage + 1, take)">
+              <img src="../../../assets/images/arrow-right-gray.svg" alt="Próximo">
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

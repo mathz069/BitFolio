@@ -1,0 +1,65 @@
+.modal-wrapper {
+  background: white;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  max-height: 85vh;
+}
+
+.modal-header {
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #940404;
+  font-weight: 700;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #444;
+}
+
+.modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  max-height: calc(85vh - 160px);
+}
+
+.modal-footer {
+  padding: 15px 20px;
+  border-top: 1px solid #ddd;
+  background: white;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+}
+.login-submit {
+  background-color:  #940404;
+  color: white;
+  border: none;
+  height: 40px;
+  border-radius: 3px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0 20px; /* Adiciona padding horizontal para dar um tamanho razoável ao botão */
+  min-width: 120px; /* Garante um tamanho mínimo para o botão */
+}

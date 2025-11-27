@@ -114,7 +114,7 @@ formatarTelefone(telefone: string): string {
   this.take = take;
   this.filtroStatus = status === undefined ? this.filtroStatus : status;
   this.searchCandidato = search === undefined ? this.searchCandidato : search;
-
+  console.log('searchCandidato:', this.searchCandidato);  
   this.vagasService
   .getCandidatosDaVaga(this.vagaId, this.page, this.take, this.filtroStatus, this.searchCandidato)
   .pipe(takeUntil(this.destroy$))
@@ -122,7 +122,7 @@ formatarTelefone(telefone: string): string {
     next: (response) => {
 
       const data = response.body || [];
-
+      console.log('Candidatos recebidos:', data);
       if (data.length === 0) {
         this.candidatos = [];
         this.candidatosMessage = 'Nenhum candidato encontrado para esta vaga.';
@@ -341,7 +341,6 @@ exportarParaExcel(): void {
 
   const tituloVaga = `${this.vaga?.titulo || 'Nome da Vaga'} - ${new Date().toLocaleDateString()}`;
   dadosParaExportar.push([tituloVaga]);
-
   dadosParaExportar.push([]);
 
   const headers = [
@@ -357,13 +356,11 @@ exportarParaExcel(): void {
   ];
   dadosParaExportar.push(headers);
 
-  // Dados dos candidatos
   this.candidatos.forEach(candidato => {
-
     const formatarLista = (valor: string | string[]) => {
       if (!valor) return '';
-      if (Array.isArray(valor)) return valor.join('\n');
-      return valor.split(',').map(v => v.trim()).join('\n');
+      if (Array.isArray(valor)) return valor.join(', ');
+      return valor.split(',').map(v => v.trim()).join(', ');
     };
 
     const candidatoData = [
@@ -381,47 +378,79 @@ exportarParaExcel(): void {
     dadosParaExportar.push(candidatoData);
   });
 
-  // Totais
   dadosParaExportar.push([]);
-  dadosParaExportar.push(['', '', '', '', 'Total Candidatos', this.candidatoStatusCounts.total]);
-  dadosParaExportar.push(['', '', '', '', 'Total Aprovados', this.candidatoStatusCounts.aprovados]);
-  dadosParaExportar.push(['', '', '', '', 'Total Rejeitados', this.candidatoStatusCounts.rejeitados]);
-  dadosParaExportar.push(['', '', '', '', 'Total Em Análise', this.candidatoStatusCounts.emAnalise]);
-  dadosParaExportar.push(['', '', '', '', 'Total Entrevistas', this.candidatoStatusCounts.entrevista]);
+
+  const linhasTotais = [
+    ['Total Candidatos', this.candidatoStatusCounts.total],
+    ['Total Aprovados', this.candidatoStatusCounts.aprovados],
+    ['Total Rejeitados', this.candidatoStatusCounts.rejeitados],
+    ['Total Em Análise', this.candidatoStatusCounts.emAnalise],
+    ['Total Entrevistas', this.candidatoStatusCounts.entrevista]
+  ];
+
+  const startRow = dadosParaExportar.length;
+  linhasTotais.forEach(linha => {
+    dadosParaExportar.push(['', '', '', '', linha[0], linha[1]]);
+  });
 
   const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(dadosParaExportar);
 
-  ws['!merges'] = [
-    { s: { r: 0, c: 0 }, e: { r: 0, c: 8 } } 
-  ];
+  ws['!merges'] = [{ s: { r: 0, c: 0 }, e: { r: 0, c: 8 } }];
 
   ws['A1'].s = {
     alignment: { horizontal: 'center', vertical: 'center' },
     font: { bold: true, sz: 14 }
   };
 
-  const colunasQuebrarLinha = [4, 6, 7]; 
-  const primeiraLinhaDados = 3; 
+  headers.forEach((_, colIndex) => {
+    const cellAddress = XLSX.utils.encode_cell({ r: 2, c: colIndex });
+    if (ws[cellAddress]) {
+      ws[cellAddress].s = {
+        font: { bold: true },
+        alignment: { horizontal: 'center', vertical: 'center' }
+      };
+    }
+  });
 
+  linhasTotais.forEach((_, index) => {
+    const r = startRow + index;
+    ['E', 'F'].forEach(col => {
+      const cellAddress = `${col}${r + 1}`; 
+      if (ws[cellAddress]) ws[cellAddress].s = { font: { bold: true } };
+    });
+  });
+
+  const colunasQuebrarLinha = [4, 6, 7]; 
+  const primeiraLinhaDados = 3;
   for (let R = primeiraLinhaDados; R < dadosParaExportar.length; R++) {
     colunasQuebrarLinha.forEach(C => {
       const cellAddress = XLSX.utils.encode_cell({ r: R, c: C });
       if (ws[cellAddress]) {
-        ws[cellAddress].s = {
-          alignment: { wrapText: true }
-        };
+        ws[cellAddress].s = { alignment: { wrapText: true } };
       }
     });
   }
 
-  // Criar workbook
+  const calcularLarguraColunas = (dados: any[]): XLSX.ColInfo[] => {
+    const larguraMaxima: number[] = [];
+    dados.forEach(row => {
+      row.forEach((cell: any, colIndex: number) => {
+        const cellLength = cell ? cell.toString().length : 0;
+        if (!larguraMaxima[colIndex] || cellLength > larguraMaxima[colIndex]) larguraMaxima[colIndex] = cellLength;
+      });
+    });
+    return larguraMaxima.map(w => ({ wch: Math.min(w + 2, 100) })); 
+  };
+  ws['!cols'] = calcularLarguraColunas(dadosParaExportar);
+
+
   const wb: XLSX.WorkBook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, 'Relatório Candidatos');
-
-  // Salvar
   const nomeArquivo = `Relatorio_Candidatos_${this.vaga?.titulo || 'Vaga'}_${new Date().toLocaleDateString()}.xlsx`;
   XLSX.writeFile(wb, nomeArquivo);
 }
+
+
 
 
 }

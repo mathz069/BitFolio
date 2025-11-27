@@ -60,3 +60,14 @@
 .profile-img:hover {
   border-color: #e0e0e0;
 }
+.logo-img {
+  height: 60px;     /* bom tamanho para navbar */
+  width: auto;
+}
+
+.logo-item {
+  display: flex;
+  align-items: center;
+  margin-right: 16px; /* distância mínima da logo para os menus */
+}
+

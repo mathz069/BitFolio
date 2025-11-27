@@ -32,6 +32,9 @@ import { DadosFuncionarioComponent } from './perfil/conta-func/dados-funcionario
 import { DadosAdminComponent } from './perfil/conta-admin/dados-admin/dados-admin.component';
 import { EnderecoEmpresaComponent } from './perfil/conta-func/endereco-empresa/endereco-empresa.component';
 import { GerenciarEmpresaComponent } from './perfil/conta-admin/gerenciar-empresa/gerenciar-empresa.component';
+import { DetalhesEmpresaComponent } from './perfil/conta-admin/gerenciar-empresa/detalhes-empresa/detalhes-empresa.component';
+import { GerenciarCandidatoComponent } from './perfil/conta-admin/gerenciar-candidato/gerenciar-candidato.component';
+import { GerenciarFuncComponent } from './perfil/conta-admin/gerenciar-func/gerenciar-func.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +57,10 @@ import { GerenciarEmpresaComponent } from './perfil/conta-admin/gerenciar-empres
     DadosFuncionarioComponent,
     DadosAdminComponent,
     EnderecoEmpresaComponent,
-    GerenciarEmpresaComponent
+    GerenciarEmpresaComponent,
+    DetalhesEmpresaComponent,
+    GerenciarCandidatoComponent,
+    GerenciarFuncComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,33 @@
+<div class="modal-wrapper">
+
+  <!-- HEADER -->
+  <div class="modal-header">
+    <h2 class="titulo">Detalhes da Empresa</h2>
+    <button class="close-btn" (click)="fechar()">×</button>
+  </div>
+
+  <div class="modal-body">
+
+    <div *ngIf="empresa">
+
+      <p><strong>Nome: </strong> {{ empresa.nome }}</p>
+
+      <p><strong>Razão Social: </strong> {{ empresa.razaoSocial }}</p>
+
+      <p><strong>CNPJ: </strong> {{ empresa.cnpj }}</p>
+
+      <p><strong>E-mail: </strong> {{ empresa.email }}</p>
+
+      <p><strong>Descrição: </strong></p>
+      <p>{{ empresa.descricao }}</p>
+
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="modal-footer">
+    <button class="login-submit" (click)="fechar()">Fechar</button>
+  </div>
+
+</div>

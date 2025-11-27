@@ -1,3 +1,5 @@
+import { Empresa } from "src/app/login/models/empresa";
+
 export class Curriculo {
   curriculoId?: string;
   experiencias?: string | null;
@@ -14,5 +16,6 @@ export interface FuncionarioDTO {
   email: string;
   ativo: boolean;
   empresaId?: string;
+  empresa?: Empresa;
   ultimoAcesso?: Date;
 }

@@ -26,7 +26,8 @@ export class RegisterFuncComponent implements OnInit {
    empresas: any[] = [];
    loadingEmpresas = false;
    empresaSelecionada: any;
-   CapsLock: boolean = false;
+   capsLockOn: boolean = false;
+   capsLockOn1: boolean = false;
    constructor(
      private fb: FormBuilder,
      private authService: AuthService,
@@ -48,8 +49,15 @@ export class RegisterFuncComponent implements OnInit {
        negocioId: [null, Validators.required]
      }, { validator: this.passwordMatchValidator });
    }
- checkCapsLock(event: KeyboardEvent) {
-  this.CapsLock = event.getModifierState && event.getModifierState('CapsLock');
+ checkCaps(event: KeyboardEvent) {
+  if (!event.getModifierState) return; 
+
+  this.capsLockOn = event.getModifierState('CapsLock');
+}
+ checkCaps1(event: KeyboardEvent) {
+  if (!event.getModifierState) return; 
+
+  this.capsLockOn1 = event.getModifierState('CapsLock');
 }
  loadEmpresas(): void {
   this.loadingEmpresas = true;

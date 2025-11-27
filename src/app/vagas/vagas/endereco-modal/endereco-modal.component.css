@@ -10,7 +10,7 @@
 }
 
 .modal-text {
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   color: #171725;
   text-align: center; /* Já está centralizado, bom para texto */
@@ -40,7 +40,7 @@
 
 .login-submit {
   /* flex: 1; Removido para que o botão não ocupe toda a largura disponível desnecessariamente se for o único */
-  background-color: #044894;
+  background-color: var(--nav-bg-color, #ffffff);
   color: white;
   border: none;
   height: 40px;
@@ -49,6 +49,8 @@
   cursor: pointer;
   padding: 0 20px; /* Adiciona padding horizontal para dar um tamanho razoável ao botão */
   min-width: 120px; /* Garante um tamanho mínimo para o botão */
+  font-family: 'Roboto', sans-serif;
+
 }
 
 .close-btn {
@@ -78,9 +80,11 @@
 }
 
 .aviso {
-  color: #dc3545;
-  font-size: 13px;
+  color: var(--nav-bg-color, #ffffff);
+  font-size: 25px;
   margin-bottom: 8px;
   width: 100%;
   text-align: center;
+  font-family: 'Roboto', sans-serif;
+
 }
