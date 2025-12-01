@@ -653,6 +653,12 @@ input[type="range"]::-moz-range-thumb {
     background-color: transparent;
 }
  
+.no-vagas {
+    text-align: center;
+    padding: 30px 0;
+    font-size: 18px;
+    color: #666;
+}
 
 
 @media (max-width: 1024px) {

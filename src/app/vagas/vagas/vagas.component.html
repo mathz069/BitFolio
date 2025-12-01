@@ -104,6 +104,10 @@
         </aside>
 
         <main class="vagas-container">
+             <div *ngIf="vagas && vagas.length === 0" class="no-vagas">
+        Ops, nenhuma vaga foi encontrada com esses filtros.
+    </div>
+    
             <article class="vaga-card" *ngFor="let vaga of vagas; trackBy: trackByVagaId">
                 <details>
                     <summary>

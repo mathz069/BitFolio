@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const environment = {\n  production: false,\n  //baseAPIUrl: 'http://localhost:5272/api',\n  baseAPIUrl: 'https://api.bitfolio.com.br/api'\n};","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

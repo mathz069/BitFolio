@@ -66,6 +66,7 @@ export class VagasComponent implements OnInit {
       this.candidatoService.getCandidatoById(this.candidatoId).subscribe({
         next: (candidato: any) => {
           this.candidato = candidato;
+          console.log('Dados do candidato:', this.candidato); 
           const temEndereco = !!candidato.enderecoId;
           this.vagaService.getHistoricoCandidaturas(this.candidatoId).subscribe({
             next: (historico: HistoricoCandidatura[]) => {
@@ -205,11 +206,12 @@ export class VagasComponent implements OnInit {
   }
 
   buscarVagas(filtroPage?: number, takePage?: number) {
+    console.log(this.candidatoId)
     if (!this.candidatoId) return;
     console.log('Buscando vagas com os seguintes filtros:', this.filtros);
     console.log(this.candidatoId)
-    const page = filtroPage || this.page;
-    const take = takePage || this.take;
+    const page = filtroPage ?? this.page;
+    const take = takePage ?? this.take;
 
     const linguagensSelecionadas: string[] = [];
     for (const key in this.filtros.linguagens) {
@@ -234,7 +236,6 @@ export class VagasComponent implements OnInit {
       .subscribe((response: HttpResponse<VagaDTO[]>) => {
         this.vagas = (response.body || []).map(v => ({
           ...v,
-          // Converter datas para objetos Date
           dataAbertura: new Date(v.dataAbertura),
           dataFechamento: new Date(v.dataFechamento),
           requisitos: Array.isArray(v.requisitos)
@@ -244,7 +245,7 @@ export class VagasComponent implements OnInit {
             ? v.tecnologias
             : (v.tecnologias as string)?.split(',').map(t => t.trim()) || [],
           distancia: typeof v.distancia === 'number'
-            ? Math.round(v.distancia * 10) / 10 // Ex: 5.084 -> 5.1
+            ? Math.round(v.distancia * 10) / 10 
             : 0
         }));
         console.log('Vagas recebidas:', this.vagas);
@@ -288,6 +289,8 @@ export class VagasComponent implements OnInit {
       pages,
       range
     } as Pager;
+
+    console.log('Configuração de paginação:', this.pager);
   }
 
   candidatar(vagaId: string) {
