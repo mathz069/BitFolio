@@ -236,6 +236,13 @@ formatarTelefone(telefone: string): string {
       }
     });
 }
+
+getHistoricoDaVaga(c: any) {
+  if (!c?.candidato?.historicos || !this.vagaId) return null;
+  return c.candidato.historicos.find(h => h.vagaId === this.vagaId) || null;
+}
+
+
   abrirModalStatus(candidato: CandidatoVagaDTO): void {
     const config = new MatDialogConfig();
         config.width = '1000px';

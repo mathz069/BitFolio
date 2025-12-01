@@ -59,8 +59,7 @@ export class ModalVagasComponent {
     descricao: [''],
     requisitos: ['']
   });
-  console.log(this.data.vaga);
-  if (this.data.vaga) {
+if (this.data?.vaga) {
   const techArray = Array.isArray(this.data.vaga.tecnologias) 
       ? [...this.data.vaga.tecnologias] 
       : (this.data.vaga.tecnologias ? this.data.vaga.tecnologias.split(',').map(t => t.trim()) : []);
@@ -108,36 +107,56 @@ requisitos: Array.isArray(this.data.vaga.requisitos) ? this.data.vaga.requisitos
  salvar(): void {
   if (this.formVaga.invalid || !this.empresaId) return;
 
-  // Cria uma cópia da vaga original ou um objeto novo se for criação
-  const vagaPayload: Vaga = this.data.vaga
-    ? { ...this.data.vaga } // copia a vaga existente
-    : { vagaId: null, empresaId: this.empresaId, ativo: true } as Vaga;
+  const { dataAbertura, dataFechamento, salario } = this.formVaga.value;
 
-  // Sobrescreve com os valores do formulário
+  if (dataAbertura && dataFechamento) {
+    const dtAbertura = new Date(dataAbertura);
+    const dtFechamento = new Date(dataFechamento);
+
+    if (dtFechamento < dtAbertura) {
+      alert("A data de fechamento não pode ser menor que a data de abertura.");
+      return;
+    }
+  }
+
+  if (salario !== null && salario < 0) {
+    alert("O salário não pode ser negativo.");
+    return;
+  }
+
+  let vagaPayload: Vaga;
+
+  if (this.data?.vaga?.vagaId) {
+    vagaPayload = { ...this.data.vaga };
+  } else {
+    vagaPayload = {
+      empresaId: this.empresaId!,
+      ativo: true
+    } as Vaga;
+  }
+
   vagaPayload.titulo = this.formVaga.value.titulo;
   vagaPayload.nivel = this.formVaga.value.nivel;
   vagaPayload.escolaridade = this.formVaga.value.escolaridade;
   vagaPayload.modelo = this.formVaga.value.modelo;
   vagaPayload.area = this.formVaga.value.area;
-  vagaPayload.dataAbertura = this.formVaga.value.dataAbertura;
-  vagaPayload.dataFechamento = this.formVaga.value.dataFechamento;
-  vagaPayload.salario = this.formVaga.value.salario;
+  vagaPayload.dataAbertura = dataAbertura;
+  vagaPayload.dataFechamento = dataFechamento;
+  vagaPayload.salario = salario;
   vagaPayload.tecnologias = this.tecnologiasSelecionadas.join(', ');
   vagaPayload.descricao = this.formVaga.value.descricao;
   vagaPayload.requisitos = this.formVaga.value.requisitos;
-  vagaPayload.empresaId = this.empresaId; 
+  vagaPayload.empresaId = this.empresaId!;
   vagaPayload.ativo = true;
 
-  if (vagaPayload.vagaId) {
-    this.vagasService.updateVaga(vagaPayload).subscribe({
-      next: () => this.dialogRef.close(true)
-    });
-  } else {
-    this.vagasService.criarVaga(vagaPayload).subscribe({
-      next: () => this.dialogRef.close(true)
-    });
-  }
-}
+  const request$ = this.data?.vaga?.vagaId
+    ? this.vagasService.updateVaga(vagaPayload)
+    : this.vagasService.criarVaga(vagaPayload);
 
+  request$.subscribe({
+    next: () => this.dialogRef.close(true),
+    error: err => console.error('Erro ao salvar vaga:', err)
+  });
+}
 
 }
