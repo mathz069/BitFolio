@@ -70,14 +70,15 @@
           <input class="email-input" formControlName="telefone" type="tel" mask="(00) 00000 0000" prefix="+55 " required>
         </div>
 
-<label>Empresa</label>
-<div class="input-wrapper">
+  <label>Empresa</label>
+  <div class="input-wrapper">
   <select formControlName="negocioId">
-    <option value="">Selecione uma empresa...</option>
-    <option *ngFor="let empresa of empresas" [value]="empresa.id">
+    <option [ngValue]="null" disabled hidden>Selecione uma empresa...</option>
+    <option *ngFor="let empresa of empresas" [ngValue]="empresa.id">
       {{ empresa.nome }}
     </option>
   </select>
+  <button type="button" (click)="limparSelecao()">✕</button>
 </div>
  <br><br>
 <div class="terms-checkbox">

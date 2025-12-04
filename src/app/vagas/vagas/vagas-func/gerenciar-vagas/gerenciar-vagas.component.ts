@@ -114,7 +114,6 @@ formatarTelefone(telefone: string): string {
   this.take = take;
   this.filtroStatus = status === undefined ? this.filtroStatus : status;
   this.searchCandidato = search === undefined ? this.searchCandidato : search;
-  console.log('searchCandidato:', this.searchCandidato);  
   this.vagasService
   .getCandidatosDaVaga(this.vagaId, this.page, this.take, this.filtroStatus, this.searchCandidato)
   .pipe(takeUntil(this.destroy$))
@@ -122,7 +121,6 @@ formatarTelefone(telefone: string): string {
     next: (response) => {
 
       const data = response.body || [];
-      console.log('Candidatos recebidos:', data);
       if (data.length === 0) {
         this.candidatos = [];
         this.candidatosMessage = 'Nenhum candidato encontrado para esta vaga.';

@@ -126,7 +126,6 @@ buscarCep(): void {
           longitude: longitudeValue
         });
 
-        console.log('Form preenchido com sucesso:', this.enderecoForm.value);
       },
       error: (err) => {
         console.error('Erro ao buscar CEP:', err);

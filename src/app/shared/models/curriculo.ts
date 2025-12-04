@@ -19,3 +19,9 @@ export interface FuncionarioDTO {
   empresa?: Empresa;
   ultimoAcesso?: Date;
 }
+
+export const TECNOLOGIAS_PADRONIZADAS: string[] = [
+  'TypeScript', 'React', 'Angular','Node.js', 'Python', 
+  'Java', 'CSharp', 'PHP', 'SQL', 'MongoDB','PostgreSQL', 
+  'AWS', 'Azure', 'Git', 'Flutter', 'Figma'
+];

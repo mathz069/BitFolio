@@ -29,7 +29,6 @@ confirmar() {
   if (this.form.invalid) return;
 
   const codigo = this.form.value.codigo;
-  console.log('Código 2FA inserido:', codigo);
   this.dialogRef.close(codigo); // Fecha o modal retornando o código
 }
 }

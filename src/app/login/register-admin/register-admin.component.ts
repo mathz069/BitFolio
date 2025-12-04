@@ -126,7 +126,6 @@ if (
 
 onEmpresaSelecionada(event: any) {
   const id = typeof event === 'object' ? event.id : event;
-  console.log('ID selecionado:', id);
   this.form.get('negocioId').setValue(id);
 }
 

@@ -51,7 +51,6 @@ form: FormGroup;
       next: (funcionario: any) => {
         this.funcionario = funcionario;
         const temEmpresa = !!funcionario.empresaId;
-        console.log('Funcionario carregado:', funcionario);
         if (temEmpresa) {
           this.empresaId = funcionario.empresaId;
           this.carregarEmpresa();
@@ -174,7 +173,6 @@ buscarCep(): void {
           longitude: longitudeValue
         });
 
-        console.log('Form preenchido com sucesso:', this.form.value);
       },
       error: (err) => {
         console.error('Erro ao buscar CEP:', err);

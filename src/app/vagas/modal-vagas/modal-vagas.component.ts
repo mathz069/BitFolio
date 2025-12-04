@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AuthService } from 'src/app/login/services/auth.service';
-import { FuncionarioDTO } from 'src/app/shared/models/curriculo';
+import { FuncionarioDTO, TECNOLOGIAS_PADRONIZADAS } from 'src/app/shared/models/curriculo';
 import { Vaga } from 'src/app/shared/models/vagas';
 import { FuncionarioService } from 'src/app/shared/services/funcionario.service';
 import { VagaService } from 'src/app/shared/services/vagas.service';
@@ -16,10 +16,8 @@ export class ModalVagasComponent {
 
    formVaga!: FormGroup;
 
-  tecnologiasLista: string[] = [
-    'Angular', 'React', 'Vue', 'Node.js', 'C#', 'Java', 'Python', 'PHP',
-    'SQL', 'MongoDB', 'AWS', 'Docker', 'Kubernetes', 'Flutter'
-  ];
+  tecnologiasLista = TECNOLOGIAS_PADRONIZADAS;
+
   funcionarioId: string | null = null;
   empresaId: string | null = null;
   tecnologiasSelecionadas: string[] = [];

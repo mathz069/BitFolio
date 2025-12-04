@@ -65,7 +65,6 @@ export class LoginComponent implements OnInit {
     this.userType = tipo;
     this.userTypeService.setUserType(tipo);
     this.userTypeService.userTypeData$.subscribe(userTypeData => {
-      console.log('Dados do tipo de usuário:', userTypeData);
     });
     this.router.navigate(['/login']);
   }
@@ -171,7 +170,6 @@ export class LoginComponent implements OnInit {
 
         } else if (response.token) {
           localStorage.setItem('token', response.token);
-          console.log(tipo);
           this.redirecionarPorTipo(tipo);
         }
       }.bind(this),
@@ -250,7 +248,6 @@ export class LoginComponent implements OnInit {
   }
 
   redirecionarPorTipo(tipo: 'candidato' | 'funcionario' | 'administrador') {
-    console.log('Redirecionando para o tipo:', tipo);
     if (tipo === 'candidato') {
       this.router.navigate(['/dashboard']);
     }

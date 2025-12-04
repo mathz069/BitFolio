@@ -24,14 +24,10 @@ candidatoVaga: CandidatoVagaDTO;
     @Inject(MAT_DIALOG_DATA) public data: ModalData
   ) { 
     this.candidatoVaga = this.data.candidato;
-    console.log('CandidatoVagaDTO recebido no modal:', this.candidatoVaga);
   }
 
 ngOnInit(): void {
-    console.log('ngOnInit foi chamado!');
-    console.log('Dados recebidos no modal de curriculo:', this.candidatoVaga);
     const candidato = this.candidatoVaga?.candidato;
-    console.log('Candidato dentro do modal de curriculo:', candidato);
     if (candidato?.curriculo) {
       const curriculo = candidato.curriculo;
       const splitAndTrim = (text: string): string[] => {

@@ -22,25 +22,31 @@ import { ToggleFavorito } from 'src/app/shared/models/toogle-favorito';
 export class VagasComponent implements OnInit {
   candidato: Candidato;
   vagas: VagaDTO[] = [];
-  filtros: any = {
-    palavrasChave: '',
-    proximidade: 50,
-    linguagens: {
-      javascript: false,
-      python: false,
-      java: false,
-      csharp: false,
-      php: false,
-      ruby: false,
-      go: false,
-      typescript: false,
-      kotlin: false,
-      swift: false
-    },
-    experiencia: '',
-    area: '',
-    modelo: ''
-  };
+ filtros: any = {
+  palavrasChave: '',
+  proximidade: 50,
+  linguagens: {
+    typescript: false,
+    react: false,
+    angular: false,
+    nodejs: false,
+    python: false,
+    java: false,
+    csharp: false,
+    php: false,
+    sql: false,
+    mongodb: false,
+    postgresql: false,
+    aws: false,
+    azure: false,
+    git: false,
+    flutter: false,
+    figma: false
+  },
+  experiencia: '',
+  area: '',
+  modelo: ''
+};
 
   pager: Pager = new Pager();
   page: number = 1;
@@ -62,16 +68,13 @@ export class VagasComponent implements OnInit {
     if (usuarioId) {
       this.candidatoId = usuarioId.toString();
 
-      // Busca os dados do candidato antes de buscar as vagas
       this.candidatoService.getCandidatoById(this.candidatoId).subscribe({
         next: (candidato: any) => {
           this.candidato = candidato;
-          console.log('Dados do candidato:', this.candidato); 
           const temEndereco = !!candidato.enderecoId;
           this.vagaService.getHistoricoCandidaturas(this.candidatoId).subscribe({
             next: (historico: HistoricoCandidatura[]) => {
               this.historicoCandidaturas = historico;
-              console.log('Histórico de candidaturas:', this.historicoCandidaturas);
             },
             error: (err) => {
               console.error('Erro ao buscar histórico de candidaturas:', err);
@@ -168,22 +171,28 @@ export class VagasComponent implements OnInit {
   limparFiltros() {
     this.filtros = {
       palavrasChave: '',
-      proximidade: 50,
-      linguagens: {
-        javascript: false,
-        python: false,
-        java: false,
-        csharp: false,
-        php: false,
-        ruby: false,
-        go: false,
-        typescript: false,
-        kotlin: false,
-        swift: false
-      },
-      experiencia: '',
-      area: '',
-      modelo: ''
+  proximidade: 50,
+  linguagens: {
+    typescript: false,
+    react: false,
+    angular: false,
+    nodejs: false,
+    python: false,
+    java: false,
+    csharp: false,
+    php: false,
+    sql: false,
+    mongodb: false,
+    postgresql: false,
+    aws: false,
+    azure: false,
+    git: false,
+    flutter: false,
+    figma: false
+  },
+  experiencia: '',
+  area: '',
+  modelo: ''
     };
     this.page = 1;
     this.candidatoService.getCandidatoById(this.candidatoId).subscribe({
@@ -206,10 +215,7 @@ export class VagasComponent implements OnInit {
   }
 
   buscarVagas(filtroPage?: number, takePage?: number) {
-    console.log(this.candidatoId)
     if (!this.candidatoId) return;
-    console.log('Buscando vagas com os seguintes filtros:', this.filtros);
-    console.log(this.candidatoId)
     const page = filtroPage ?? this.page;
     const take = takePage ?? this.take;
 
@@ -248,7 +254,6 @@ export class VagasComponent implements OnInit {
             ? Math.round(v.distancia * 10) / 10 
             : 0
         }));
-        console.log('Vagas recebidas:', this.vagas);
         const qtd = Number(response.headers.get('qtd'));
         const range = response.headers.get('range') || '';
         this.createPagination(qtd, page, take, range);
@@ -290,12 +295,10 @@ export class VagasComponent implements OnInit {
       range
     } as Pager;
 
-    console.log('Configuração de paginação:', this.pager);
   }
 
   candidatar(vagaId: string) {
     if (!this.candidatoId) return;
-    console.log(this.candidato)
     if (this.candidato.curriculoId == null || this.candidato.curriculoId === '') {
       const config = new MatDialogConfig();
       config.width = '600px';
@@ -324,7 +327,6 @@ export class VagasComponent implements OnInit {
           this.vagaService.getHistoricoCandidaturas(this.candidatoId).subscribe({
             next: (historico: any[]) => {
               this.historicoCandidaturas = historico;
-              console.log('Histórico atualizado:', this.historicoCandidaturas);
             }
           });
         },
@@ -345,7 +347,6 @@ export class VagasComponent implements OnInit {
         const candidatura = this.vagas.find(c => c.vagaId === vagaId);
         if (candidatura) {
           candidatura.favoritado = res.favoritado;
-          console.log(`Vaga ${vagaId} favoritado: ${res.favoritado}`);
         }
       },
       error: (err) => console.error('Erro ao favoritar/desfavoritar vaga:', err)

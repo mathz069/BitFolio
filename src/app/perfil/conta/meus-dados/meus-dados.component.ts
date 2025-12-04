@@ -137,7 +137,6 @@ checkCapsConfirmar(event: KeyboardEvent) {
   carregarCandidato(): void {
     this.candidatoService.getCandidatoById(this.candidatoId).subscribe({
       next: (candidato) => {
-        console.log('Data recebida da API:', candidato.dataNascimento);
         this.form.patchValue({
           nome: candidato.nome,
           email: candidato.email,

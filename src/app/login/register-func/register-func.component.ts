@@ -62,6 +62,10 @@ export class RegisterFuncComponent implements OnInit {
   this.capsLockOn1 = event.getModifierState('CapsLock');
 }
 
+limparSelecao() {
+  this.form.get('negocioId')?.setValue(null);
+}
+
 abrirTermos(event: MouseEvent) {
   event.stopPropagation();
     const config = new MatDialogConfig();
@@ -269,7 +273,6 @@ O uso contínuo da plataforma após as atualizações implica aceitação autom�
       telefone: formValues.telefone,
       empresaId: formValues.negocioId
     };
-    console.log(funcionario)
     this.authService.registerFuncionario(funcionario).subscribe({
       next: (res) => {
         alert('Funcionário cadastrado com sucesso! Aguarde a aprovação da empresa.');

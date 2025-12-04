@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/login/services/auth.service';
 import { Candidato } from 'src/app/models/candidato';
-import { Curriculo } from 'src/app/shared/models/curriculo';
+import { Curriculo, TECNOLOGIAS_PADRONIZADAS } from 'src/app/shared/models/curriculo';
 import { CandidatoService } from 'src/app/shared/services/candidato.service';
 
 @Component({
@@ -17,11 +17,7 @@ export class CurriculoComponent implements OnInit {
   curriculoId: string | null = null;
   quill: any;
 
-  tecnologiasDisponiveis = [
-    'JavaScript', 'TypeScript', 'React', 'Angular', 'Vue.js',
-    'Node.js', 'Python', 'Java', 'C#', 'PHP', 'SQL', 'MongoDB',
-    'PostgreSQL', 'Docker', 'Kubernetes', 'AWS', 'Azure', 'Git'
-  ];
+  tecnologiasDisponiveis = TECNOLOGIAS_PADRONIZADAS
 
   tecnologiasSelecionadas: string[] = [];
 

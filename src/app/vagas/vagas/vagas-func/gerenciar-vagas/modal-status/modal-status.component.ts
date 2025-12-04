@@ -47,12 +47,9 @@
 
   this.candidatoVaga = cv as CandidatoVagaDTO;
   this.vagaId = data.vagaId;
-  console.log('Dados injetados no modal de status (normalizados):', this.candidatoVaga);
     }
 
     ngOnInit(): void {
-      console.log('Dados recebidos no modal de status:', this.candidatoVaga);
-      console.log('Vaga ID recebida no modal de status:', this.vagaId);
 this.novoStatusSelecionado = this.candidatoVaga.candidato?.historicos?.[0]?.status ?? null;
 
     }
@@ -108,7 +105,6 @@ this.novoStatusSelecionado = this.candidatoVaga.candidato?.historicos?.[0]?.stat
       });
     }
     onStatusChange(selectedStatus: StatusVaga) {
-    console.log('Novo status selecionado:', selectedStatus);
     this.novoStatusSelecionado = selectedStatus;
   }
     formatarTelefone(telefone: string): string {

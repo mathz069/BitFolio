@@ -55,15 +55,6 @@ getStatusLabel(status: number): string {
     default: return 'Desconhecido';
   }
 }
-  toggleFavorito(candidatoId: string, vagaId: string) {
-    const dto: ToggleFavorito = { candidatoId, vagaId };
-
-    this.candidaturaService.toggleFavorito(dto).subscribe({
-      next: (res) => console.log(res), // "Operação realizada com sucesso."
-      error: (err) => console.error('Erro ao favoritar/desfavoritar:', err)
-    });
-  }
-
   buscarHistorico(): void {
     this.candidaturaService.getHistoricoCandidaturas(this.candidatoId).subscribe({
       next: (res: HistoricoCandidatura[]) => {

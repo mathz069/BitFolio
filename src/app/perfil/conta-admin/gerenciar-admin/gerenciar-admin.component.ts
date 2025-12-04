@@ -69,7 +69,6 @@ export class GerenciarAdminComponent {
     this.adminService.getAdministradores(page, take).subscribe({
       next: (res: any) => {
         this.admins = res.body || [];
-        console.log(this.admins);
         const totalItems = Number(res.headers.get('qtd') || this.admins.length);
         const range = res.headers.get('range') || '';
         this.createPagination(totalItems, page, take, range);
@@ -124,8 +123,7 @@ aprovarAdministrador(id: string): void {
   }
 
   reprovarAdministrador(admin: Administrador): void {
-    console.log(admin)
-      const isAtiva = admin.ativo === true;
+    const isAtiva = admin.ativo === true;
     const config = new MatDialogConfig();
             config.width = '600px';
             config.maxWidth = '87%';

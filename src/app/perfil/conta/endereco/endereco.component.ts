@@ -47,7 +47,6 @@ export class EnderecoComponent {
         this.candidato = candidato;
         const temEndereco = !!candidato.enderecoId;
 
-        console.log('Candidato carregado:', candidato);
         if (temEndereco) {
           this.enderecoId = candidato.enderecoId;
           this.carregarEndereco();
@@ -111,7 +110,6 @@ export class EnderecoComponent {
     ...this.form.value
   };
 
-  console.log('Endereço a ser atualizado:', enderecoAtualizado);
   this.enderecoService.updateEndereco(enderecoAtualizado, this.candidatoId).subscribe({
     next: () => {
       alert('Endereço atualizado com sucesso!');
@@ -154,7 +152,6 @@ buscarCep(): void {
           longitude: longitudeValue
         });
 
-        console.log('Form preenchido com sucesso:', this.form.value);
       },
       error: (err) => {
         console.error('Erro ao buscar CEP:', err);

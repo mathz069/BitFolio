@@ -242,7 +242,6 @@ onSubmit() {
 
   this.authService.registerUsuario(candidato).subscribe({
   next: (response) => {
-    console.log('Cadastro realizado com sucesso!', response); 
     alert('Cadastro realizado com sucesso! Verifique seu e-mail para ativar a conta.');
     this.router.navigate(['/login']);
     this.form.reset();

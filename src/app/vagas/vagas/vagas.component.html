@@ -62,39 +62,72 @@
                         <div class="filter-group">
                             <label>Tecnologias</label>
                             <div class="languages-filter">
-                                <input type="checkbox" id="lang-javascript" name="languages" value="JavaScript"
-                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.JavaScript">
-                                <label for="lang-javascript" class="language-label">JavaScript</label>
+                                <input type="checkbox" id="lang-typescript" name="languages" value="TypeScript"
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.typescript">
+                                <label for="lang-typescript" class="language-label">TypeScript</label>
+
+                                <input type="checkbox" id="lang-react" name="languages" value="React"
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.react">
+                                <label for="lang-react" class="language-label">React</label>
+
+                                <input type="checkbox" id="lang-angular" name="languages" value="Angular"
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.angular">
+                                <label for="lang-angular" class="language-label">Angular</label>
+
+                                <input type="checkbox" id="lang-nodejs" name="languages" value="Node.js"
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.nodejs">
+                                <label for="lang-nodejs" class="language-label">Node.js</label>
 
                                 <input type="checkbox" id="lang-python" name="languages" value="Python"
-                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.Python">
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.python">
                                 <label for="lang-python" class="language-label">Python</label>
 
                                 <input type="checkbox" id="lang-java" name="languages" value="Java"
-                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.Java">
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.java">
                                 <label for="lang-java" class="language-label">Java</label>
 
                                 <input type="checkbox" id="lang-csharp" name="languages" value="CSharp"
-                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.CSharp">
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.csharp">
                                 <label for="lang-csharp" class="language-label">C#</label>
 
                                 <input type="checkbox" id="lang-php" name="languages" value="PHP"
-                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.PHP">
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.php">
                                 <label for="lang-php" class="language-label">PHP</label>
 
-                                <input type="checkbox" id="lang-ruby" name="languages" value="SQL"
-                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.SQL">
-                                <label for="lang-ruby" class="language-label">SQL</label>
+                                <input type="checkbox" id="lang-sql" name="languages" value="SQL"
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.sql">
+                                <label for="lang-sql" class="language-label">SQL</label>
 
-                                <input type="checkbox" id="lang-go" name="languages" value="Figma"
-                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.Figma">
-                                <label for="lang-go" class="language-label">Figma</label>
+                                <input type="checkbox" id="lang-mongodb" name="languages" value="MongoDB"
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.mongodb">
+                                <label for="lang-mongodb" class="language-label">MongoDB</label>
 
-                                <input type="checkbox" id="lang-typescript" name="languages" value="typescript"
-                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.typescript">
-                                <label for="lang-typescript" class="language-label">TypeScript</label>
+                                <input type="checkbox" id="lang-postgresql" name="languages" value="PostgreSQL"
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.postgresql">
+                                <label for="lang-postgresql" class="language-label">PostgreSQL</label>
+
+                                <input type="checkbox" id="lang-aws" name="languages" value="AWS"
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.aws">
+                                <label for="lang-aws" class="language-label">AWS</label>
+
+                                <input type="checkbox" id="lang-azure" name="languages" value="Azure"
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.azure">
+                                <label for="lang-azure" class="language-label">Azure</label>
+
+                                <input type="checkbox" id="lang-git" name="languages" value="Git"
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.git">
+                                <label for="lang-git" class="language-label">Git</label>
+
+                                <input type="checkbox" id="lang-flutter" name="languages" value="Flutter"
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.flutter">
+                                <label for="lang-flutter" class="language-label">Flutter</label>
+
+                                <input type="checkbox" id="lang-figma" name="languages" value="Figma"
+                                    class="language-checkbox" [(ngModel)]="filtros.linguagens.figma">
+                                <label for="lang-figma" class="language-label">Figma</label>
                             </div>
                         </div>
+
 
                         <button type="submit" class="btn-filter">Aplicar Filtros</button>
                         <button type="button" class="btn-clear" (click)="limparFiltros()">Limpar Filtros</button>
@@ -104,10 +137,10 @@
         </aside>
 
         <main class="vagas-container">
-             <div *ngIf="vagas && vagas.length === 0" class="no-vagas">
-        Ops, nenhuma vaga foi encontrada com esses filtros.
-    </div>
-    
+            <div *ngIf="vagas && vagas.length === 0" class="no-vagas">
+                Ops, nenhuma vaga foi encontrada com esses filtros.
+            </div>
+
             <article class="vaga-card" *ngFor="let vaga of vagas; trackBy: trackByVagaId">
                 <details>
                     <summary>
@@ -161,11 +194,12 @@
                             </div>
                         </div>
 
-                        <button class="btn-candidatar" *ngIf="!jaCandidatado(vaga.vagaId)" (click)="candidatar(vaga.vagaId)">Candidatar-se à Vaga</button>
+                        <button class="btn-candidatar" *ngIf="!jaCandidatado(vaga.vagaId)"
+                            (click)="candidatar(vaga.vagaId)">Candidatar-se à Vaga</button>
                     </div>
                 </details>
             </article>
-            <div *ngIf="vagas && vagas.length > 0"class="pagination-container">
+            <div *ngIf="vagas && vagas.length > 0" class="pagination-container">
                 <div class="pagination-range">
                     <span>{{ pager.range }}</span>
                 </div>
