@@ -16,6 +16,12 @@
         (click)="selecionarSecao('endereco')">
         Endereço da Empresa
       </button>
+      <button
+        class="nav-item"
+        [class.active]="sectionAtiva === 'dados-empresa'"
+        (click)="selecionarSecao('dados-empresa')">
+        Dados da Empresa
+      </button>
 
     <button class="nav-item nav-footer" (click)="abrirContato()">
     Contato
@@ -33,6 +39,7 @@
       <ng-container [ngSwitch]="sectionAtiva">
         <app-dados-funcionario *ngSwitchCase="'dados'"></app-dados-funcionario>
         <app-endereco-empresa *ngSwitchCase="'endereco'"></app-endereco-empresa>
+        <app-dados-empresa *ngSwitchCase="'dados-empresa'"></app-dados-empresa>
       </ng-container>
     </div>
   </main>
