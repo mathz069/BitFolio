@@ -94,13 +94,14 @@ export class VagasFuncComponent implements OnInit {
 
   abrirModal() {
     const config = new MatDialogConfig();
+      const titulo = `Editar Vaga`;
         config.width = '1000px';
         config.maxWidth = '87%';
         config.disableClose = true;
         config.autoFocus = true;
         config.panelClass = 'custom-2fa-panel';
         config.backdropClass = 'custom-2fa-backdrop';
-
+        config.data = { titulo };
     const dialogRef = this.dialog.open(ModalVagasComponent, config);
 
     dialogRef.afterClosed().subscribe((novaVagaCadastrada: boolean) => {
@@ -112,13 +113,14 @@ export class VagasFuncComponent implements OnInit {
 
   editarVaga(vaga: VagaDTO): void {
   const config = new MatDialogConfig();
+  const titulo = `Editar Vaga`;
   config.width = '1000px';
   config.maxWidth = '87%';
   config.disableClose = true;
   config.autoFocus = true;
   config.panelClass = 'custom-2fa-panel';
   config.backdropClass = 'custom-2fa-backdrop';
-  config.data = { vaga }; // envia a vaga para o modal
+  config.data = { titulo, vaga };
 
   const dialogRef = this.dialog.open(ModalVagasComponent, config);
 

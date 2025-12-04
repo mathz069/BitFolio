@@ -86,6 +86,7 @@ form: FormGroup;
     });
   }
 
+  
     excluir(): void {
     if (!this.enderecoId) return;
 
@@ -106,32 +107,43 @@ form: FormGroup;
     this.editando = !this.editando;
     this.toggleFormState();
   }
-
-  atualizarEndereco(): void {
+atualizarEndereco(): void {
   if (this.form.invalid) {
     this.form.markAllAsTouched();
     alert('Por favor, preencha todos os campos obrigatórios.');
     return;
   }
 
-  const enderecoAtualizado = {
+  const enderecoAlteracao = {
     enderecoId: this.enderecoId,
-    empresaId: this.empresaId,
-    ...this.form.value
+    ruaNova: this.form.value.rua,
+    numeroNovo: this.form.value.numero,
+    complementoNovo: this.form.value.complemento,
+    bairroNovo: this.form.value.bairro,
+    cidadeNova: this.form.value.cidade,
+    estadoNovo: this.form.value.estado,
+    cepNovo: this.form.value.cep,
+    latitudeNova: this.form.value.latitude,
+    longitudeNova: this.form.value.longitude,
+    dataSolicitacao: new Date(),
+    aprovado: false
   };
 
-  this.enderecoService.updateEndereco(enderecoAtualizado).subscribe({
-    next: () => {
-      alert('Endereço atualizado com sucesso!');
-      this.editando = false;
-      this.toggleFormState();
-    },
-    error: (err) => {
-      console.error('Erro ao atualizar endereço:', err);
-      alert('Erro ao atualizar endereço.');
-    }
-  });
+  this.empresaService.solicitarAlteracaoEndereco(enderecoAlteracao, this.funcionarioId)
+    .subscribe({
+      next: () => {
+        alert('Solicitação enviada com sucesso! Aguarde aprovação da empresa.');
+        this.editando = false;
+        this.toggleFormState();
+      },
+      error: (err) => {
+        console.error('Erro ao solicitar alteração de endereço:', err);
+        alert('Erro ao enviar solicitação.');
+      }
+    });
 }
+
+
 
 
   toggleFormState(): void {
@@ -147,13 +159,10 @@ buscarCep(): void {
   if (cep && cep.length === 8) {
     this.enderecoService.buscarCep(cep).subscribe({
       next: (dados) => {
-        console.log('📦 Resposta da API AwesomeAPI:', dados);
 
-        // Faz o parse das coordenadas (strings -> número)
         const latitudeValue = dados.lat ? parseFloat(dados.lat) : null;
         const longitudeValue = dados.lng ? parseFloat(dados.lng) : null;
 
-        // Atualiza o formulário com os campos certos
         this.form.patchValue({
           estado: dados.state || '',
           cidade: dados.city || '',

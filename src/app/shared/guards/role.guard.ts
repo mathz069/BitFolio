@@ -9,7 +9,7 @@ export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
 
   const token = authService.obterToken();
   if (!token) {
-    return router.parseUrl('/login'); // <- retorne UrlTree
+    return router.parseUrl('/login'); 
   }
 
   try {

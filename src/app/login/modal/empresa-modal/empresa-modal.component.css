@@ -1,238 +1,781 @@
-.custom-modal-container {
-    width: 100%;
-    max-width: 600px;
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);
-    font-family: "Segoe UI", Arial, sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Centralizar no overlay */
-::ng-deep .mat-dialog-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 !important;
-    border-radius: 10px;
-    box-shadow: none;
-    background: transparent;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
 }
 
-/* Ajuste no título */
-.modal-title {
-    font-size: 24px;
-    font-weight: bold;
-    color: #171725;
-    margin-bottom: 15px;
+.page-wrapper {
+  min-height: 100vh;
+  padding: 2rem 1rem;
 }
 
-/* Ajuste no body */
-.modal-body {
-    font-size: 14px;
-    color: #707070;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Rodapé dos botões */
-.modal-footer {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 20px;
-}
-.login-title {
-    font-family: "Segoe UI", Arial, sans-serif;
-    font-size: 2em;
-    font-weight: normal;
-    color:#171725;
-    position: relative;
-    margin-top: 30%;
-    font-weight: 500;
-}
-
-.email-input {
-    font-family: "Segoe UI", Arial, sans-serif;
-    font-size: 14px;
-    font-weight: normal;
-    width: 90%;
-    margin-left: 2%;
-}
-
-.disabled {
-    opacity: 0.7;
-}
-
-.input {
-    border-radius: 3px;
-    padding: 7px;
-    background-color: #f0f0f0;;
-    width: 98%;
-}
-.active-button {
-  font-weight: bold;
-  border-bottom: 2px solid var(--primary-color);
-}
-label {
-    font-family: "Segoe UI", Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: -5%;
-    margin-left: 2%;
-}
-.user-selector {
+/* Header Section */
+.header-section {
   display: flex;
-  gap: 2%;
-  margin: 10px 0 20px 0;
-  width: 98%;
-  margin-left: 1%;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #bc4371;
 }
 
-.user-button {
-  font-family: "Segoe UI", Arial, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  border: 1px solid transparent;
-  padding: 8px 0;
-  border-radius: 5px;
-  background-color: #f0f0f0;
-  cursor: pointer;
-  flex: 1;
-  text-align: center;
-  transition: all 0.3s ease;
-  height: 38px;
+.header-section h1 {
+  font-size: 2rem;
+  color: #bc4371;
+  font-weight: 600;
 }
 
-.user-button:hover {
-  opacity: 0.85;
-}
-
-/* Cores específicas para os botões */
-.funcionario-btn.active-button {
+.btn-criar-vaga {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   background-color: #bc4371;
   color: white;
-  border: 1px solid #bc4371;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.candidato-btn.active-button {
-  background-color: #044894;
+.btn-criar-vaga:hover {
+  background-color: #a03960;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(188, 67, 113, 0.3);
+}
+
+/* Vagas Container */
+.vagas-container {
+  width: 100%;
+}
+
+.vaga-card {
+  background: white;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+/* Botão de editar no header da vaga */
+.vaga-actions-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Botão de deletar dentro dos detalhes */
+.vaga-actions-details {
+  margin-top: 1.5rem;
+}
+
+/* Estilo dos botões */
+.btn-edit, .btn-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-edit:hover {
+  background-color: #fce4ec;
+}
+
+.btn-delete:hover {
+  background-color: #ffebee;
+}
+
+.vaga-card:hover {
+  box-shadow: 0 4px 16px rgba(188, 67, 113, 0.15);
+}
+
+.vaga-card details {
+  cursor: pointer;
+}
+
+.vaga-card details summary {
+  list-style: none;
+  padding: 1.5rem;
+  cursor: pointer;
+}
+
+.vaga-card details summary::-webkit-details-marker {
+  display: none;
+}
+
+.vaga-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.vaga-title-section {
+  flex: 1;
+}
+
+.vaga-title {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.vaga-title.clickable {
+  color: #bc4371;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.vaga-title.clickable:hover {
+  color: #a03960;
+  text-decoration: underline;
+}
+
+.empresa-location-wrapper {
+  margin-bottom: 0.75rem;
+}
+
+.empresa-name {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.location-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.location-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.vaga-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.badge {
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.badge-nivel {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.badge-modelo {
+  background-color: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.badge-escolaridade {
+  background-color: #fff3e0;
+  color: #f57c00;
+}
+
+.badge-status {
+  font-weight: 600;
+}
+
+.badge-ativo {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.badge-inativa {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.expand-icon {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.vaga-card details[open] .expand-icon {
+  transform: rotate(180deg);
+}
+
+/* Vaga Details */
+.vaga-details {
+  padding: 0 1.5rem 1.5rem;
+  border-top: 1px solid #eee;
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+}
+
+.detail-section {
+  margin-bottom: 1.5rem;
+}
+
+.detail-section h4 {
+  color: #bc4371;
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.detail-section p {
+  color: #555;
+  line-height: 1.7;
+}
+
+.detail-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.detail-section ul li {
+  color: #555;
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.detail-section ul li::before {
+  content: "•";
+  color: #bc4371;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+.tecnologias-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tech-badge {
+  background-color: #fce4ec;
+  color: #bc4371;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.salary {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #bc4371;
+}
+
+.vaga-dates {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.date-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.date-label {
+  font-size: 0.85rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.date-value {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Action Buttons */
+.actions-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.btn-editar,
+.btn-desativar,
+.btn-ativar {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-editar {
+  background-color: #bc4371;
   color: white;
-  border: 1px solid #044894;
 }
 
-.administrador-btn.active-button {
-  background-color: #940404;
+.btn-editar:hover {
+  background-color: #a03960;
+  transform: translateY(-2px);
+}
+
+.btn-desativar {
+  background-color: #f5f5f5;
+  color: #c62828;
+  border: 1px solid #c62828;
+}
+
+.btn-desativar:hover {
+  background-color: #ffebee;
+}
+
+.btn-ativar {
+  background-color: #f5f5f5;
+  color: #2e7d32;
+  border: 1px solid #2e7d32;
+}
+
+.btn-ativar:hover {
+  background-color: #e8f5e9;
+}
+
+/* Pagination */
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.pagination-range {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.pagination {
+  display: flex;
+  list-style: none;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.page-item {
+  display: flex;
+}
+
+.page-link {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: white;
+  color: #333;
+  text-decoration: none;
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-link:hover {
+  border-color: #bc4371;
+  background-color: #fce4ec;
+  color: #bc4371;
+}
+
+.page-item.active .page-link {
+  background-color: #bc4371;
+  border-color: #bc4371;
   color: white;
-  border: 1px solid #940404;
-}
-.input2 {
-    border-radius: 5px;
-    padding: 4px;
-    background-color: #FAFAFB;
-    width: 98%;
-    height: 32px;
-    text-align: center;
-    margin-bottom: 3%;
-    margin-left: -3%;
+  font-weight: 600;
 }
 
-.escolha {
-    background-color: transparent;
-    float: right;
-    margin-right: 5%;
+.page-item.disabled .page-link {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
-.email {
-    margin-bottom: 3%;
+.page-link img {
+  width: 20px;
+  height: 20px;
 }
 
-.password-input {
-    font-family: "Segoe UI", Arial, sans-serif;
-    font-size: 14px;
-    font-weight: normal;
-    width: 80%;
-    float: left;
-    margin-left: 2%;
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s ease;
 }
 
-input {
-    border: none;
-    height: 25px;
-    background-color: transparent;
-    outline: none;
-    font-family: "Segoe UI", Arial, sans-serif;
+.modal.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.forgot-password {
-    display: flex;
-    flex-flow: row;
-    justify-content: flex-end;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    margin-right: 10px;
+.modal-content {
+  background-color: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 700px;             /* LIGEIRAMENTE MENOR */
+  max-height: 75vh;             /* ALTURA REDUZIDA (modal quadrado) */
+  display: flex;                /* IMPORTANTE */
+  flex-direction: column;       /* HEADER / BODY / FOOTER */
+  overflow: hidden;             /* remove scroll geral */
+  animation: slideIn 0.3s ease;
 }
 
-.span-link {
-    color: var(--primary-color);
-    font-weight: 500;
-    cursor: pointer;
-    outline: none;
-    font-family: "Segoe UI", Arial, sans-serif;
+/* Header fixo */
+.modal-header {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem;
+  border-bottom: 2px solid #bc4371;
 }
 
-.span-link1 {
-    color: #9b9b9b;
-    font-weight: 400;
-    outline: none;
-    font-family: "Segoe UI", Arial, sans-serif;
+/* Body com scroll */
+.modal-body {
+  padding: 1.25rem;
+  overflow-y: auto;              /* scroll só dentro do body */
+  max-height: calc(75vh - 150px);/* calcula altura considerando header/footer */
 }
 
-.login-submit {
-    background-color: var(--primary-color);
-    border: 1px solid var(--primary-color);
-    border-radius: 3px;
+/* Footer fixo */
+.modal-footer {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-top: 1px solid #eee;
+}
+
+.modal.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 2px solid #bc4371;
+}
+
+.modal-header h2 {
+  color: #bc4371;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #666;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.btn-close:hover {
+  color: #bc4371;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.input-wrapper {
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.input-wrapper label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.input-wrapper input[type="text"],
+.input-wrapper input[type="date"],
+.input-wrapper input[type="number"],
+.input-wrapper select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.input-wrapper input:focus,
+.input-wrapper select:focus {
+  outline: none;
+  border-color: #bc4371;
+}
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  background: white;
+  color: #1e293b;
+  min-height: 80px; /* Adicione uma altura mínima para textareas e selects */
+  box-sizing: border-box; /* Garante que padding e border sejam incluídos na altura */
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+/* Tech Selector */
+.tech-selector {
+  margin-top: 0.5rem;
+}
+
+.tech-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tech-tag {
+  padding: 0.5rem 1rem;
+  border: 2px solid #ddd;
+  border-radius: 20px;
+  background-color: white;
+  color: #666;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.tech-tag:hover {
+  border-color: #bc4371;
+  color: #bc4371;
+}
+
+.tech-tag.selected {
+  background-color: #bc4371;
+  border-color: #bc4371;
+  color: white;
+}
+
+/* Quill Editor */
+#editorDescricao,
+#editorRequisitos {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  min-height: 150px;
+}
+
+.ql-toolbar {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.ql-container {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  font-size: 1rem;
+}
+
+/* Checkbox */
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #bc4371;
+}
+
+/* Modal Footer */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.btn-cancelar,
+.btn-salvar {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-cancelar {
+  background-color: #f5f5f5;
+  color: #666;
+}
+
+.btn-cancelar:hover {
+  background-color: #e0e0e0;
+}
+
+.btn-salvar {
+  background-color: #bc4371;
+  color: white;
+}
+
+.btn-salvar:hover {
+  background-color: #a03960;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header-section {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .header-section h1 {
+    font-size: 1.5rem;
+  }
+
+  .btn-criar-vaga {
     width: 100%;
-    color: rgb(255, 255, 255);
-    height: 45px;
-    margin-bottom: 8%;
-    font-family: "Segoe UI", Arial, sans-serif;
-    font-weight: 500;
-    font-size: 15px;
-}
+    justify-content: center;
+  }
 
-.show-password {
-    border: none;
-    background-color: transparent;
-    margin-left:5%
-}
+  .vaga-title {
+    font-size: 1.2rem;
+  }
 
-.eye-icon {
-    width: 20px;
-    opacity: 0.8;
-}
+  .vaga-badges {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-button {
-    outline: none;
-    cursor: pointer;
-}
+  .form-row {
+    grid-template-columns: 1fr;
+  }
 
-.line {
-    height: 1px;
+  .actions-buttons {
+    flex-direction: column;
+  }
+
+  .pagination-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .modal-content {
+    width: 95%;
+    max-height: 95vh;
+  }
+
+  .modal-footer {
+    flex-direction: column;
+  }
+
+  .btn-cancelar,
+  .btn-salvar {
     width: 100%;
-    background-color: #D8D8D8;
-    margin-bottom: 20px;
-}
-
-    
-.bodydiv {
-    margin-top:20%
-}
-.funcionario {
-  --primary-color: #bc4371;
-}
-
-.candidato {
-  --primary-color: #044894;
-}
-
-.administrador {
-  --primary-color: #940404;
+  }
 }

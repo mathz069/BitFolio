@@ -69,20 +69,20 @@
 
         <label>Telefone</label>
         <div [style.border]="setBorder('telefone')" class="input">
-          <input class="email-input" formControlName="telefone" type="tel" mask="(00) 0 0000 0000" prefix="+55 " required>
+          <input class="email-input" formControlName="telefone" type="tel" mask="(00) 00000 0000" prefix="+55 " required>
         </div>
         <br><br>
 <div class="terms-checkbox">
   <input type="checkbox" id="aceitoTermos" formControlName="termosAceitos">
   <label for="aceitoTermos" class="terms-label">
     Aceito os 
-    <span class="span-link" (click)="abrirTermos()">Termos de Uso e Política de Privacidade</span>
+    <span class="span-link" (click)="abrirTermos($event)">Termos de Uso e Política de Privacidade</span>
   </label>
 </div>
 
 <br>
 <button type="button" 
-        [disabled]="!form.get('termosAceitos')?.value" 
+        [disabled]="!form.get('termosAceitos')?.value || isSubmitting" 
         (click)="onSubmit()" 
         class="custom-text-size14 login-submit">
     Cadastrar

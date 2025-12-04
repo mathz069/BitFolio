@@ -1,0 +1,36 @@
+<div class="form-container">
+  <div class="form-header">
+    <h2>Meus Dados</h2>
+    <p>Gerencie suas informações pessoais</p>
+  </div>
+
+  <form [formGroup]="form">
+    <div class="input-row">
+      <div class="input-wrapper">
+        <label>Nome</label>
+        <input type="text" formControlName="nome" />
+      </div>
+      <div class="input-wrapper">
+        <label>Razão Social</label>
+        <input type="text" formControlName="razaoSocial"/>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <div class="input-wrapper">
+        <label>Descrição</label>
+        <textarea formControlName="descricao" rows="2"></textarea>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button type="button" class="btn btn-primary" *ngIf="!editando" (click)="toggleEdicao()">
+        Alterar dados
+      </button>
+      <button type="button" class="btn btn-success" *ngIf="editando" (click)="atualizarDados()">
+        Salvar alterações
+      </button>
+    </div>
+  </form>
+
+</div>

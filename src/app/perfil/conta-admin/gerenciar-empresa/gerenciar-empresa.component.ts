@@ -96,7 +96,7 @@ export class GerenciarEmpresaComponent {
             config.backdropClass = 'custom-2fa-backdrop';
             config.data = {
             mensagem: isAtiva
-              ? 'Deseja excluir esta empresa? Esta ação não pode ser desfeita. Funcionários vinculados a esta empresa também serão excluídos.'
+              ? 'Deseja excluir esta empresa? Esta ação não pode ser desfeita. Funcionários e Vagas vinculados a esta empresa também serão excluídos.'
               : 'Deseja reprovar esta empresa? Esta ação não pode ser desfeita.',
             botaoTexto: isAtiva ? 'Excluir' : 'Confirmar'
   };
@@ -111,6 +111,14 @@ export class GerenciarEmpresaComponent {
     });
   }
 
+  formatarCnpj(cnpj: string): string {
+    if (!cnpj) return '';
+    // Remove tudo que não for número
+    cnpj = cnpj.replace(/\D/g, '');
+    // Aplica a máscara
+    return cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5');
+  }
+  
 verDetalhes(id: string): void {
   const config = new MatDialogConfig();
   config.width = '600px';

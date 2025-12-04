@@ -10,7 +10,7 @@ import { TermosUsoComponent } from '../termos-uso/termos-uso.component';
   styleUrls: ['./conta-admin.component.css']
 })
 export class ContaAdminComponent implements OnInit {
-
+mostrarGerenciarAdmins: boolean = false;
 adminId: string | null = null;
 sectionAtiva: string = 'dados';
   constructor(
@@ -23,6 +23,8 @@ ngOnInit(): void {
   const id = this.authService.obterUsuarioId();
   if (id !== null) {
     this.adminId = id;
+    this.mostrarGerenciarAdmins = this.adminId === '019a6ff7-6da7-7ce1-a51a-3cabb8beae08';
+
     this.selecionarSecao(this.sectionAtiva);
   } else {
     console.error('ID do candidato não encontrado no token.');

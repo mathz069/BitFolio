@@ -57,81 +57,73 @@ selecionarSecao(secao: string) {
   }
   
   abrirTermos(): void {
-    const config = new MatDialogConfig();
-    config.width = '900px';
-    config.maxWidth = '87%';
-    config.disableClose = true;
-    config.autoFocus = true;
-    config.panelClass = 'custom-termo-panel';
-    config.backdropClass = 'custom-2fa-backdrop';
-  
-    config.data = {
-      titulo: 'TERMOS DE USO ADMINISTRADOR- BITFOLIO',
-      mensagem: `
-  <span class="titulo-header">I. TERMOS DE USO</span><br><br>
-  
-  <span class="titulo-item">1. Função do Administrador</span><br>
-  O Administrador é responsável pela gestão interna da plataforma BitFolio, incluindo:<br>
-  • Moderação, aprovação e reprovação de empresas, funcionários e candidatos cadastradas.<br>
-  • Acompanhamento operacional da plataforma.<br>
-  • Suporte interno aos usuários.<br>
-  • Verificação de inconsistências, uso indevido e manutenção da integridade dos dados.<br><br>
-  
-  <span class="titulo-item">2. Acesso aos Dados</span><br>
-  O Administrador declara estar ciente de que possui acesso a informações específicas e limitadas, conforme descrito abaixo:<br><br>
-  
-  <span class="titulo-item">2.1. Dados de Candidatos e Funcionários</span><br>
-  O Administrador poderá visualizar:<br>
-  • Dados anonimizados de candidatos e funcionários para garantir conformidade do sistema.<br>
-  • Dados agregados utilizados para monitoramento do sistema, sem identificação direta dos usuários.<br>
-  O Administrador não terá acesso ao conteúdo completo de perfis, currículos ou informações pessoais de forma nominal.<br><br>
-  
-  <span class="titulo-item">2.2. Dados de Empresas</span><br>
-  O Administrador poderá visualizar:<br>
-  • Dados completos de empresas cadastradas.<br>
-  • Dados de responsáveis vinculados a cada empresa.<br>
-  • Informações referentes ao processo de aprovação, reprovação e status da empresa.<br><br>
-  
-  <span class="titulo-item">2.3. Dados de Outros Administradores</span><br>
-  Para fins de auditoria, segurança e integridade da plataforma, o Administrador poderá visualizar:<br>
-  • Nome, e-mail e telefone de outros administradores.<br><br>
-  
-  <span class="titulo-item">3. Responsabilidades do Administrador</span><br>
-  O Administrador concorda em:<br>
-  • Utilizar os dados exclusivamente para fins operacionais e administrativos.<br>
-  • Não compartilhar, redistribuir, copiar ou divulgar informações internas da plataforma.<br>
-  • Respeitar integralmente a Lei Geral de Proteção de Dados (LGPD – Lei nº 13.709/2018).<br>
-  • Agir com confidencialidade, ética profissional e responsabilidade.<br>
-  • Reportar imediatamente qualquer falha, violação de segurança ou acesso indevido.<br><br>
-  
-  O uso inadequado de dados confidenciais poderá resultar em:<br>
-  • Revogação imediata do acesso administrativo;<br>
-  • Responsabilização civil e administrativa;<br>
-  • Ações legais, quando aplicável.<br><br>
-  
-  <span class="titulo-item">4. Exclusão da Conta de Administrador</span><br>
-  Caso um Administrador deseje encerrar sua conta, o processo não é automático.<br>
-  A solicitação deverá ser enviada formalmente para:<br>
-  <b>administrativo.bitfolio@gmail.com</b><br><br>
-  
-  Após a confirmação interna:<br>
-  • O acesso será revogado;<br>
-  • Os dados pessoais serão removidos do ambiente operacional;<br><br>
-  
-  <span class="titulo-item">5. Limitações de Responsabilidade</span><br>
-  O Administrador reconhece que:<br>
-  • O BitFolio atua como intermediador tecnológico.<br>
-  • Métricas e dados exibidos possuem caráter informativo e podem depender de atualizações feitas pelos usuários.<br>
-  • A integridade e confidencialidade dos dados são priorizadas, mas nenhuma plataforma é totalmente imune a incidentes.<br><br>
-  
-  <span class="titulo-header">II. DISPOSIÇÕES FINAIS</span><br><br>
-  O BitFolio pode atualizar este documento a qualquer momento, respeitando os princípios da transparência. <br>
-  O uso contínuo da plataforma após as atualizações implica aceitação automática das novas condições.<br>`,
-      botaoTexto: 'Fechar'
-    };
-  
-    this.dialog.open(TermosUsoComponent, config);
-  }
+  const config = new MatDialogConfig();
+  config.width = '900px';
+  config.maxWidth = '87%';
+  config.disableClose = true;
+  config.autoFocus = true;
+  config.panelClass = 'custom-termo-panel';
+  config.backdropClass = 'custom-2fa-backdrop';
+
+  config.data = {
+    titulo: 'TERMOS DE USO - CANDIDATO BITFOLIO',
+    mensagem: `
+<span class="titulo-header">I. TERMOS DE USO</span><br><br>
+
+<span class="titulo-item">1. Função do Candidato</span><br>
+O Candidato utiliza a plataforma BitFolio para gerenciar suas candidaturas e informações pessoais, incluindo:<br>
+• Aplicação a vagas de emprego disponíveis na plataforma.<br>
+• Atualização de informações pessoais, incluindo nome, telefone, e-mail e endereço (opcional, utilizado para busca de vagas próximas).<br>
+• Inserção e atualização de seu currículo, necessário apenas para candidatura às vagas.<br><br>
+
+<span class="titulo-item">2. Acesso aos Dados</span><br>
+O Candidato declara estar ciente de que:<br><br>
+
+<span class="titulo-item">2.1. Seus Dados Pessoais</span><br>
+• Serão utilizados para processar candidaturas, comunicação com empresas e envio de notificações relevantes.<br>
+• Nome, telefone, e-mail e informações do currículo poderão ser visualizados pelos funcionários das empresas às quais ele se candidatar.<br><br>
+
+<span class="titulo-item">2.2. Dados de Vagas e Empresas</span><br>
+• O Candidato terá acesso a informações sobre as vagas, incluindo descrição do cargo, requisitos e benefícios.<br>
+• Poderá visualizar o nome e endereço das empresas, mas não terá acesso a informações confidenciais adicionais.<br><br>
+
+<span class="titulo-item">3. Responsabilidades do Candidato</span><br>
+O Candidato concorda em:<br>
+• Fornecer informações verdadeiras, completas e atualizadas em seu perfil e currículo.<br>
+• Não compartilhar sua conta ou credenciais com terceiros.<br>
+• Utilizar a plataforma de forma ética e responsável.<br>
+• Respeitar a Lei Geral de Proteção de Dados (LGPD – Lei nº 13.709/2018).<br><br>
+
+O uso inadequado da plataforma poderá resultar em:<br>
+• Suspensão ou exclusão da conta;<br>
+• Exclusão das candidaturas associadas à conta;<br>
+• Responsabilização civil ou administrativa, quando aplicável.<br><br>
+
+<span class="titulo-item">4. Exclusão e Alteração de Conta</span><br>
+O Candidato pode alterar seus dados pessoais a qualquer momento. Caso deseje excluir sua conta:<br>
+• Todas as candidaturas associadas também serão excluídas.<br>
+• O processo poderá ser solicitado diretamente através do e-mail:<br>
+<b>suporte.bitfolio@gmail.com</b><br><br>
+
+Após a confirmação interna:<br>
+• O acesso à conta será revogado;<br>
+• Todos os dados pessoais serão removidos do ambiente operacional.<br><br>
+
+<span class="titulo-item">5. Limitações de Responsabilidade</span><br>
+O Candidato reconhece que:<br>
+• O BitFolio atua apenas como intermediador tecnológico.<br>
+• A integridade e exatidão das informações exibidas dependem da atualização feita pelos usuários.<br>
+• Nenhuma plataforma é totalmente imune a incidentes, mas medidas de segurança são adotadas para proteção dos dados.<br><br>
+
+<span class="titulo-header">II. DISPOSIÇÕES FINAIS</span><br><br>
+O BitFolio pode atualizar este documento a qualquer momento, respeitando os princípios da transparência. <br>
+O uso contínuo da plataforma após as atualizações implica aceitação automática das novas condições.<br>`,
+    botaoTexto: 'Fechar'
+  };
+
+  this.dialog.open(TermosUsoComponent, config);
+}
+
 }
 
 

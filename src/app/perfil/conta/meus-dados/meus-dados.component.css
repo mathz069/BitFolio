@@ -19,10 +19,39 @@ input:disabled {
   margin-bottom: 0.5rem;
 }
 
+
 .form-header p {
   color: #64748b;
   font-size: 0.95rem;
 }
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px; /* espaço pro olhinho */
+  box-sizing: border-box;
+}
+
+.show-password {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.eye-icon {
+  width: 22px;
+  height: 22px;
+}
+
 
 .info-badge {
   background: #dbeafe;

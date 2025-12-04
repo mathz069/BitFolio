@@ -45,7 +45,7 @@
                             </div>
                         </td>
                         <td>{{ empresa.cnpj }}</td>
-                        <td>{{ empresa.email }}</td>
+                        <td>{{ formatarCnpj(empresa.cnpj) }}</td>
                         <td>{{ empresa.dataCadastro | date:'dd/MM/yyyy' }}</td>
                         <td>
                             <span class="status-badge" [ngClass]="{
@@ -73,7 +73,7 @@
                                 </button>
                                 
                                 <button class="btn-reject" (click)="reprovarEmpresa(empresa)"
-                                    title="Reprovar">
+                                    [title]="empresa.ativo ? 'Excluir' : 'Reprovar'">
                                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                                         <path d="M12 4L4 12M4 4l8 8" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round" />

@@ -30,7 +30,7 @@ export class ModalVagasComponent {
     private authService: AuthService,
     private vagasService: VagaService,
     private funcionarioService: FuncionarioService,
-    @Inject(MAT_DIALOG_DATA) public data: { vaga: Vaga },
+    @Inject(MAT_DIALOG_DATA) public data: { titulo: string, vaga: Vaga },
   ) {}
 
  ngOnInit(): void {

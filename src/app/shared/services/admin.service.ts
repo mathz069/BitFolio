@@ -14,9 +14,11 @@ export class AdminService {
 
   constructor(private http: HttpClient) {}
 
-  getAdministradores(page: number = 1, take: number = 10): Observable<Administrador[]> {
-    return this.http.get<Administrador[]>(`${this.apiUrl}/getAdministradores?page=${page}&take=${take}`);
-  }
+  getAdministradores(page: number, take: number): Observable<any> {
+  return this.http.get(`${this.apiUrl}/getAdministradores?page=${page}&take=${take}`, {
+    observe: 'response'
+  });
+}
 
   getAdministradorById(id: string): Observable<Administrador> {
     return this.http.get<Administrador>(`${this.apiUrl}/getAdministradorById/${id}`);
@@ -36,4 +38,18 @@ export class AdminService {
   reprovarEmpresa(id: string): Observable<{ message: string }> {
     return this.http.delete<{ message: string }>(`${this.apiUrl}/empresa/reprovar/${id}`);
   }
+
+  aprovarAdministrador(id: string): Observable<{ message: string, admin: Administrador }> {
+  return this.http.put<{ message: string, admin: Administrador }>(
+    `${this.apiUrl}/administrador/aprovar/${id}`,
+    {}
+  );
+}
+
+reprovarAdministrador(id: string): Observable<{ message: string }> {
+  return this.http.delete<{ message: string }>(
+    `${this.apiUrl}/administrador/reprovar/${id}`
+  );
+}
+
 }

@@ -48,7 +48,7 @@ export class RegisterAdminComponent implements OnInit {
       dataNascimento: ['', [Validators.required, this.ageValidator]],
       telefone: ['', Validators.required],
       termosAceitos: [false, Validators.requiredTrue]
-    }, { validator: this.passwordMatchValidator });
+     }, { validators: this.passwordMatchValidator });
   }
 
  checkCaps(event: KeyboardEvent) {
@@ -188,7 +188,7 @@ onLimparEmpresa() {
       this.errorMessage = 'Preencha todos os campos obrigatórios.';
       return;
     }
-
+    if (this.isSubmitting) return; // evita duplo clique
     this.isSubmitting = true;
     const values = this.form.value;
 
@@ -203,7 +203,7 @@ onLimparEmpresa() {
 
     this.authService.registerAdmin(admin).subscribe({
       next: () => {
-        alert('Administrador cadastrado com sucesso!');
+        alert('Administrador cadastrado com sucesso! Aguarde a aprovação da equipe BitFolio.');
         this.router.navigate(['/login']);
         this.form.reset();
         this.isSubmitting = false;
@@ -216,7 +216,9 @@ onLimparEmpresa() {
     });
   }
 
-  abrirTermos(): void {
+abrirTermos(event: MouseEvent) {
+    event.stopPropagation();
+
     const config = new MatDialogConfig();
     config.width = '900px';
     config.maxWidth = '87%';

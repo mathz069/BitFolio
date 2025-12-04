@@ -30,6 +30,49 @@ select {
   align-items: center;
   gap: 4px;
 }
+
+.login-submit:disabled {
+  background-color: #ccc;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+.terms-checkbox {
+  display: flex;
+  align-items: center; /* Alinha o centro do checkbox com o centro do texto */
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.terms-checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0; /* Remove margens nativas do browser */
+  cursor: pointer;
+  /* vertical-align não é necessário aqui pois o pai é flex */
+}
+
+.terms-label {
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.2;
+  
+  margin-top: -35px; 
+}
+
+.terms-label .span-link {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #bc4371;
+  transition: color 0.2s;
+}
+
+.terms-label .span-link:hover {
+  color: #ff0099;
+}
+
+
+
 select {
   min-height: 50px;
 }

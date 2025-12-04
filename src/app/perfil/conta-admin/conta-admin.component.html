@@ -28,8 +28,14 @@
     (click)="selecionarSecao('recrutadores')">
     Gerenciar Funcionários
   </button>
-
-  <button class="nav-item nav-footer-link" (click)="abrirContato()">
+  <button
+  *ngIf="mostrarGerenciarAdmins"
+  class="nav-item"
+  [class.active]="sectionAtiva === 'admins'"
+  (click)="selecionarSecao('admins')">
+  Gerenciar Administradores
+</button>
+  <button class="nav-item nav-footer" (click)="abrirContato()">
     Contato
   </button>
 
@@ -48,6 +54,9 @@
         <app-gerenciar-empresa *ngSwitchCase="'empresas'"></app-gerenciar-empresa>
         <app-gerenciar-candidato *ngSwitchCase="'candidatos'"></app-gerenciar-candidato>
         <app-gerenciar-func *ngSwitchCase="'recrutadores'"></app-gerenciar-func>
+        <div *ngIf="mostrarGerenciarAdmins"> 
+        <app-gerenciar-admin *ngSwitchCase="'admins'"></app-gerenciar-admin>
+        </div>
       </ng-container>
     </div>
   </main>

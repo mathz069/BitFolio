@@ -1,71 +1,105 @@
-<div class="bodydiv modal-container">
-  <span class="login-title">Cadastro de Empresa</span>
+<div class="modal-wrapper">
 
-  <form [formGroup]="empresaForm" *ngIf="step === 1" (keydown.enter)="nextStep()">
-    <label>Nome</label>
-    <div [style.border]="setBorder('nome')" class="email-input">
-      <input type="text" formControlName="nome" required />
-    </div>
+  <!-- HEADER -->
+  <div class="modal-header">
+    <h2>Cadastro de Empresa</h2>
+    <button class="btn-close" (click)="fechar()">×</button>
+  </div>
 
-    <label>CNPJ</label>
-    <div [style.border]="setBorder('cnpj')" class="email-input">
-      <input type="text" formControlName="cnpj" mask="00.000.000/0000-00" required />
-    </div>
+  <!-- BODY -->
+  <div class="modal-body">
 
-    <label>Email</label>
-    <div [style.border]="setBorder('email')" class="email-input">
-      <input type="email" formControlName="email" required />
-    </div>
+    <!-- STEP 1 - Empresa -->
+    <form [formGroup]="empresaForm" *ngIf="step === 1" (keydown.enter)="nextStep()">
 
-    <label>Descrição</label>
-    <div [style.border]="setBorder('descricao')" class="email-input">
-      <textarea formControlName="descricao" rows="3"></textarea>
-    </div>
+      <div class="input-wrapper">
+        <label>Nome *</label>
+        <input type="text" formControlName="nome" required />
+      </div>
 
-    <br />
-    <button type="button" (click)="nextStep()" class="custom-text-size14 login-submit" [disabled]="empresaForm.invalid">Próximo</button>
-  </form>
-    <button type="button" (click)="previousStep()" class="custom-btn-back">Voltar</button>
+      <div class="input-wrapper">
+        <label>Razão Social *</label>
+        <input type="text" formControlName="razaoSocial" required />
+      </div>
 
-  <form [formGroup]="enderecoForm" *ngIf="step === 2" (keydown.enter)="submit()">
-    <label>Rua</label>
-    <div [style.border]="setBorder('rua')" class="email-input">
-      <input type="text" formControlName="rua" required />
-    </div>
+      <div class="input-wrapper">
+        <label>CNPJ *</label>
+        <input type="text" formControlName="cnpj" mask="00.000.000/0000-00" required />
+      </div>
 
-    <label>Número</label>
-    <div [style.border]="setBorder('numero')" class="email-input">
-      <input type="text" formControlName="numero" required />
-    </div>
+      <div class="input-wrapper">
+        <label>Email *</label>
+        <input type="text" formControlName="email" required />
+      </div>
 
-    <label>Complemento</label>
-    <div [style.border]="setBorder('complemento')" class="email-input">
-      <input type="text" formControlName="complemento" />
-    </div>
+      <div class="input-wrapper">
+        <label>Descrição</label>
+        <textarea formControlName="descricao" rows="2"></textarea>
+      </div>
 
-    <label>Bairro</label>
-    <div [style.border]="setBorder('bairro')" class="email-input">
-      <input type="text" formControlName="bairro" required />
-    </div>
+    </form>
 
-    <label>Cidade</label>
-    <div [style.border]="setBorder('cidade')" class="email-input">
-      <input type="text" formControlName="cidade" required />
-    </div>
+    <!-- STEP 2 - Endereço -->
+    <form [formGroup]="enderecoForm" *ngIf="step === 2" (keydown.enter)="submit()">
 
-    <label>Estado</label>
-    <div [style.border]="setBorder('estado')" class="email-input">
-      <input type="text" formControlName="estado" required />
-    </div>
+      <div class="form-row">
+        <div class="input-wrapper">
+          <label>CEP *</label>
+          <input type="text" formControlName="cep" mask="00000-000" required (blur)="buscarCep()" />
+        </div>
 
-    <label>CEP</label>
-    <div [style.border]="setBorder('cep')" class="email-input">
-      <input type="text" formControlName="cep" mask="00000-000" required />
-    </div>
+        <div class="input-wrapper">
+          <label>Estado *</label>
+          <input type="text" formControlName="estado" required />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="input-wrapper">
+          <label>Cidade *</label>
+          <input type="text" formControlName="cidade" required />
+        </div>
 
-    <br />
-    <button type="submit" class="custom-text-size14 login-submit" [disabled]="enderecoForm.invalid">Cadastrar</button>
-  </form>
+        <div class="input-wrapper">
+          <label>Bairro *</label>
+          <input type="text" formControlName="bairro" required />
+        </div>
 
-  <button type="button" (click)="close()" class="custom-btn-back">Cancelar</button>
+      </div>
+      <div class="input-wrapper">
+        <label>Rua *</label>
+        <input type="text" formControlName="rua" required />
+      </div>
+      <div class="form-row">
+        <div class="input-wrapper">
+          <label>Número *</label>
+          <input type="text" formControlName="numero" required />
+        </div>
+      </div>
+      <div class="input-wrapper">
+        <label>Complemento</label>
+        <input type="text" formControlName="complemento" />
+      </div>
+    </form>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="modal-footer">
+
+  <button class="btn-cancelar" (click)="fechar()">Cancelar</button>
+
+  <button *ngIf="step === 1" class="btn-salvar" [disabled]="empresaForm.invalid" (click)="nextStep()">
+    Próximo
+  </button>
+
+  <button *ngIf="step === 2" class="btn-salvar" [disabled]="enderecoForm.invalid" (click)="submit()">
+    Cadastrar
+  </button>
+
+  <button *ngIf="step === 2" class="btn-cancelar" (click)="previousStep()">
+    Voltar
+  </button>
+
 </div>

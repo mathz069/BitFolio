@@ -2,6 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EmpresaService } from '../../services/empresa.service';
 import { Empresa } from '../../models/empresa';
+import { MatDialogRef } from '@angular/material/dialog';
+import { EnderecoService } from 'src/app/shared/services/endereco.service';
 
 @Component({
   selector: 'app-empresa-modal',
@@ -18,10 +20,14 @@ step = 1;
   @Output() empresaCriada = new EventEmitter<Empresa>();
   @Output() closeModal = new EventEmitter<void>();
 
-  constructor(private fb: FormBuilder, private empresaService: EmpresaService) {
+  constructor(private fb: FormBuilder, private empresaService: EmpresaService,
+        private enderecoService: EnderecoService,
+        private dialogRef: MatDialogRef<EmpresaModalComponent>,
+  ) {
     this.empresaForm = this.fb.group({
       nome: ['', Validators.required],
-      cnpj: ['', [Validators.required, Validators.minLength(14)]], // ajuste validação
+      cnpj: ['', [Validators.required, Validators.minLength(14)]], 
+      razaoSocial: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       descricao: ['']
     });
@@ -37,7 +43,6 @@ step = 1;
     });
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 
 setBorder(controlName: string): string {
@@ -46,13 +51,19 @@ setBorder(controlName: string): string {
   return control && control.invalid && control.touched ? '1px solid red' : '1px solid #ccc';
 }
 
-  nextStep() {
-    if (this.empresaForm.valid) {
-      this.step = 2;
-    } else {
-      this.empresaForm.markAllAsTouched();
-    }
+ nextStep() {
+  if (this.empresaForm.valid) {
+    this.step = 2;
+
+    setTimeout(() => {
+      const container = document.querySelector('.bodydiv');
+      container?.scrollTo({ top: 0, behavior: 'instant' });
+    });
+  } else {
+    this.empresaForm.markAllAsTouched();
   }
+}
+
 
   previousStep() {
     this.step = 1;
@@ -79,7 +90,7 @@ setBorder(controlName: string): string {
 
           this.empresaCriada.emit(empresaResponse);
 
-          this.close();
+          this.fechar();
         },
         error: (err) => {
           this.isSubmitting = false;
@@ -93,6 +104,42 @@ setBorder(controlName: string): string {
     }
   });
 }
-  close() {
+
+
+buscarCep(): void {
+  const cep = this.enderecoForm.value.cep?.replace(/\D/g, '');
+  if (cep && cep.length === 8) {
+    this.enderecoService.buscarCep(cep).subscribe({
+      next: (dados) => {
+
+        const latitudeValue = dados.lat ? parseFloat(dados.lat) : null;
+        const longitudeValue = dados.lng ? parseFloat(dados.lng) : null;
+
+        this.enderecoForm.patchValue({
+          estado: dados.state || '',
+          cidade: dados.city || '',
+          bairro: dados.district || '',
+          rua: dados.address || dados.address_name || '',
+          numero: '',
+          complemento: '',
+          latitude: latitudeValue,
+          longitude: longitudeValue
+        });
+
+        console.log('Form preenchido com sucesso:', this.enderecoForm.value);
+      },
+      error: (err) => {
+        console.error('Erro ao buscar CEP:', err);
+        alert('CEP não encontrado.');
+      }
+    });
+  } else {
+    alert('Digite um CEP válido com 8 números.');
   }
+}
+
+ fechar(): void {
+    this.dialogRef.close(false);
+  }
+
 }

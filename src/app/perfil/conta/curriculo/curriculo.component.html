@@ -12,7 +12,7 @@
         </div>
 
         <div class="input-wrapper">
-            <label for="tecnologias">Tecnologias</label>
+            <label for="tecnologias">Tecnologias *</label>
             <div class="tech-selector">
                 <div class="tech-options">
                     <button *ngFor="let tech of tecnologiasDisponiveis" type="button" class="tech-tag"
@@ -24,12 +24,12 @@
         </div>
 
         <div class="input-wrapper">
-            <label for="competenciasTecnicas">Competências Técnicas</label>
+            <label for="competenciasTecnicas">Competências Técnicas *</label>
             <textarea formControlName="competenciasTecnicas" [readonly]="!editando"></textarea>
         </div>
 
         <div class="input-wrapper">
-            <label for="idiomas">Idiomas</label>
+            <label for="idiomas">Idiomas *</label>
 
             <div class="tech-selector">
                 <div class="tech-options">

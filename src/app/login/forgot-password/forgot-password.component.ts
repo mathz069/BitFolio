@@ -20,7 +20,8 @@ export class ForgotPasswordComponent implements OnInit {
   errorMessage: string = '';
   step: number = 1;
   isSubmitting: boolean = false;
-
+  capsLockOn: boolean = false;
+  capsLockOn1: boolean = false;
   userTypeData$: Observable<{ backgroundColor: string, backgroundImage: string }>;
 
   constructor(
@@ -58,6 +59,17 @@ export class ForgotPasswordComponent implements OnInit {
     const control = this.form.get(controlName);
     return control && control.invalid && control.touched ? '1px solid red' : '1px solid #ccc';
   }
+
+   checkCaps(event: KeyboardEvent) {
+  if (!event.getModifierState) return; 
+
+  this.capsLockOn = event.getModifierState('CapsLock');
+}
+ checkCaps1(event: KeyboardEvent) {
+  if (!event.getModifierState) return; 
+
+  this.capsLockOn1 = event.getModifierState('CapsLock');
+}
 
   changeFieldType(event: Event, field: 'password' | 'newpassword') {
     event.preventDefault();

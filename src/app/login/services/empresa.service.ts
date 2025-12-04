@@ -34,6 +34,12 @@ export class EmpresaService {
   deleteEmpresa(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrlEmpresa}/deleteEmp/${id}`);
   }
+  solicitarAlteracaoEndereco(endereco: any, funcionarioId: string): Observable<string> {
+    return this.http.post(`${this.apiUrlEmpresa}/alterarEndereco/${funcionarioId}`, endereco, { responseType: 'text' });
+  }
+  solicitarAlteracaoEmpresa(dados: any, funcionarioId: string): Observable<string> {
+    return this.http.post(`${this.apiUrlEmpresa}/alterarDados/${funcionarioId}`, dados, { responseType: 'text' });
+  }
 
    getAllEmpresas(page: number = 1, take: number = 10): Observable<HttpResponse<Empresa[]>> {
   return this.http.get<Empresa[]>(

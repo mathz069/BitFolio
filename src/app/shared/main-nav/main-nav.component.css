@@ -68,6 +68,7 @@
 .logo-item {
   display: flex;
   align-items: center;
+  margin-top: 8px;
   margin-right: 16px; /* distância mínima da logo para os menus */
 }
 

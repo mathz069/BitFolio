@@ -56,11 +56,12 @@ validarCodigo2FA(dto: TokenTemporario): Observable<{ sucesso: boolean; token?: s
     dto
   );
 }
-
   redefinirSenha(dto: { email: string; codigo: string; novaSenha: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/redefinir-senha`, dto);
   }
-
+  alterarSenha(dto: { email: string; senhaAtual: string; novaSenha: string; confirmacaoNovaSenha: string }): Observable<any> {
+  return this.http.put(`${this.apiUrl}/alterar-senha`, dto);
+}
   setToken(token: string): void {
     localStorage.setItem('token', token);
   }

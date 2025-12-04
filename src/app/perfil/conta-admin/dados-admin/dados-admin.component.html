@@ -30,9 +30,103 @@
       <button type="button" class="btn btn-success" *ngIf="editando" (click)="atualizarDados()">
         Salvar alterações
       </button>
-      <!-- <button type="button" class="btn btn-delete" (click)="deletarCandidato()">
-        Deletar Conta
-      </button> -->
     </div>
   </form>
+
+   <div class="form-header" style="margin-top: 35px;">
+  <h2>Alterar Senha</h2>
+  <p>Atualize a senha da sua conta</p>
+</div>
+
+
+  <form [formGroup]="formSenha">
+
+  <div class="input-row">
+
+    <!-- SENHA ATUAL -->
+    <div class="input-wrapper">
+      <label>Senha atual</label>
+
+      <div class="password-wrapper">
+        <input
+          [type]="senhaAtualField"
+          formControlName="senhaAtual"
+          (keydown)="checkCapsAtual($event)"
+          (keyup)="checkCapsAtual($event)"
+        />
+
+        <button type="button" class="show-password" (click)="changeFieldType($event, 'senhaAtual')">
+          <img class="eye-icon" [src]="eyeSenhaAtual" />
+        </button>
+      </div>
+
+      <div *ngIf="capsAtual" class="capslock-warning">
+        ⚠️ Caps Lock está ativado
+      </div>
+    </div>
+
+    <!-- NOVA SENHA -->
+    <div class="input-wrapper">
+      <label>Nova senha</label>
+
+      <div class="password-wrapper">
+        <input
+          [type]="novaSenhaField"
+          formControlName="novaSenha"
+          (keydown)="checkCapsNova($event)"
+          (keyup)="checkCapsNova($event)"
+        />
+
+        <button type="button" class="show-password" (click)="changeFieldType($event, 'novaSenha')">
+          <img class="eye-icon" [src]="eyeNovaSenha" />
+        </button>
+      </div>
+
+      <div *ngIf="capsNova" class="capslock-warning">
+        ⚠️ Caps Lock está ativado
+      </div>
+
+      <div *ngIf="formSenha.get('novaSenha')?.hasError('passwordStrength') && formSenha.get('novaSenha')?.touched">
+        <small class="error">
+          A senha deve ter pelo menos 8 caracteres, 1 letra maiúscula, 1 letra minúscula e 1 caractere especial.
+        </small>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-row">
+    <!-- CONFIRMAR SENHA -->
+    <div class="input-wrapper">
+      <label>Confirmar nova senha</label>
+
+      <div class="password-wrapper">
+        <input
+          [type]="confirmarSenhaField"
+          formControlName="confirmarSenha"
+          (keydown)="checkCapsConfirmar($event)"
+          (keyup)="checkCapsConfirmar($event)"
+        />
+
+        <button type="button" class="show-password" (click)="changeFieldType($event, 'confirmarSenha')">
+          <img class="eye-icon" [src]="eyeConfirmarSenha" />
+        </button>
+      </div>
+
+      <div *ngIf="capsConfirmar" class="capslock-warning">
+        ⚠️ Caps Lock está ativado
+      </div>
+
+      <div *ngIf="formSenha.hasError('passwordMismatch') && formSenha.get('confirmarSenha')?.touched">
+        <small class="error">As senhas não coincidem.</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="button-group">
+    <button type="button" class="btn btn-success" (click)="alterarSenha()">
+      Salvar nova senha
+    </button>
+  </div>
+
+</form>
 </div>

@@ -61,5 +61,14 @@
 <button (click)="login($event)" [ngClass]="{'disabled':loginIn}" [disabled]="loginIn" class="custom-text-size14 login-submit" >ACESSAR</button>
 
 <div class="line"></div>
+<div *ngIf="userType === 'funcionario'">
+  <div class="forgot-password">
+    <div class="custom-text-size14 span-link1">
+     <span class="span-link" (click)="abrirModalVaga()">
+      <ins >Seja uma empresa parceira!</ins>
+    </span>
+  </div>
+  </div>
+</div>
 
 </div>

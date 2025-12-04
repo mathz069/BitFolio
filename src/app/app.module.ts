@@ -35,6 +35,8 @@ import { GerenciarEmpresaComponent } from './perfil/conta-admin/gerenciar-empres
 import { DetalhesEmpresaComponent } from './perfil/conta-admin/gerenciar-empresa/detalhes-empresa/detalhes-empresa.component';
 import { GerenciarCandidatoComponent } from './perfil/conta-admin/gerenciar-candidato/gerenciar-candidato.component';
 import { GerenciarFuncComponent } from './perfil/conta-admin/gerenciar-func/gerenciar-func.component';
+import { DadosEmpresaComponent } from './perfil/conta-func/dados-empresa/dados-empresa.component';
+import { GerenciarAdminComponent } from './perfil/conta-admin/gerenciar-admin/gerenciar-admin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +62,9 @@ import { GerenciarFuncComponent } from './perfil/conta-admin/gerenciar-func/gere
     GerenciarEmpresaComponent,
     DetalhesEmpresaComponent,
     GerenciarCandidatoComponent,
-    GerenciarFuncComponent
+    GerenciarFuncComponent,
+    DadosEmpresaComponent,
+    GerenciarAdminComponent
   ],
   imports: [
     BrowserModule,
