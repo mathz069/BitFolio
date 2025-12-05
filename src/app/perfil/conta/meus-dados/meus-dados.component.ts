@@ -193,7 +193,7 @@ checkCapsConfirmar(event: KeyboardEvent) {
   }
 
   const candidatoAtualizado = {
-    id: this.candidatoId,
+    candidatoId: this.candidatoId,
     ...this.form.value
   };
 

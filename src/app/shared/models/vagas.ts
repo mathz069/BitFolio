@@ -54,7 +54,7 @@ export interface FiltroVagaDTO {
   area?: string;                     // Área de atuação
   modelo?: string;                  // Modelo de trabalho
   experiencia?: string;              // Nível de experiência
-  linguagens?: string[];             // Linguagens de programação selecionadas
+  linguagens?: string;             // Linguagens de programação selecionadas
   proximidade?: number;              // Raio em km
   page?: number;                     // Página atual
   take?: number;                     // Itens por página

@@ -49,6 +49,7 @@ export class EnderecoComponent {
 
         if (temEndereco) {
           this.enderecoId = candidato.enderecoId;
+          console.log('Endereço ID encontrado:', this.enderecoId);
           this.carregarEndereco();
         }
       },
@@ -97,6 +98,7 @@ export class EnderecoComponent {
     alert('Por favor, preencha todos os campos obrigatórios.');
     return;
   }
+  console.log('Endereço ID atual:', this.enderecoId);
   let enderecoAtualizado = {}
   if (this.enderecoId != null) {
    enderecoAtualizado = {
@@ -104,12 +106,12 @@ export class EnderecoComponent {
     candidatoId: this.candidatoId,
     ...this.form.value
   };
-}
+} else {
   enderecoAtualizado = {
     candidatoId: this.candidatoId,
     ...this.form.value
   };
-
+}
   this.enderecoService.updateEndereco(enderecoAtualizado, this.candidatoId).subscribe({
     next: () => {
       alert('Endereço atualizado com sucesso!');

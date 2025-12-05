@@ -71,4 +71,49 @@
   margin-top: 8px;
   margin-right: 16px; /* distância mínima da logo para os menus */
 }
+@media (max-width: 768px) {
 
+  .main-nav {
+    height: auto;
+    padding: 12px 20px;
+  }
+
+  .main-nav ul {
+    flex-direction: column;     /* MUDA PARA COLUNA */
+    align-items: flex-start;    /* alinha à esquerda */
+    width: 100%;
+    gap: 6px;
+  }
+
+  .main-nav li {
+    width: 100%;                /* cada item ocupa a linha */
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  /* LOGO */
+  .logo-item {
+    width: 100%;
+    justify-content: center;
+    margin: 0 0 10px 0;
+  }
+
+  .logo-img {
+    height: 45px;
+  }
+
+  /* PERFIL + LOGOUT */
+  .perfil-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;  /* mantém no final */
+    gap: 18px;
+    margin-top: 10px;
+  }
+
+  .profile-img,
+  .logout-img {
+    width: 34px;
+    height: 34px;
+  }
+}

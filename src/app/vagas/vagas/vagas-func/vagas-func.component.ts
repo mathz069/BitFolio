@@ -94,7 +94,7 @@ export class VagasFuncComponent implements OnInit {
 
   abrirModal() {
     const config = new MatDialogConfig();
-      const titulo = `Editar Vaga`;
+      const titulo = `Cadastrar Vaga`;
         config.width = '1000px';
         config.maxWidth = '87%';
         config.disableClose = true;

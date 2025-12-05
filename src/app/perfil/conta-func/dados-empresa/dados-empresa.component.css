@@ -9,6 +9,22 @@
   margin-bottom: 1.5rem;
 }
 
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  background: white;
+  color: #1e293b;
+  min-height: 80px; /* Adicione uma altura mínima para textareas e selects */
+  box-sizing: border-box; /* Garante que padding e border sejam incluídos na altura */
+}
+.input-wrapper.full {
+  flex: 0 0 100%;
+}
 .password-wrapper {
   position: relative;
   width: 100%;

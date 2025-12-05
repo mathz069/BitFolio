@@ -166,6 +166,34 @@ export class VagasComponent implements OnInit {
     });
   }
 
+private obterLinguagensSelecionadas(): string[] {
+  return Object.keys(this.filtros.linguagens)
+    .filter(chave => this.filtros.linguagens[chave] === true)
+    .map(chave => this.mapearFiltroParaNomeBanco(chave));
+}
+
+private mapearFiltroParaNomeBanco(chave: string): string {
+  const mapa: any = {
+    typescript: "TypeScript",
+    react: "React",
+    angular: "Angular",
+    nodejs: "Node.js",
+    python: "Python",
+    java: "Java",
+    csharp: "CSharp",
+    php: "PHP",
+    sql: "SQL",
+    mongodb: "MongoDB",
+    postgresql: "PostgreSQL",
+    aws: "AWS",
+    azure: "Azure",
+    git: "Git",
+    flutter: "Flutter",
+    figma: "Figma"
+  };
+
+  return mapa[chave] ?? chave;
+}
 
 
   limparFiltros() {
@@ -219,24 +247,21 @@ export class VagasComponent implements OnInit {
     const page = filtroPage ?? this.page;
     const take = takePage ?? this.take;
 
-    const linguagensSelecionadas: string[] = [];
-    for (const key in this.filtros.linguagens) {
-      if (this.filtros.linguagens[key]) {
-        linguagensSelecionadas.push(key);
-      }
-    }
+    const linguagensSelecionadas: string[] = Object.keys(this.filtros.linguagens)
+  .filter(key => this.filtros.linguagens[key])
+  .map(key => this.mapearFiltroParaNomeBanco(key));
 
-    const filtro: FiltroVagaDTO = {
-      candidatoId: this.candidatoId,
-      palavrasChave: this.filtros.palavrasChave,
-      area: this.filtros.area,
-      experiencia: this.filtros.experiencia,
-      linguagens: linguagensSelecionadas,
-      proximidade: this.filtros.proximidade,
-      modelo: this.filtros.modelo,
-      page: page,
-      take: take
-    };
+  const filtro: FiltroVagaDTO = {
+    candidatoId: this.candidatoId,
+    palavrasChave: this.filtros.palavrasChave,
+    area: this.filtros.area,
+    experiencia: this.filtros.experiencia,
+    linguagens: linguagensSelecionadas.join(", "),
+    proximidade: this.filtros.proximidade,
+    modelo: this.filtros.modelo,
+    page: page,
+    take: take
+  };
 
     this.vagaService.buscar(filtro, page, take)
       .subscribe((response: HttpResponse<VagaDTO[]>) => {

@@ -75,7 +75,7 @@ buscar(filtros: FiltroVagaDTO, page: number = 1, take: number = 10): Observable<
     params = params.set('experiencia', filtros.experiencia);
 
   if (filtros.linguagens && filtros.linguagens.length > 0)
-    params = params.set('linguagens', filtros.linguagens.join(','));
+    params = params.set('linguagens', filtros.linguagens);
 
   if (filtros.proximidade && filtros.proximidade > 0)
     params = params.set('proximidade', filtros.proximidade.toString());

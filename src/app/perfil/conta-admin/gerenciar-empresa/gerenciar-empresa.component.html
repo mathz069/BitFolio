@@ -44,8 +44,8 @@
                                 </div>
                             </div>
                         </td>
-                        <td>{{ empresa.cnpj }}</td>
                         <td>{{ formatarCnpj(empresa.cnpj) }}</td>
+                        <td>{{ empresa.email }}</td>
                         <td>{{ empresa.dataCadastro | date:'dd/MM/yyyy' }}</td>
                         <td>
                             <span class="status-badge" [ngClass]="{

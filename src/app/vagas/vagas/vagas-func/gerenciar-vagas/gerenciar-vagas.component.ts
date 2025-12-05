@@ -390,7 +390,7 @@ exportarParaExcel(): void {
     ['Total Aprovados', this.candidatoStatusCounts.aprovados],
     ['Total Rejeitados', this.candidatoStatusCounts.rejeitados],
     ['Total Em Análise', this.candidatoStatusCounts.emAnalise],
-    ['Total Entrevistas', this.candidatoStatusCounts.entrevista]
+    ['Total Pré-Selecionado', this.candidatoStatusCounts.entrevista]
   ];
 
   const startRow = dadosParaExportar.length;
