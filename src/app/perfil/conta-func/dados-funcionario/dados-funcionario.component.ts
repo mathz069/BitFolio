@@ -40,7 +40,14 @@ export class DadosFuncionarioComponent {
   ngOnInit(): void {
     this.form = this.fb.group({
       nome: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.email,
+          Validators.pattern(/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/)
+        ]
+      ],
       telefone: ['', Validators.required],
       dataNascimento: ['', [Validators.required, this.verificarMaiorDeIdade]]
     });

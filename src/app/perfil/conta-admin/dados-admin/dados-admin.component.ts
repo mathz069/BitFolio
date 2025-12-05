@@ -40,7 +40,14 @@ capsConfirmar: boolean = false;
   ngOnInit(): void {
     this.form = this.fb.group({
       nome: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.email,
+          Validators.pattern(/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/)
+        ]
+      ],
       telefone: ['', Validators.required],
     });
      this.formSenha = this.fb.group({

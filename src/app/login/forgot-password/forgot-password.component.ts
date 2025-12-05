@@ -37,7 +37,14 @@ export class ForgotPasswordComponent implements OnInit {
     const userType = localStorage.getItem('userType') as 'candidato' | 'administrador' | 'funcionario' || 'candidato';
     this.setPrimaryColor(userType);
     this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+     email: [
+        '',
+        [
+          Validators.required,
+          Validators.email,
+          Validators.pattern(/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/)
+        ]
+      ],
       codigo: ['', this.step === 2 ? Validators.required : []],
       novaSenha: ['', [Validators.required, this.passwordStrengthValidator]],
       ConfirmarnovaSenha: ['', [Validators.required, this.passwordStrengthValidator]]
